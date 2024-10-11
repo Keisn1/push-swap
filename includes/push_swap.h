@@ -21,7 +21,7 @@ extern "C"
 {
 # endif
 
-	void push_swap();
+	void	push_swap(const char* input_a_stack);
 
 # ifdef __cplusplus
 }

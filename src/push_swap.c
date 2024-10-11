@@ -13,11 +13,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	push_swap(void)
+void	push_swap(const char* input_a_stack)
 {
-	ft_putstr_fd("Hello", STDOUT_FILENO);
-	char* ret = malloc(20);
-	if (ret) {
-		return;
-	}
+	ft_putstr_fd(input_a_stack, STDOUT_FILENO);
 }
