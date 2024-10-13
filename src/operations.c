@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfreyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 18:06/50 by kfreyer           #+#    #+#             */
-/*   Updated: 2024/10/11 18:06:50 by kfreyer          ###   ########.fr       */
+/*   Created: 2024/10/13 09:16/58 by kfreyer           #+#    #+#             */
+/*   Updated: 2024/10/13 09:16:58 by kfreyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "operations.h"
 
-void	push_swap(int /* argc */, char* /* argv[] */)
-{
+t_state swap_a(t_state state) {
+	return state;
 }

@@ -17,7 +17,7 @@ RUN_DIR := run
 BIN_DIR := bin
 OBJ_DIR := obj
 TEST_DIR := tests
-INCLUDES := includes
+INCLUDES := -Iincludes -Ilibft
 LIBFT := -Llibft -lft
 
 SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
@@ -34,18 +34,18 @@ NAME := push_swap
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJ_FILES) $(RUN_DIR)/main.c -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/main.c -o $(NAME) $(LIBFT)
 
 $(TEST_TARGET): $(TEST_OBJ_FILES) $(OBJ_FILES) | $(BIN_DIR)
 	$(CXX) $(CFLAGS) $(FSANITIZE) $(TEST_OBJ_FILES) $(OBJ_FILES) -o $@ $(GTEST_LIBS) $(LIBFT)
 
 # Object file compilation for C
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDES) -Ilibft -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Object file compilation for C++
 $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | $(OBJ_DIR)
-	$(CXX) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
+	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

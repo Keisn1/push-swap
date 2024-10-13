@@ -1,7 +1,7 @@
 [
   {
     "arguments": [
-      "/usr/bin/cc",
+      "/usr/bin/g++",
       "-Wall",
       "-Werror",
       "-Wextra",
@@ -9,28 +9,11 @@
       "-Ilibft",
       "-c",
       "-o",
-      "obj/push_swap.o",
-      "src/push_swap.c"
+      "obj/test_stack_operations.o",
+      "tests/test_stack_operations.cpp"
     ],
     "directory": "/home/kay/workspace/push_swap",
-    "file": "/home/kay/workspace/push_swap/src/push_swap.c",
-    "output": "/home/kay/workspace/push_swap/obj/push_swap.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/cc",
-      "-c",
-      "-Wall",
-      "-Werror",
-      "-Wextra",
-      "-Iincludes",
-      "obj/push_swap.o",
-      "-o",
-      "push_swap",
-      "run/main.c"
-    ],
-    "directory": "/home/kay/workspace/push_swap",
-    "file": "/home/kay/workspace/push_swap/run/main.c",
-    "output": "/home/kay/workspace/push_swap/push_swap"
+    "file": "/home/kay/workspace/push_swap/tests/test_stack_operations.cpp",
+    "output": "/home/kay/workspace/push_swap/obj/test_stack_operations.o"
   }
 ]

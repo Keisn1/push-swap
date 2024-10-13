@@ -14,6 +14,14 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
+# include "libft.h"
+
+typedef t_list t_stack;
+
+typedef struct s_state {
+	t_stack *a;
+	t_stack *b;
+} t_state;
 
 # ifdef __cplusplus
 
@@ -21,7 +29,7 @@ extern "C"
 {
 # endif
 
-	void	push_swap(const char* input_a_stack);
+	void	push_swap(int /* argc */, char* /* argv[] */);
 
 # ifdef __cplusplus
 }

@@ -13,6 +13,6 @@
 #include "push_swap.h"
 
 int main() {
-	push_swap();
+	push_swap(1, "2 2 4");
     return 0;
 }
