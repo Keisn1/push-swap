@@ -29,7 +29,7 @@ extern "C"
 {
 # endif
 
-	void	push_swap(int /* argc */, char* /* argv[] */);
+	void	push_swap(int argc , char* argv[]);
 
 # ifdef __cplusplus
 }

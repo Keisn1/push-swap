@@ -1,105 +1,112 @@
+#include <cstdio>
 #include <gtest/gtest.h>
-#include <unistd.h>
-#include <vector>
-#include "libft.h"
-#include "operations.h"
-#include "push_swap.h"
+#include "test_push_swap.hpp"
 
 struct StackOperationInput {
 	std::string op;
-	t_state state;
-	t_state want_state;
+	std::vector<int> a;
+	std::vector<int> b;
+	std::vector<int> want_a;
+	std::vector<int> want_b;
 };
 
 
 class StackOperationTest : public testing::TestWithParam<StackOperationInput> {};
 
-void print_stack(t_stack *a) {
-	while (a) {
-		ft_putnbr_fd(*(int*)a->content, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		a = a->next;
-	}
-}
-
-void assert_equal_stack(t_stack *got, t_stack *want) {
-    while (got != NULL && want != NULL) {
-		ASSERT_EQ(*(int*)got->content, *(int*)want->content);
-		got = got->next;
-		want = want->next;
-	}
-	ASSERT_EQ(got, want);
-}
-
-
-void assert_equal_state(t_state got, t_state want) {
-	assert_equal_stack(got.a, want.a);
-	assert_equal_stack(got.b, want.b);
-}
-
-void	ft_lstclear_wo_del(t_list **lst)
-{
-	t_list	*head;
-	t_list	*tmp;
-
-	head = *lst;
-	if (!head)
-		return ;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	*lst = NULL;
-}
-
-void clear_stacks(t_state got, t_state want) {
-	ft_lstclear_wo_del(&got.a);
-	ft_lstclear_wo_del(&got.b);
-	ft_lstclear_wo_del(&want.a);
-	ft_lstclear_wo_del(&want.b);
-}
-
 TEST_P(StackOperationTest, first_test) {
     StackOperationInput param = GetParam();
+	t_state state = {create_stack(param.a), create_stack(param.b)};
+	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b)};
 
-	t_state got_state;
     if (param.op == "sa")
-		got_state = swap_a(param.state);
-
-	assert_equal_state(got_state, param.want_state);
-
-	clear_stacks(got_state,param.want_state);
-}
-
-t_stack *create_stack(std::vector<int> nbrs) {
-	if (nbrs.size() == 0)
-		return NULL;
-
-	t_stack *stack = ft_lstnew(&nbrs[0]);
-	for (size_t i = 1; i < nbrs.size(); ++i) {
-		ft_lstadd_back(&stack, ft_lstnew(&nbrs[i]));
-	}
-	return stack;
-}
-
-StackOperationInput create_stack_operation_input(std::string op,
-                                                 std::vector<int> a,
-												 std::vector<int> b,
-												 std::vector<int> want_a,
-												 std::vector<int> want_b) {
-	t_state state = {.a = create_stack(a), .b = create_stack(b)};
-	t_state want_state = {.a = create_stack(want_a), .b = create_stack(want_b)};
-	StackOperationInput input{op, state, want_state};
-	return input;
-
+		state = swap(state, 'a');
+    if (param.op == "sb")
+		state = swap(state, 'b');
+    if (param.op == "ss")
+		state = swap(state, 's');
+    if (param.op == "pa")
+		state = push_a(state);
+    if (param.op == "pb")
+		state = push_b(state);
+    if (param.op == "ra")
+		state = rotate(state, 'a');
+    if (param.op == "rb")
+		state = rotate(state, 'b');
+    if (param.op == "rr")
+		state = rotate(state, 'r');
+    if (param.op == "rra")
+		state = reverse_rotate(state, 'a');
+    if (param.op == "rrb")
+		state = reverse_rotate(state, 'b');
+    if (param.op == "rrr")
+		state = reverse_rotate(state, 'r');
+	assert_equal_state(state, want_state);
+	clear_stacks(state,want_state);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    StackOperationTests,
-    StackOperationTest,
+    StackOperationTests, StackOperationTest,
     ::testing::Values(
-        create_stack_operation_input("sa",{1, 2}, {}, {2, 1}, {})
+		// swapping
+        // "swap_a"
+        StackOperationInput{"sa", {1, 2}, {}, {2, 1}, {}},
+        StackOperationInput{"sa", {1}, {}, {1}, {}},
+        StackOperationInput{"sa", {}, {}, {}, {}},
+        StackOperationInput{"sa", {1, 2, 3}, {}, {2, 1, 3}, {}},
+        StackOperationInput{"sa", {1, 2, 3}, {5, 6}, {2, 1, 3}, {5, 6}},
+        // "swap_b"
+        StackOperationInput{"sb", {}, {}, {}, {}},
+        StackOperationInput{"sb", {}, {1}, {}, {1}},
+        StackOperationInput{"sb", {1, 2}, {3, 4}, {1, 2}, {4, 3}},
+        StackOperationInput{"sb", {}, {3, 4}, {}, {4, 3}},
+        StackOperationInput{"sb", {1, 2}, {3, 4, 5}, {1, 2}, {4, 3, 5}},
+        // "swap_a and swap_b"
+        StackOperationInput{"ss", {}, {}, {}, {}},
+        StackOperationInput{"ss", {1, 2}, {3, 4}, {2, 1}, {4, 3}},
+        StackOperationInput{"ss", {1, 2, 3}, {3, 4, 5}, {2, 1, 3}, {4, 3, 5}},
+
+		// pushing
+		// "push a"
+        StackOperationInput{"pa",{}, {}, {}, {}},
+        StackOperationInput{"pa",{1}, {}, {}, {1}},
+        StackOperationInput{"pa",{1, 2}, {}, {2}, {1}},
+        StackOperationInput{"pa",{1, 2, 3}, {5, 6}, {2, 3}, {1, 5, 6}},
+		// "push b"
+        StackOperationInput{"pb",{}, {}, {}, {}},
+        StackOperationInput{"pb",{}, {1}, {1}, {}},
+        StackOperationInput{"pb",{},{1, 2}, {1}, {2}},
+        StackOperationInput{"pb",{10, 11}, {12, 13, 14}, {12, 10, 11}, {13, 14}},
+
+		// "rotation"
+		// "rotate a"
+        StackOperationInput{"ra",{}, {}, {}, {}},
+        StackOperationInput{"ra",{1}, {}, {1}, {}},
+        StackOperationInput{"ra",{1, 2}, {}, {2, 1}, {}},
+        StackOperationInput{"ra",{1, 2, 3}, {}, {2, 3, 1}, {}},
+        StackOperationInput{"ra",{1, 2, 3, 4, 5}, {}, {2, 3, 4, 5, 1}, {}},
+		// "rotate b"
+        StackOperationInput{"rb",{}, {},  {}, {}},
+        StackOperationInput{"rb",{}, {1}, {}, {1} },
+        StackOperationInput{"rb",{}, {1, 2}, {}, {2, 1} },
+        StackOperationInput{"rb",{}, {1, 2, 3}, {}, {2, 3, 1} },
+        StackOperationInput{"rb",{}, {1, 2, 3, 4, 5}, {},{2, 3, 4, 5, 1} },
+		// "rotate both"
+        StackOperationInput{"rr",{1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}, {2, 3, 4, 5, 1},{2, 3, 4, 5, 1} },
+
+		// "reverse rotation"
+		// "rotate a"
+        StackOperationInput{"rra",{}, {}, {}, {}},
+        StackOperationInput{"rra",{1}, {}, {1}, {}},
+        StackOperationInput{"rra",{1, 2}, {}, {2, 1}, {}},
+        StackOperationInput{"rra",{1, 2, 3}, {}, {3, 1, 2}, {}},
+        StackOperationInput{"rra",{1, 2, 3, 4, 5}, {}, {5, 1, 2, 3, 4}, {}},
+		// // "rotate b"
+        StackOperationInput{"rrb",{}, {},  {}, {}},
+        StackOperationInput{"rrb",{}, {1},   {}, {1}},
+        StackOperationInput{"rrb",{}, {1, 2},   {}, {2, 1}},
+        StackOperationInput{"rrb",{}, {1, 2, 3},  {}, {3, 1, 2}},
+        StackOperationInput{"rrb",{}, {1, 2, 3, 4, 5}, {}, {5, 1, 2, 3, 4}},
+		// // "reverse rotate both"
+        StackOperationInput{"rrr",{1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}, {5, 1, 2, 3, 4},{5, 1, 2, 3, 4} }
         )
     );

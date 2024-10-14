@@ -1,6 +1,25 @@
 [
   {
     "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-Iincludes",
+      "-Ilibft",
+      "obj/operations.o",
+      "obj/push_swap.o",
+      "-o",
+      "push_swap",
+      "run/main.c"
+    ],
+    "directory": "/home/kay/workspace/push_swap",
+    "file": "/home/kay/workspace/push_swap/run/main.c",
+    "output": "/home/kay/workspace/push_swap/push_swap"
+  },
+  {
+    "arguments": [
       "/usr/bin/g++",
       "-Wall",
       "-Werror",

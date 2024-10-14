@@ -1,9 +1,11 @@
+#include <cstdio>
 #include <gtest/gtest.h>
-#include "push_swap.h"
+#include "test_push_swap.hpp"
+#include "libft.h"
 
 struct PushSwapInput {
     int argc;
-    std::vector<char*> argv;
+    std::vector<std::string> argv;
     std::string want_return;
 };
 
@@ -14,25 +16,30 @@ TEST_P(PushSwapTest, first_test) {
     PushSwapInput param = GetParam();
 
     // get push_swap output
+    char** argv = (char**)malloc(sizeof(char*) * param.argc);
+    int counter = 0;
+    for (std::string str : param.argv) {
+        argv[counter] = ft_strdup(str.c_str());
+        counter++;
+    }
     testing::internal::CaptureStdout();
-    push_swap(param.argc, *param.argv.data());
+    push_swap(param.argc, argv);
     std::string push_swap_return = testing::internal::GetCapturedStdout();
 
-    ASSERT_STREQ(param.want_return.c_str(), push_swap_return.c_str());
-}
+    EXPECT_STREQ(param.want_return.c_str(), push_swap_return.c_str());
 
-PushSwapInput create_push_swap_input(int argc, const std::initializer_list<std::string>& args, std::string want_return) {
-    PushSwapInput input{argc, std::vector<char*>(), want_return};
-    for (auto& str : args) {
-        input.argv.push_back(const_cast<char*>(str.c_str()));
+    int count = 0;
+    while (count < param.argc) {
+        free(argv[count++]);
     }
-    return input;
+    free(argv);
 }
 
 INSTANTIATE_TEST_SUITE_P(
     PushSwapTests,
     PushSwapTest,
     ::testing::Values(
-        create_push_swap_input(3, {"1", "2", "3"}, "")
+        PushSwapInput{4, {"push_swap", "1", "2", "3"}, ""},
+        PushSwapInput{4, {"push_swap", "2", "1", "3"}, "sa\n"}
         )
     );
