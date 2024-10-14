@@ -30,6 +30,7 @@ extern "C"
 # endif
 
 	void	push_swap(int argc , char* argv[]);
+	t_state sort_three_elements(t_state state);
 
 # ifdef __cplusplus
 }

@@ -30,7 +30,6 @@ void clear_stacks(t_state got, t_state want) {
 	ft_lstclear(&want.b, free);
 }
 
-
 t_stack *create_stack(std::vector<int> nbrs) {
 	if (nbrs.size() == 0)
 		return NULL;
