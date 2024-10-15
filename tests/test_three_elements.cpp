@@ -101,3 +101,33 @@ INSTANTIATE_TEST_SUITE_P(
         AlgorithmTestInput{5, {4, 5, 1, 3, 2}, {1, 2, 3, 4, 5}}
         )
     );
+
+class PartiallySortWithFive : public testing::TestWithParam<AlgorithmTestInput> {};
+
+
+TEST_P(PartiallySortWithFive, FiveElementStack) {
+    AlgorithmTestInput param = GetParam();
+
+    t_stack *want_stack = create_stack(param.want_stack);
+    t_state state = {create_stack(param.stack_a), NULL};
+
+    state = partially_sort_with_five(state, param.size);
+
+    assert_equal_stack(state.a, want_stack);
+
+    ft_lstclear(&state.a,free);
+    ft_lstclear(&state.b,free);
+    ft_lstclear(&want_stack,free);
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    AlgorithmTests,
+    PartiallySortWithFive,
+    ::testing::Values(
+        AlgorithmTestInput{6, {1, 2, 3, 4, 5, 6}, {1, 2, 3, 4, 5, 6}},
+        AlgorithmTestInput{6, {2, 1, 3, 4, 5, 6}, {1, 2, 3, 4, 5, 6}},
+        AlgorithmTestInput{0, {}, {}},
+        AlgorithmTestInput{1, {1}, {1}},
+        AlgorithmTestInput{2, {1, 2}, {1, 2}}
+        )
+    );

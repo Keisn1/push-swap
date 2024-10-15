@@ -34,6 +34,7 @@ extern "C"
 	t_state sort_three_elements(t_state state);
 	t_state sort_four_elements(t_state state);
 	t_state sort_five_elements(t_state state);
+	t_state partially_sort_with_five(t_state state, int size);
 
 # ifdef __cplusplus
 }

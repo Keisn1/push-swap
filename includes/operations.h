@@ -25,6 +25,9 @@ extern "C"
 	t_stack *rev_rot_stack(t_stack *stack);
 	t_state reverse_rotate(t_state state, char s);
 
+	/* sort top of stack */
+	t_state sort_top_of_stack(t_state state, char stack);
+
 # ifdef __cplusplus
 }
 # endif

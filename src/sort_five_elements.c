@@ -13,12 +13,6 @@
 #include "operations.h"
 #include "push_swap.h"
 
-t_state sort_b_ascending(t_state state) {
-	if (!is_seq(state.b->content, state.b->next->content))
-		state = swap(state, 'b');
-	return state;
-}
-
 t_state sort_five_elements(t_state state) {
 	/* 2 operations */
 	state = push_b(state);
@@ -28,7 +22,7 @@ t_state sort_five_elements(t_state state) {
 	state = sort_three_elements(state);
 
 	/* plus maximum of 1 operation */
-	state = sort_b_ascending(state);
+	state = sort_top_of_stack(state, 'b');
 
 	/* plus 5 rotations */
 	/* plus 2 swaps */
