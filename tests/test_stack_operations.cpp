@@ -67,15 +67,15 @@ INSTANTIATE_TEST_SUITE_P(
 
 		// pushing
 		// "push a"
-        StackOperationInput{"pa",{}, {}, {}, {}},
-        StackOperationInput{"pa",{1}, {}, {}, {1}},
-        StackOperationInput{"pa",{1, 2}, {}, {2}, {1}},
-        StackOperationInput{"pa",{1, 2, 3}, {5, 6}, {2, 3}, {1, 5, 6}},
-		// "push b"
         StackOperationInput{"pb",{}, {}, {}, {}},
-        StackOperationInput{"pb",{}, {1}, {1}, {}},
-        StackOperationInput{"pb",{},{1, 2}, {1}, {2}},
-        StackOperationInput{"pb",{10, 11}, {12, 13, 14}, {12, 10, 11}, {13, 14}},
+        StackOperationInput{"pb",{1}, {}, {}, {1}},
+        StackOperationInput{"pb",{1, 2}, {}, {2}, {1}},
+        StackOperationInput{"pb",{1, 2, 3}, {5, 6}, {2, 3}, {1, 5, 6}},
+		// "push b"
+        StackOperationInput{"pa",{}, {}, {}, {}},
+        StackOperationInput{"pa",{}, {1}, {1}, {}},
+        StackOperationInput{"pa",{},{1, 2}, {1}, {2}},
+        StackOperationInput{"pa",{10, 11}, {12, 13, 14}, {12, 10, 11}, {13, 14}},
 
 		// "rotation"
 		// "rotate a"

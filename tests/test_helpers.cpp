@@ -11,11 +11,11 @@ void print_stack(t_stack *a) {
 
 void assert_equal_stack(t_stack *got, t_stack *want) {
     while (got != NULL && want != NULL) {
-		ASSERT_EQ(*(int*)got->content, *(int*)want->content);
+		EXPECT_EQ(*(int*)got->content, *(int*)want->content);
 		got = got->next;
 		want = want->next;
 	}
-	ASSERT_EQ(got, want);
+	EXPECT_EQ(got, want);
 }
 
 
@@ -23,6 +23,7 @@ void assert_equal_state(t_state got, t_state want) {
 	assert_equal_stack(got.a, want.a);
 	assert_equal_stack(got.b, want.b);
 }
+
 void clear_stacks(t_state got, t_state want) {
 	ft_lstclear(&got.a, free);
 	ft_lstclear(&got.b, free);

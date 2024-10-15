@@ -29,8 +29,11 @@ extern "C"
 {
 # endif
 
+	bool is_seq(void *a, void *b);
 	void	push_swap(int argc , char* argv[]);
 	t_state sort_three_elements(t_state state);
+	t_state sort_four_elements(t_state state);
+	t_state sort_five_elements(t_state state);
 
 # ifdef __cplusplus
 }

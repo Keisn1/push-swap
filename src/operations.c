@@ -39,22 +39,22 @@ t_state swap(t_state state, char s) {
 }
 
 t_state push_a(t_state state) {
-	if (!state.a)
-		return state;
-	t_stack *top_b = state.a;
-	state.a = top_b->next;
-	top_b->next = state.b;
-	state.b = top_b;
-	return state;
-}
-
-t_state push_b(t_state state) {
 	if (!state.b)
 		return state;
 	t_stack *top_a = state.b;
 	state.b = top_a->next;
 	top_a->next = state.a;
 	state.a = top_a;
+	return state;
+}
+
+t_state push_b(t_state state) {
+	if (!state.a)
+		return state;
+	t_stack *top_b = state.a;
+	state.a = top_b->next;
+	top_b->next = state.b;
+	state.b = top_b;
 	return state;
 }
 

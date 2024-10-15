@@ -3,13 +3,10 @@
 #include "push_swap.h"
 #include <unistd.h>
 
-bool is_seq(void *a, void *b) {
-	if (*(int*)a <= *(int*)b)
-		return true;
-	return false;
-}
 
-
+/* sorts the elements in a */
+/* supposes that a has 3 elements */
+/* maximum of 2 operations*/
 t_state sort_three_elements(t_state state) {
 	void* first = state.a->content;
 	void* second = state.a->next->content;
