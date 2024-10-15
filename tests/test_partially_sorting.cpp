@@ -2,6 +2,7 @@
 #include "libft.h"
 #include "test_push_swap.hpp"
 
+
 struct AlgorithmTestInput {
     int size;
     std::vector<int> stack_a;
