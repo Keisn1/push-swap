@@ -32,8 +32,11 @@ extern "C"
 	bool is_seq(void *a, void *b);
 	void	push_swap(int argc , char* argv[]);
 	t_state sort_three_elements(t_state state);
+	t_state sort_three_elements_with_tail(t_state state);
 	t_state sort_four_elements(t_state state);
+	t_state sort_four_elements_with_tail(t_state state);
 	t_state sort_five_elements(t_state state);
+	t_state sort_five_elements_with_tail(t_state state, bool with_backing_up);
 	t_state partially_sort_with_five(t_state state, int size);
 
 # ifdef __cplusplus

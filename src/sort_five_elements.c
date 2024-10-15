@@ -13,6 +13,43 @@
 #include "operations.h"
 #include "push_swap.h"
 
+/* maximum of 15 operations */
+t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
+	/* 2 operations */
+	state = push_b(state);
+	state = push_b(state);
+
+	/* plus maximum of 5 operations */
+	state = sort_three_elements_with_tail(state);
+
+	/* plus maximum of 1 operation */
+	state = sort_top_of_stack(state, 'b');
+
+	/* plus 5 rotations */
+	/* plus 2 pushes */
+	int count_rots = 0;
+	while (count_rots < 5) {
+		if (state.b && is_seq(state.b->content, state.a->content))
+			state = push_a(state);
+		if (state.b && state.b->next && count_rots == 3)
+			state = push_a(state);
+		if (state.b && count_rots == 4)
+			state = push_a(state);
+		state = rotate(state, 'a');
+		count_rots++;
+	}
+
+	/* when backing up +5 */
+	if (with_backing_up) {
+		while (count_rots-- > 0) {
+			state = reverse_rotate(state, 'a');
+		}
+	}
+
+	return state;
+
+}
+
 t_state sort_five_elements(t_state state) {
 	/* 2 operations */
 	state = push_b(state);
@@ -25,7 +62,7 @@ t_state sort_five_elements(t_state state) {
 	state = sort_top_of_stack(state, 'b');
 
 	/* plus 5 rotations */
-	/* plus 2 swaps */
+	/* plus 2 pushes */
 	int count_rots = 0;
 	while (count_rots < 5) {
 		if (state.b && is_seq(state.b->content, state.a->content))
