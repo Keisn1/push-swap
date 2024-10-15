@@ -10,7 +10,6 @@ struct AlgorithmTestInput {
 
 class SortThreeElementsTest : public testing::TestWithParam<AlgorithmTestInput> {};
 
-
 TEST_P(SortThreeElementsTest, ThreeElementStack) {
     AlgorithmTestInput param = GetParam();
 
@@ -34,6 +33,34 @@ INSTANTIATE_TEST_SUITE_P(
         AlgorithmTestInput{3, {2, 3, 1}, {1, 2, 3}},
         AlgorithmTestInput{3, {3, 1, 2}, {1, 2, 3}},
         AlgorithmTestInput{3, {3, 2, 1}, {1, 2, 3}}
+        )
+    );
+
+class SortThreeElementsWithTailTest : public testing::TestWithParam<AlgorithmTestInput> {};
+
+TEST_P(SortThreeElementsWithTailTest, MoreThanThreeElementStack) {
+    AlgorithmTestInput param = GetParam();
+
+    t_stack *want_stack = create_stack(param.want_stack);
+    t_state state = {create_stack(param.stack_a), NULL};
+
+    state = sort_three_elements_with_tail(state);
+
+    assert_equal_stack(state.a, want_stack);
+    ft_lstclear(&state.a,free);
+    ft_lstclear(&want_stack,free);
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    AlgorithmTests,
+    SortThreeElementsWithTailTest,
+    ::testing::Values(
+        AlgorithmTestInput{5, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}}
+        // AlgorithmTestInput{3, {1, 3, 2}, {1, 2, 3}},
+        // AlgorithmTestInput{3, {2, 1, 3}, {1, 2, 3}},
+        // AlgorithmTestInput{3, {2, 3, 1}, {1, 2, 3}},
+        // AlgorithmTestInput{3, {3, 1, 2}, {1, 2, 3}},
+        // AlgorithmTestInput{3, {3, 2, 1}, {1, 2, 3}}
         )
     );
 
@@ -128,6 +155,11 @@ INSTANTIATE_TEST_SUITE_P(
         AlgorithmTestInput{6, {2, 1, 3, 4, 5, 6}, {1, 2, 3, 4, 5, 6}},
         AlgorithmTestInput{0, {}, {}},
         AlgorithmTestInput{1, {1}, {1}},
-        AlgorithmTestInput{2, {1, 2}, {1, 2}}
+        AlgorithmTestInput{2, {1, 2}, {1, 2}},
+        AlgorithmTestInput{3, {3, 2, 1}, {1, 2, 3}},
+        AlgorithmTestInput{4, {3, 4, 2, 1}, {1, 2, 3, 4}},
+        AlgorithmTestInput{5, {1, 4, 2, 5, 3}, {1, 2, 3, 4, 5}},
+        AlgorithmTestInput{7, {2, 6, 4, 3, 7, 5, 1}, {2, 3, 4, 6, 7, 1, 5}}
+        // AlgorithmTestInput{8, {4,2,5,6,8,0,9,7}, {2, 4, 5, 6, 8, 0, 7, 9 }}
         )
     );
