@@ -1,14 +1,6 @@
 #include <gtest/gtest.h>
 #include "test_push_swap.hpp"
 
-void print_stack(t_stack *a) {
-	while (a) {
-		ft_putnbr_fd(*(int*)a->content, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		a = a->next;
-	}
-}
-
 void assert_equal_stack(t_stack *got, t_stack *want) {
     while (got != NULL && want != NULL) {
 		EXPECT_EQ(*(int*)got->content, *(int*)want->content);

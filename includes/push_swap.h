@@ -39,6 +39,10 @@ extern "C"
 	t_state sort_five_elements_with_tail(t_state state, bool with_backing_up);
 	t_state partially_sort_with_five(t_state state, int size);
 	t_state merge_rest(t_state state, int size);
+	t_state merge_chunk_of_five(t_state state, int size, bool with_backing_up);
+
+
+	void print_stack(t_stack *a);
 
 # ifdef __cplusplus
 }

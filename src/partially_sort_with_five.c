@@ -31,14 +31,6 @@ t_state sort_less_than_6_with_tail(t_state state, int size) {
 	return state;
 }
 
-void print_stack(t_stack *a) {
-	while (a) {
-		ft_putnbr_fd(*(int*)a->content, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		a = a->next;
-	}
-}
-
 t_state partially_sort_with_five(t_state state, int size) {
 	if (size < 6)
 		return sort_less_than_6(state, size);
