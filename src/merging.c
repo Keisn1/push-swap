@@ -12,67 +12,72 @@
 
 #include "operations.h"
 #include "push_swap.h"
-#include <stdio.h>
 
-t_state merge_chunk_of_five(t_state state, int size, bool with_backing_up) {
-	int count = 0;
-	while (count++ < 5) {
+t_state	back_up(t_state state, int times)
+{
+	int	count;
+
+	count = 0;
+	while (count++ < times)
+		state = reverse_rotate(state, 'a');
+	return (state);
+}
+
+t_state	merge_two_chunks(t_state state, int size_of_chunk, bool with_backing_up)
+{
+	int	count;
+
+	count = 0;
+	while (count++ < size_of_chunk)
+	{
 		state = push_b(state);
 		state = rotate(state, 'b');
 	}
-
 	count = 0;
-
-	while (state.b) {
-		printf("here");
-
-		if (is_seq(state.b->content, state.a->content) || count >= 5) {
+	while (state.b)
+	{
+		if (is_seq(state.b->content, state.a->content)
+			|| count >= size_of_chunk)
+		{
 			state = push_a(state);
 			state = rotate(state, 'a');
-			continue;
+			continue ;
 		}
 		state = rotate(state, 'a');
 		count++;
 	}
-
-	print_stack(state.a);
-	count = 0;
-	if (with_backing_up) {
-		while (count++ < 10) {
-			state = reverse_rotate(state, 'a');
-		}
-	}
-
-	if (with_backing_up) {
-
-	}
-	if (size) {
-	}
-	return state;
+	while (count++ < size_of_chunk)
+		state = rotate(state, 'a');
+	if (with_backing_up)
+		state = back_up(state, 2 * size_of_chunk);
+	return (state);
 }
 
+t_state	merge_rest(t_state state, int size)
+{
+	int	rest;
+	int	count;
 
-t_state merge_rest(t_state state, int size) {
-
-	int rest = size % 5;
-	int count = 0;
-	while (count++ < rest) {
+	rest = size % 5;
+	count = 0;
+	while (count++ < rest)
+	{
 		state = reverse_rotate(state, 'a');
 		state = push_b(state);
 	}
-
 	count = 0;
-	while (count < size) {
-		if (state.b && (is_seq(state.b->content, state.a->content) || (count >= size-rest))) {
+	while (count < size)
+	{
+		if (state.b && (is_seq(state.b->content, state.a->content)
+				|| (count >= size - rest)))
+		{
 			state = push_a(state);
 			state = rotate(state, 'a');
 			count++;
-			continue;
+			continue ;
 		}
 		state = rotate(state, 'a');
 		count++;
 	}
-
-	return state;
+	return (state);
 }
-

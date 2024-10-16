@@ -1,8 +1,7 @@
 #include <gtest/gtest.h>
-#include "libft.h"
 #include "test_push_swap.hpp"
 
-struct AlgorithmTestInput {
+struct MergeRestTestInput {
     int size;
     std::vector<int> stack_a;
     std::vector<int> want_stack;
@@ -14,11 +13,11 @@ struct AlgorithmTestInput {
 // Merge Rest
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MergeRestTest : public testing::TestWithParam<AlgorithmTestInput> {};
+class MergeRestTest : public testing::TestWithParam<MergeRestTestInput> {};
 
 
 TEST_P(MergeRestTest, MergeRest) {
-    AlgorithmTestInput param = GetParam();
+    MergeRestTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL};
@@ -36,27 +35,35 @@ INSTANTIATE_TEST_SUITE_P(
     AlgorithmTests,
     MergeRestTest,
     ::testing::Values(
-        AlgorithmTestInput{6, {1, 2, 4, 5, 6, 3}, {1, 2, 3, 4, 5, 6}, true},
-        AlgorithmTestInput{7, {1, 2, 4, 6, 7, 3, 5}, {1, 2, 3, 4, 5, 6, 7}, true},
-        AlgorithmTestInput{13, {0, 3, 4, 6, 8, 11, 13, 15, 18, 21, 2, 7, 17}, {0, 2, 3, 4, 6, 7, 8, 11, 13, 15, 17, 18, 21}, true},
-        AlgorithmTestInput{7, {1, 2, 3, 4, 5, 6, 7}, {1, 2, 3, 4, 5, 6, 7}, true}
+        MergeRestTestInput{6, {1, 2, 4, 5, 6, 3}, {1, 2, 3, 4, 5, 6}, true},
+        MergeRestTestInput{7, {1, 2, 4, 6, 7, 3, 5}, {1, 2, 3, 4, 5, 6, 7}, true},
+        MergeRestTestInput{13, {0, 3, 4, 6, 8, 11, 13, 15, 18, 21, 2, 7, 17}, {0, 2, 3, 4, 6, 7, 8, 11, 13, 15, 17, 18, 21}, true},
+        MergeRestTestInput{7, {1, 2, 3, 4, 5, 6, 7}, {1, 2, 3, 4, 5, 6, 7}, true}
         )
     );
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Merge Chunks of five
+// Merge Chunks
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MergeChunksOfFive : public testing::TestWithParam<AlgorithmTestInput> {};
+struct MergeChunkTestInput {
+    int size_of_chunk;
+    std::vector<int> stack_a;
+    std::vector<int> want_stack;
+    bool with_backing_up;
+};
+
+
+class MergeChunksOfFive : public testing::TestWithParam<MergeChunkTestInput> {};
 
 
 TEST_P(MergeChunksOfFive, MergingChunksOfFive) {
-    AlgorithmTestInput param = GetParam();
+    MergeChunkTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL};
 
-    state = merge_chunk_of_five(state, param.size, param.with_backing_up);
+    state = merge_chunk(state, param.size_of_chunk, param.with_backing_up);
 
     assert_equal_stack(state.a, want_stack);
 
@@ -69,6 +76,11 @@ INSTANTIATE_TEST_SUITE_P(
     AlgorithmTests,
     MergeChunksOfFive,
     ::testing::Values(
-        AlgorithmTestInput{13, {1, 3, 5, 7, 9, 0,2,4,6,8, 12, 11, 10}, {0,1,2,3,4,5,6,7,8,9,12,11,10}, true}
+        MergeChunkTestInput{5, {1, 3, 5, 7, 9, 0,2,4,6,8, 12, 11, 10}, {0,1,2,3,4,5,6,7,8,9,12,11,10}, true},
+        MergeChunkTestInput{5, {1, 3, 5, 7, 9, 0,2,4,6,8, 12, 11, 10}, {12, 11, 10,0,1,2,3,4,5,6,7,8,9}, false},
+        MergeChunkTestInput{5, {0,1,2,3,4,5,6,7,8,9,12, 11, 10}, {0,1,2,3,4,5,6,7,8,9,12,11,10}, true},
+        MergeChunkTestInput{5, {0,1,2,3,4,5,6,7,8,9,12, 11, 10}, {12,11,10,0,1,2,3,4,5,6,7,8,9}, false},
+        MergeChunkTestInput{5, {5,6,7,8,9,0,1,2,3,4,12,11,10}, {0,1,2,3,4,5,6,7,8,9,12,11,10}, true},
+        MergeChunkTestInput{3, {1,3,5, 0, 2, 4, 8,7,6}, {0,1,2,3,4,5,8,7,6}, true}
         )
     );

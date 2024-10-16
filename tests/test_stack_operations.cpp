@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <gtest/gtest.h>
 #include "test_push_swap.hpp"
 

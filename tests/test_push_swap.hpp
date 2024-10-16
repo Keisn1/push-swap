@@ -4,6 +4,7 @@
 #include <vector>
 #include "push_swap.h"
 #include "operations.h"
+#include "libft.h"
 
 void print_stack(t_stack *a);
 void assert_equal_stack(t_stack *got, t_stack *want);
