@@ -128,3 +128,20 @@ t_state sort_top_of_stack(t_state state, char stack) {
 	}
 	return sort_b_ascending(state);
 }
+
+t_state rotate_a_n_times(t_state state, int n) {
+	/* rotate to the beginning */
+	int count = 0;
+	while (count++ < n)
+		state = rotate(state, 'a');
+	return state;
+}
+
+
+t_state reverse_rotate_a_n_times(t_state state, int n) {
+	/* rotate to the beginning */
+	int count = 0;
+	while (count++ < n)
+		state = reverse_rotate(state, 'a');
+	return state;
+}

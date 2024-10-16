@@ -41,9 +41,7 @@ t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
 
 	/* when backing up +5 */
 	if (with_backing_up) {
-		while (count_rots-- > 0) {
-			state = reverse_rotate(state, 'a');
-		}
+		state = reverse_rotate_a_n_times(state, count_rots);
 	}
 
 	return state;

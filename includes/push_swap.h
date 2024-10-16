@@ -41,6 +41,9 @@ extern "C"
 	t_state merge_rest(t_state state, int size);
 	t_state merge_two_chunks(t_state state, int size_of_chunk, bool with_backing_up);
 
+	t_state put_ascending_a_in_b_ascending(t_state state, int size);
+	t_state put_ascending_tail_of_a_in_b_ascending(t_state state, int length_tail);
+	t_state merge_ascending_b_into_ascending_a(t_state state, int length_sorted_in_a);
     t_state merge_sort(t_state state, int size);
 
 	void print_stack(t_stack *a);
