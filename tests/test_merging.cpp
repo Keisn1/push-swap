@@ -63,7 +63,7 @@ TEST_P(MergeChunksOfFive, MergingChunksOfFive) {
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL};
 
-    state = merge_chunk(state, param.size_of_chunk, param.with_backing_up);
+    state = merge_two_chunks(state, param.size_of_chunk, param.with_backing_up);
 
     assert_equal_stack(state.a, want_stack);
 
