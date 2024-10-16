@@ -12,6 +12,8 @@
 
 #include "operations.h"
 #include "push_swap.h"
+#include <stdio.h>
+
 
 t_state	merge_chunk_into_it_with_tail(t_state state, int length_sorted_in_a, int size_of_chunk, int rest)
 {
@@ -24,16 +26,35 @@ t_state	merge_chunk_into_it_with_tail(t_state state, int length_sorted_in_a, int
 t_state	merge_sort(t_state state, int size)
 {
 	int	size_of_chunk;
-	int	rest;
+	int	size_of_rest;
 
 	size_of_chunk = 5;
-	rest = size % size_of_chunk;
+	size_of_rest = size % size_of_chunk;
 	state = partially_sort_with_five(state, size);
-	state = merge_two_chunks(state, size_of_chunk, false);
 
-	if ((size - 2*size_of_chunk) > rest)
-		state = merge_chunk_into_it_with_tail(state, 2*size_of_chunk, size_of_chunk, rest);
+	int end_idx = 0;
+	while ((size - end_idx) > 2*size_of_chunk) {
+		state = merge_two_chunks(state, size_of_chunk, false);
+		end_idx += 2*size_of_chunk;
+	}
 
-	state = rotate_a_n_times(state, rest);
-	return merge_rest(state, size);
+	print_stack(state.a);
+	if (((2*size_of_chunk) * 2) < size) {
+		size_of_chunk *= 2;
+		state = rotate_a_n_times(state, size_of_rest);
+
+		end_idx = 0;
+		while ((size - end_idx) > 2*size_of_chunk) {
+			state = merge_two_chunks(state, size_of_chunk, false);
+			end_idx += 2*size_of_chunk;
+		}
+	}
+
+
+	if ((size - end_idx) > size_of_rest)
+		state = merge_chunk_into_it_with_tail(state, 2*size_of_chunk, size_of_chunk, size_of_rest);
+
+	state = rotate_a_n_times(state, size_of_rest);
+	state = merge_rest(state, size, size_of_rest);
+	return state;
 }

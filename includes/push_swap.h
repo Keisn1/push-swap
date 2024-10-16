@@ -38,7 +38,7 @@ extern "C"
 	t_state sort_five_elements(t_state state);
 	t_state sort_five_elements_with_tail(t_state state, bool with_backing_up);
 	t_state partially_sort_with_five(t_state state, int size);
-	t_state merge_rest(t_state state, int size);
+	t_state merge_rest(t_state state, int size, int size_of_rest);
 	t_state merge_two_chunks(t_state state, int size_of_chunk, bool with_backing_up);
 
 	t_state put_ascending_a_in_b_ascending(t_state state, int size);

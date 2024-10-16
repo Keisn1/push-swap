@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "push_swap.h"
 #include "test_push_swap.hpp"
 
 struct MergeRestTestInput {
@@ -22,7 +23,8 @@ TEST_P(MergeRestTest, MergeRest) {
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL};
 
-    state = merge_rest(state, param.size);
+    state = merge_rest(state, param.size, param.size%5);
+    print_stack(state.a);
 
     assert_equal_stack(state.a, want_stack);
 
