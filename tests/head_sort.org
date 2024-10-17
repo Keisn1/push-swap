@@ -2,7 +2,7 @@
 :GPTEL_MODEL: gpt-4o
 :GPTEL_BACKEND: ChatGPT
 :GPTEL_SYSTEM: You are a large language model living in Emacs and a helpful assistant. Try to avoid long answers.
-:GPTEL_BOUNDS: ((380 . 1956) (2062 . 4185) (4248 . 4539) (4555 . 5431) (5432 . 5441) (5457 . 5475) (5476 . 5534) (5567 . 6523))
+:GPTEL_BOUNDS: ((464 . 2040) (2146 . 4269) (4332 . 4623) (4639 . 5515) (5516 . 5525) (5541 . 5559) (5560 . 5607) (5609 . 5617) (5624 . 5642) (5643 . 5690) (5692 . 5700) (5707 . 5725) (5726 . 5784) (5841 . 6797))
 :END:
 
 *** Do you have an idea how I can implement heapsort using two stacks?
@@ -93,10 +93,20 @@ def sift_down(heap, start_index):
 heap = [2, 8, 1, 3, 9, 5]
 sift_down(heap, 2)
 print(heap)  # Outputs: [9, 7, 5, 1, 3, 2, 4]
+
+heap = [2, 1, 3]
+sift_down(heap, 0)
+print(heap)  # Outputs: [9, 7, 5, 1, 3, 2, 4]
+
+heap = [1, 2, 3]
+sift_down(heap, 0)
+print(heap)  # Outputs: [9, 7, 5, 1, 3, 2, 4]
 #+end_src
 
 #+RESULTS:
 : [2, 8, 5, 3, 9, 1]
+: [3, 1, 2]
+: [3, 2, 1]
 
 *Explanation:*
 - *Initial Setup*: The =sift_down= function takes the heap (as a list) and an index =start_index= from where we want to begin restoring the heap property.

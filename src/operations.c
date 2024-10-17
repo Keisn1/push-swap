@@ -15,7 +15,6 @@
 #include <stdio.h>
 
 t_stack *swap_stack(t_stack *head) {
-	printf("swap\n");
 	if (!head)
 		return head;
 
@@ -41,7 +40,6 @@ t_state swap(t_state state, char s) {
 }
 
 t_state push_a(t_state state) {
-	printf("pa\n");
 	if (!state.b)
 		return state;
 	t_stack *top_a = state.b;
@@ -52,7 +50,6 @@ t_state push_a(t_state state) {
 }
 
 t_state push_b(t_state state) {
-	printf("pb\n");
 	if (!state.a)
 		return state;
 	t_stack *top_b = state.a;
@@ -63,7 +60,6 @@ t_state push_b(t_state state) {
 }
 
 t_stack *rot_stack(t_stack *stack) {
-	printf("rot\n");
 	if (!stack || !(stack->next))
 		return stack;
 	t_stack *last = ft_lstlast(stack);
@@ -90,7 +86,6 @@ t_state rotate(t_state state, char s) {
 
 
 t_stack *rev_rot_stack(t_stack *stack) {
-	printf("rev_rot\n");
 	if (!stack || !(stack->next))
 		return stack;
 
@@ -143,11 +138,27 @@ t_state rotate_a_n_times(t_state state, int n) {
 	return state;
 }
 
+t_state rotate_b_n_times(t_state state, int n) {
+	/* rotate to the beginning */
+	int count = 0;
+	while (count++ < n)
+		state = rotate(state, 'b');
+	return state;
+}
+
 
 t_state reverse_rotate_a_n_times(t_state state, int n) {
 	/* rotate to the beginning */
 	int count = 0;
 	while (count++ < n)
 		state = reverse_rotate(state, 'a');
+	return state;
+}
+
+t_state reverse_rotate_b_n_times(t_state state, int n) {
+	/* rotate to the beginning */
+	int count = 0;
+	while (count++ < n)
+		state = reverse_rotate(state, 'b');
 	return state;
 }

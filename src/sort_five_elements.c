@@ -48,6 +48,8 @@ t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
 
 }
 
+/* total of 12 ops maximum */
+/* would be less than 5 * log_2_5 = 5 * 2.3 = 11.5  */
 t_state sort_five_elements(t_state state) {
 	/* 2 operations */
 	state = push_b(state);
@@ -72,6 +74,5 @@ t_state sort_five_elements(t_state state) {
 		state = rotate(state, 'a');
 		count_rots++;
 	}
-	/* total of 12 ops maximum */
 	return state;
 }

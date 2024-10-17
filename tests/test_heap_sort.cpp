@@ -18,7 +18,7 @@ TEST_P(SiftDownTest, SiftDownTest) {
 
     state = sift_down(state, param.root, param.size);
 
-    assert_equal_stack(state.a, want_stack);
+    assert_equal_stack(state.b, want_stack);
 
     ft_lstclear(&state.a,free);
     ft_lstclear(&state.b,free);
@@ -29,7 +29,12 @@ INSTANTIATE_TEST_SUITE_P(
     SiftDownTests,
     SiftDownTest,
     ::testing::Values(
-        SiftDownTestParams{6, 2, {}, {}}
+        SiftDownTestParams{0, 0, {}, {}},
+        SiftDownTestParams{1, 0, {1}, {1}},
+        SiftDownTestParams{2, 0, {1, 2}, {2, 1}},
+        SiftDownTestParams{2, 1, {1, 2}, {1, 2}},
+        SiftDownTestParams{3, 0, {1, 2, 3}, {3, 2, 1}},
+        SiftDownTestParams{3, 0, {2, 1, 3}, {3, 1, 2}}
         // SiftDownTestParams{6, 2, {2,8,1,3,9,5}, {2, 8, 5, 3, 9, 1}}
         )
     );
