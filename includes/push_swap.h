@@ -21,6 +21,10 @@ typedef t_list t_stack;
 typedef struct s_state {
 	t_stack *a;
 	t_stack *b;
+	int size_a;
+	int size_b;
+	int max_b;
+	int min_b;
 } t_state;
 
 # ifdef __cplusplus
@@ -50,6 +54,7 @@ extern "C"
 
 	/* insert_sort */
     t_state insert_sort(t_state state, int size);
+    int get_amount_ops(t_state state, int idx);
 
 	/* heap_sort */
 	t_state sift_down(t_state state, int root, int size);

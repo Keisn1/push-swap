@@ -14,9 +14,10 @@ class StackOperationTest : public testing::TestWithParam<StackOperationInput> {}
 
 TEST_P(StackOperationTest, first_test) {
     StackOperationInput param = GetParam();
-	t_state state = {create_stack(param.a), create_stack(param.b)};
-	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b)};
+	t_state state = {create_stack(param.a), create_stack(param.b), 0, 0, 0, 0};
+	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b), 0, 0, 0, 0};
 
+	printf("%p \n", state.a);
     if (param.op == "sa")
 		state = swap(state, 'a');
     if (param.op == "sb")

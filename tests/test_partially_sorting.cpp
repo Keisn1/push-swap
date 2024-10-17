@@ -18,12 +18,12 @@ TEST_P(SortThreeElementsTest, ThreeElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_three_elements(state);
 
     assert_equal_stack(state.a, want_stack);
-    ft_lstclear(&state.a,free);
+    ft_lstclear(&(state.a),free);
     ft_lstclear(&want_stack,free);
 }
 
@@ -46,7 +46,7 @@ TEST_P(SortThreeElementsWithTailTest, MoreThanThreeElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
     state = sort_three_elements_with_tail(state);
 
@@ -79,7 +79,7 @@ TEST_P(SortFourElementsTest, FourElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
     state = sort_four_elements(state);
 
@@ -108,7 +108,7 @@ TEST_P(SortFourElementsWithTailTest, FourElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_four_elements_with_tail(state);
 
@@ -140,7 +140,7 @@ TEST_P(SortFiveElementsTest, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_five_elements(state);
 
@@ -174,7 +174,7 @@ TEST_P(SortFiveElementsWithTailTest, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_five_elements_with_tail(state, param.with_backing_up);
 
@@ -213,7 +213,7 @@ TEST_P(PartiallySortWithFive, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = partially_sort_with_five(state, param.size);
 

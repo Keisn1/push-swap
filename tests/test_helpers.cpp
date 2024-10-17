@@ -3,7 +3,7 @@
 
 void assert_equal_stack(t_stack *got, t_stack *want) {
     while (got != NULL && want != NULL) {
-		EXPECT_EQ(*(int*)got->content, *(int*)want->content);
+		EXPECT_EQ(*(int*)(got->content), *(int*)(want->content));
 		got = got->next;
 		want = want->next;
 	}
@@ -17,10 +17,10 @@ void assert_equal_state(t_state got, t_state want) {
 }
 
 void clear_stacks(t_state got, t_state want) {
-	ft_lstclear(&got.a, free);
-	ft_lstclear(&got.b, free);
-	ft_lstclear(&want.a, free);
-	ft_lstclear(&want.b, free);
+	ft_lstclear(&(got).a, free);
+	ft_lstclear(&(got).b, free);
+	ft_lstclear(&(want).a, free);
+	ft_lstclear(&(want).b, free);
 }
 
 t_stack *create_stack(std::vector<int> nbrs) {

@@ -21,10 +21,9 @@ TEST_P(MergeRestTest, MergeRest) {
     MergeRestTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL,0, 0, 0, 0};
 
     state = merge_rest(state, param.size, param.size%5);
-    print_stack(state.a);
 
     assert_equal_stack(state.a, want_stack);
 
@@ -63,7 +62,7 @@ TEST_P(MergeChunksOfFive, MergingChunksOfFive) {
     MergeChunkTestInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
     state = merge_two_chunks(state, param.size_of_chunk, param.with_backing_up);
 

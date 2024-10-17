@@ -14,7 +14,7 @@ TEST_P(SiftDownTest, SiftDownTest) {
     SiftDownTestParams param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {NULL, create_stack(param.stack_b)};
+    t_state state = {NULL, create_stack(param.stack_b), param.size, 0, 0, 0};
 
     state = sift_down(state, param.root, param.size);
 

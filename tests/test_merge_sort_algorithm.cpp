@@ -17,7 +17,7 @@ TEST_P(MergeSortTest, MergeSortTest) {
     MergeSortInput param = GetParam();
 
     t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL};
+    t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = merge_sort(state, param.size);
 

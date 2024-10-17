@@ -28,6 +28,8 @@ t_stack *swap_stack(t_stack *head) {
 }
 
 t_state swap(t_state state, char s) {
+
+	printf("%p \n", state.a);
 	if (s == 'a')
 		state.a = swap_stack(state.a);
 	if (s == 'b')
