@@ -13,6 +13,7 @@
 #include "operations.h"
 #include "libft.h"
 #include <stdio.h>
+#include <unistd.h>
 
 t_stack *swap_stack(t_stack *head) {
 	if (!head)

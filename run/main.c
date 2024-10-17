@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
+#include <unistd.h>
 
-int main() {
-	push_swap(1, "2 2 4");
+int main(int argc, char** argv) {
+	push_swap(argc-1, argv);
     return 0;
 }

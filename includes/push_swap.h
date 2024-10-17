@@ -48,6 +48,9 @@ extern "C"
 	t_state merge_ascending_b_into_ascending_a(t_state state, int length_sorted_in_a);
     t_state merge_sort(t_state state, int size);
 
+	/* insert_sort */
+    t_state insert_sort(t_state state, int size);
+
 	/* heap_sort */
 	t_state sift_down(t_state state, int root, int size);
 

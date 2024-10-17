@@ -14,31 +14,24 @@
 #include "libft.h"
 #include <unistd.h>
 
+t_stack *create_stack(int argc, char* argv[]) {
+	int *x = (int*)malloc(sizeof(int));
+	*x = ft_atoi(argv[1]);
+	t_stack *stack = ft_lstnew(x);
+	for (int i = 2; i <= argc; i++) {
+		x = (int*)malloc(sizeof(int));
+		*x = ft_atoi(argv[i]);
+		ft_lstadd_back(&stack, ft_lstnew(x));
+	}
+	return stack;
+}
+
 void	push_swap(int argc , char* argv[])
 {
-	/* int count = 1; */
-	if (argc) {
 
-	}
-	int first = ft_atoi(argv[1]);
-	int second = ft_atoi(argv[2]);
-	if (first > second) {
-		ft_putendl_fd("sa", STDOUT_FILENO);
-	}
-	return;
-	/* int *x; */
-	/* x = (int*)malloc(sizeof(int)); */
-	/* *x = ft_atoi(argv[count]); */
-	/* t_stack *a = ft_lstnew(x); */
-	/* while (count < argc) { */
-	/* 	ft_putendl_fd(argv[count], STDOUT_FILENO); */
-	/* 	count++; */
-		/* x = (int*)malloc(sizeof(int)); */
-		/* *x = ft_atoi(argv[count]); */
-		/* ft_lstadd_back(&a, ft_lstnew(x)); */
-		/* count++; */
-	/* } */
-	/* if (*(int*)a->content > *(int*)a->next->content) { */
-	/* 	ft_putendl_fd("sa", STDOUT_FILENO); */
-	/* } */
+	t_stack *a = create_stack(argc, argv);
+	t_state state = {a, NULL};
+	/* print_stack(state.a); */
+	state = merge_sort(state, argc);
+	ft_lstclear(&state.a, free);
 }
