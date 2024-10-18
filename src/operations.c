@@ -28,8 +28,6 @@ t_stack *swap_stack(t_stack *head) {
 }
 
 t_state swap(t_state state, char s) {
-
-	printf("%p \n", state.a);
 	if (s == 'a')
 		state.a = swap_stack(state.a);
 	if (s == 'b')
@@ -49,6 +47,8 @@ t_state push_a(t_state state) {
 	state.b = top_a->next;
 	top_a->next = state.a;
 	state.a = top_a;
+	state.size_a++;
+	state.size_b--;
 	return state;
 }
 
@@ -59,6 +59,8 @@ t_state push_b(t_state state) {
 	state.a = top_b->next;
 	top_b->next = state.b;
 	state.b = top_b;
+	state.size_b++;
+	state.size_a--;
 	return state;
 }
 

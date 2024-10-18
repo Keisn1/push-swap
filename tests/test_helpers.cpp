@@ -14,6 +14,8 @@ void assert_equal_stack(t_stack *got, t_stack *want) {
 void assert_equal_state(t_state got, t_state want) {
 	assert_equal_stack(got.a, want.a);
 	assert_equal_stack(got.b, want.b);
+	EXPECT_EQ(got.size_a, want.size_a);
+	EXPECT_EQ(got.size_b, want.size_b);
 }
 
 void clear_stacks(t_state got, t_state want) {

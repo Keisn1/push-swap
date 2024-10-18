@@ -26,6 +26,13 @@ TEST_P(LeastAmountTest, LeastAmountTest) {
 
     t_state state = {create_stack(param.stack_a), create_stack(param.stack_b), param.size_a, param.size_b, param.max_b, param.min_b};
 
+	// int want_max_b = param.max_b;
+	// int want_min_b = param.min_b;
+	// if (param.max_b < param.stack_a[param.idx])
+	// 	want_max_b = param.stack_a[param.idx];
+	// if (param.min_b > param.stack_a[param.idx])
+	// 	want_min_b = param.stack_a[param.idx];
+
     int got = get_amount_ops(state, param.idx);
 
 	EXPECT_EQ(got, param.want);
@@ -38,8 +45,25 @@ INSTANTIATE_TEST_SUITE_P(
     LeastAmountTests,
     LeastAmountTest,
     ::testing::Values(
-        LeastAmountOfOperationTestParam{{3,4,5}, {1, 2}, 0, 2, 3, 2, 2, 1}
-        // LeastAmountOfOperationTestParam{{3,4,5}, {2, 1}, 0, 2, 3, 2, 2, 1}
+        LeastAmountOfOperationTestParam{{3}, {1, 2}, 0, 2, 1, 2, 2, 1},
+        LeastAmountOfOperationTestParam{{3}, {2, 1}, 0, 1, 1, 2, 2, 1},
+        LeastAmountOfOperationTestParam{{3}, {1, 0}, 0, 1, 1, 2, 1, 0},
+        LeastAmountOfOperationTestParam{{3}, {2, 1, 6}, 0, 1, 1, 3, 6, 1},
+        LeastAmountOfOperationTestParam{{4}, {2, 1}, 0, 1, 1, 2, 2, 1},
+        LeastAmountOfOperationTestParam{{2}, {1, 3}, 0, 1, 1, 2, 3, 1},
+        LeastAmountOfOperationTestParam{{2}, {4, 3, 1, 5}, 0, 3, 1, 4, 4, 1},
+        LeastAmountOfOperationTestParam{{2}, {5, 4, 3, 1, 6}, 0, 3, 1, 5, 4, 1},
+        LeastAmountOfOperationTestParam{{0, 2}, {5, 4, 3, 1, 6}, 1, 4, 2, 5, 4, 1},
+        LeastAmountOfOperationTestParam{{0, 0, 0, 0 ,2, 0}, {5, 4, 3, 1, 6}, 4, 5, 6, 5, 4, 1},
+        LeastAmountOfOperationTestParam{{0, 0, 0, 0 ,2, 0}, {3, 1, 6, 5, 4, }, 4, 4, 6, 5, 4, 1},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 0, 2, 5, 5, 9, -2},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 1, 2, 5, 5, 9, -2},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 2, 5, 5, 5, 9, -2},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 3, 4, 5, 5, 9, -2},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 4, 3, 4, 5, 9, -2},
+        LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 12, 9}, 2, 6, 5, 6, 12, -2},
+        LeastAmountOfOperationTestParam{{1}, {2, 3}, 0, 2, 1, 2, 3, 2},
+        LeastAmountOfOperationTestParam{{1}, {4, 3, 2, 7, 6, 5}, 0, 3, 1, 2, 3, 2}
 		)
 	);
 
@@ -47,33 +71,38 @@ INSTANTIATE_TEST_SUITE_P(
 // insert sort algorithm
 
 
-// struct InsertSortTestParam {
-//     int size;
-//     std::vector<int> stack_a;
-//     std::vector<int> want_stack;
-// };
+struct InsertSortTestParam {
+    std::vector<int> stack_a;
+    std::vector<int> want_stack;
+};
 
-// class InsertSortTest : public testing::TestWithParam<InsertSortTestParam> {};
+class InsertSortTest : public testing::TestWithParam<InsertSortTestParam> {};
 
-// TEST_P(InsertSortTest, InsertSortTest) {
-//     InsertSortTestParam param = GetParam();
+TEST_P(InsertSortTest, InsertSortTest) {
+    InsertSortTestParam param = GetParam();
 
-//     t_stack *want_stack = create_stack(param.want_stack);
-//     t_state state = {create_stack(param.stack_a), NULL, 0, 0};
+    t_stack *want_stack = create_stack(param.want_stack);
+    t_state state = {create_stack(param.stack_a), NULL,  (int)param.stack_a.size(), 0, 0, 0};
 
-//     state = insert_sort(state, param.size);
+    state = insert_sort(state);
 
-//     assert_equal_stack(state.a, want_stack);
+    assert_equal_stack(state.a, want_stack);
 
-//     ft_lstclear(&state.a,free);
-//     ft_lstclear(&state.b,free);
-//     ft_lstclear(&want_stack,free);
-// }
+    ft_lstclear(&state.a,free);
+    ft_lstclear(&state.b,free);
+    ft_lstclear(&want_stack,free);
+}
 
-// INSTANTIATE_TEST_SUITE_P(
-//     InsertSortTests,
-//     InsertSortTest,
-//     ::testing::Values(
-//         InsertSortTestParam{9, {5,2,7,1,6,3,9,4,8}, {1,2,3,4,5,6,7,8,9}}
-// 		)
-// 	);
+INSTANTIATE_TEST_SUITE_P(
+    InsertSortTests,
+    InsertSortTest,
+    ::testing::Values(
+        InsertSortTestParam{{}, {}},
+        InsertSortTestParam{{1}, {1}},
+        InsertSortTestParam{{2, 1}, {1, 2}},
+        InsertSortTestParam{{1, 2, 3}, {1, 2, 3}},
+        InsertSortTestParam{{2, 1, 3}, {1, 2, 3}}
+        // InsertSortTestParam{{3, 2, 1}, {1, 2, 3}}
+        // InsertSortTestParam{1, {1}, {1,2,3,4,5,6,7,8,9}}
+		)
+	);

@@ -1,32 +1,81 @@
 #include "operations.h"
 #include "push_swap.h"
-
-/* t_limits_b update_limits(t_limits_b limits_b, int nbr) { */
-/* 	if (limits_b.max_b < nbr) */
-/* 		limits_b.max_b = nbr; */
-/* 	if (nbr < limits_b.min_b) */
-/* 		limits_b.min_b = nbr; */
-/* 	return limits_b; */
-/*  } */
-
-/* t_state insert_sort(t_state state, int size) { */
-/* 	/\* Step 1: Push 2 numbers to Stack *\/ */
-
-/* 	push_b(state); */
-/* 	t_limits_b limits_b = {.max_b= *(int*)state.b->content, .min_b = *(int*)state.b->content}; */
-
-/* 	push_b(state); */
-/* 	update_limits(limits_b, *(int*)state.b->content); */
-/* 	return state; */
-/* } */
+#include <stdio.h>
 
 
-int get_amount_ops(t_state state, int idx) {
-	if (state.a) {
 
-		if (idx) {
-
+int get_pos_in_b(t_state state, int val) {
+	t_stack *head = state.b;
+	int count = 0;
+	int inf = val;
+	int inf_idx = -1;
+	while (head) {
+		int head_val = *(int*)(head->content);
+		if (head_val < val && (inf == val || head_val > inf)) {
+			inf = head_val;
+			inf_idx = count;
 		}
+		head = head->next;
+		count++;
 	}
-	return 2;
+	if (inf_idx == -1)
+		return 1;
+
+	return inf_idx;
 }
+
+int get_val_at_idx(t_state state, int idx, char stack) {
+	int count = 0;
+	t_stack *head;
+	if (stack == 'a')
+		head = state.a;
+	else
+		head = state.b;
+	while (count++ < idx)
+		head = head->next;
+	return *(int*)(head->content);
+}
+
+int get_nbr_of_rots(t_state state, int idx, char stack) {
+	int size = state.size_a;
+	if (stack == 'b')
+		size = state.size_b;
+
+	if ((size - idx) < idx)
+		return size - idx;
+	return idx;
+}
+
+int get_amount_ops(t_state state, int pos) {
+	int pos_in_b = get_pos_in_b(state, get_val_at_idx(state, pos, 'a'));
+
+	int rots_in_a = get_nbr_of_rots(state, pos, 'a');
+	int rots_in_b = get_nbr_of_rots(state, pos_in_b, 'b');
+
+	return rots_in_a + rots_in_b + 1;
+}
+
+t_state insert_sort(t_state state) {
+	if (state.size_a < 2)
+		return state;
+	if (state.size_a == 2)
+		return sort_top_of_stack(state, 'a');
+
+     state = push_b(state);
+     state = push_b(state);
+
+	int pos_in_b = get_pos_in_b(state, *(int*)(state.a->content));
+	int rots_in_b = get_nbr_of_rots(state, pos_in_b, 'b');
+
+	printf("%d \n", pos_in_b);
+	printf("%d \n", rots_in_b);
+	print_stack(state.b);
+	state = rotate_b_n_times(state, rots_in_b);
+	state = push_b(state);
+
+	while (state.b)
+		state = push_a(state);
+	return state;
+
+}
+

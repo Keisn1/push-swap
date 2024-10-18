@@ -14,10 +14,20 @@ class StackOperationTest : public testing::TestWithParam<StackOperationInput> {}
 
 TEST_P(StackOperationTest, first_test) {
     StackOperationInput param = GetParam();
-	t_state state = {create_stack(param.a), create_stack(param.b), 0, 0, 0, 0};
-	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b), 0, 0, 0, 0};
+	t_state state = {create_stack(param.a), create_stack(param.b), (int)param.a.size(), (int)param.b.size(), 0, 0};
+	int want_size_a = param.a.size();
+	int want_size_b = param.b.size();
+	if (param.op == "pa" && param.b.size()) {
+		want_size_a++;
+		want_size_b--;
+	}
+	if (param.op == "pb" && param.a.size()) {
+		want_size_b++;
+		want_size_a--;
+	}
 
-	printf("%p \n", state.a);
+	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b), want_size_a, want_size_b, 0, 0};
+
     if (param.op == "sa")
 		state = swap(state, 'a');
     if (param.op == "sb")
@@ -71,7 +81,7 @@ INSTANTIATE_TEST_SUITE_P(
         StackOperationInput{"pb",{1}, {}, {}, {1}},
         StackOperationInput{"pb",{1, 2}, {}, {2}, {1}},
         StackOperationInput{"pb",{1, 2, 3}, {5, 6}, {2, 3}, {1, 5, 6}},
-		// "push b"
+		// // "push b"
         StackOperationInput{"pa",{}, {}, {}, {}},
         StackOperationInput{"pa",{}, {1}, {1}, {}},
         StackOperationInput{"pa",{},{1, 2}, {1}, {2}},

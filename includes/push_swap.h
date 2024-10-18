@@ -53,7 +53,7 @@ extern "C"
     t_state merge_sort(t_state state, int size);
 
 	/* insert_sort */
-    t_state insert_sort(t_state state, int size);
+    t_state insert_sort(t_state state);
     int get_amount_ops(t_state state, int idx);
 
 	/* heap_sort */
