@@ -54,6 +54,7 @@ extern "C"
 
 	/* insert_sort */
     t_state insert_sort(t_state state);
+	t_state insert_new_val(t_state state);
     int get_amount_ops(t_state state, int idx);
 
 	/* heap_sort */

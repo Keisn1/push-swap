@@ -17,6 +17,7 @@ class SortThreeElementsTest : public testing::TestWithParam<AlgorithmTestInput> 
 TEST_P(SortThreeElementsTest, ThreeElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
@@ -45,6 +46,7 @@ class SortThreeElementsWithTailTest : public testing::TestWithParam<AlgorithmTes
 TEST_P(SortThreeElementsWithTailTest, MoreThanThreeElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
@@ -78,6 +80,7 @@ class SortFourElementsTest : public testing::TestWithParam<AlgorithmTestInput> {
 TEST_P(SortFourElementsTest, FourElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
@@ -107,6 +110,7 @@ class SortFourElementsWithTailTest : public testing::TestWithParam<AlgorithmTest
 TEST_P(SortFourElementsWithTailTest, FourElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
@@ -139,6 +143,7 @@ class SortFiveElementsTest : public testing::TestWithParam<AlgorithmTestInput> {
 TEST_P(SortFiveElementsTest, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
@@ -173,6 +178,7 @@ class SortFiveElementsWithTailTest : public testing::TestWithParam<AlgorithmTest
 TEST_P(SortFiveElementsWithTailTest, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
@@ -211,6 +217,7 @@ class PartiallySortWithFive : public testing::TestWithParam<AlgorithmTestInput> 
 
 TEST_P(PartiallySortWithFive, FiveElementStack) {
     AlgorithmTestInput param = GetParam();
+    testing::internal::CaptureStdout();
 
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};

@@ -85,10 +85,56 @@ int get_amount_ops(t_state state, int pos) {
 	return rots_in_a + rots_in_b + 1;
 }
 
-/* int insert_new_val(t_state state, int val) { */
+int get_min_amount_pos(t_state state) {
+	int pos = 0;
+	int min_amount = get_amount_ops(state, pos);
+	int min_amount_pos = 0;
+	t_stack *head = state.a;
+	while (head) {
+		int amount = get_amount_ops(state, pos);
+		if (amount < min_amount) {
+			min_amount = amount;
+			min_amount_pos = pos;
+		}
+		head = head->next;
+		pos++;
+	}
+	return min_amount_pos;
+}
+
+t_state insert_new_val(t_state state) {
+	int min_amount_pos = get_min_amount_pos(state);
+	int min_amount_val = get_val_at_idx(state, min_amount_pos, 'a');
+
+	int rotations_a = get_nbr_of_rots(state, min_amount_pos, 'a');
+	if (rotations_a == min_amount_pos)
+		state = rotate_a_n_times(state, rotations_a);
+	else
+		state = reverse_rotate_a_n_times(state, rotations_a);
 
 
-/* } */
+	int pos_in_b = get_pos_in_b(state, min_amount_val);
+	int rotations = get_nbr_of_rots(state, pos_in_b, 'b');
+
+	if (rotations == pos_in_b)
+		state = rotate_b_n_times(state, rotations);
+	else
+		state = reverse_rotate_b_n_times(state, rotations);
+	state = push_b(state);
+	return state;
+}
+
+t_state rotate_to_max(t_state state) {
+	int max_idx = find_idx_of_max(state);
+	int rotations = get_nbr_of_rots(state, max_idx, 'b');
+	return rotate_b_n_times(state, rotations);
+}
+
+t_state push_b_to_a(t_state state) {
+	while (state.b)
+		state = push_a(state);
+	return state;
+}
 
 t_state insert_sort(t_state state) {
 	if (state.size_a < 2)
@@ -99,19 +145,10 @@ t_state insert_sort(t_state state) {
 	state = push_b(state);
 	state = push_b(state);
 
-	int pos_in_b = get_pos_in_b(state, *(int*)(state.a->content));
-	int rotations = get_nbr_of_rots(state, pos_in_b, 'b');
+	state = insert_new_val(state);
+	state = rotate_to_max(state);
 
-	state = rotate_b_n_times(state, rotations);
-	state = push_b(state);
-
-	int max_idx = find_idx_of_max(state);
-	rotations = get_nbr_of_rots(state, max_idx, 'b');
-
-	state = rotate_b_n_times(state, rotations);
-	while (state.b)
-		state = push_a(state);
-	return state;
+	return push_b_to_a(state);
 
 }
 

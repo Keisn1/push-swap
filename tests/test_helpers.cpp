@@ -40,3 +40,13 @@ t_stack *create_stack(std::vector<int> nbrs) {
 
 	return stack;
 }
+
+int countNewlines(const std::string& text) {
+    int newlineCount = 0;
+    for (char ch : text) {
+        if (ch == '\n') {
+            ++newlineCount;
+        }
+    }
+    return newlineCount;
+}

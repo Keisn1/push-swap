@@ -14,6 +14,8 @@ class StackOperationTest : public testing::TestWithParam<StackOperationInput> {}
 
 TEST_P(StackOperationTest, first_test) {
     StackOperationInput param = GetParam();
+
+    testing::internal::CaptureStdout();
 	t_state state = {create_stack(param.a), create_stack(param.b), (int)param.a.size(), (int)param.b.size(), 0, 0};
 	int want_size_a = param.a.size();
 	int want_size_b = param.b.size();
@@ -50,6 +52,8 @@ TEST_P(StackOperationTest, first_test) {
 		state = reverse_rotate(state, 'b');
     if (param.op == "rrr")
 		state = reverse_rotate(state, 'r');
+
+	testing::internal::GetCapturedStdout();
 	assert_equal_state(state, want_state);
 	clear_stacks(state,want_state);
 }

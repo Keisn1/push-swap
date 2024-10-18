@@ -20,6 +20,7 @@ class MergeRestTest : public testing::TestWithParam<MergeRestTestInput> {};
 TEST_P(MergeRestTest, MergeRest) {
     MergeRestTestInput param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL,0, 0, 0, 0};
 
@@ -60,6 +61,7 @@ class MergeChunksOfFive : public testing::TestWithParam<MergeChunkTestInput> {};
 
 TEST_P(MergeChunksOfFive, MergingChunksOfFive) {
     MergeChunkTestInput param = GetParam();
+    testing::internal::CaptureStdout();
 
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};

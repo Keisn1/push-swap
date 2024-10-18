@@ -28,11 +28,16 @@ t_stack *swap_stack(t_stack *head) {
 }
 
 t_state swap(t_state state, char s) {
-	if (s == 'a')
+	if (s == 'a') {
+		ft_putendl_fd("sa", STDOUT_FILENO);
 		state.a = swap_stack(state.a);
-	if (s == 'b')
+	}
+	if (s == 'b') {
+		ft_putendl_fd("sb", STDOUT_FILENO);
 		state.b = swap_stack(state.b);
+        }
 	if (s == 's') {
+		ft_putendl_fd("ss", STDOUT_FILENO);
 		state.a = swap_stack(state.a);
 		state.b = swap_stack(state.b);
 	}
@@ -41,6 +46,7 @@ t_state swap(t_state state, char s) {
 }
 
 t_state push_a(t_state state) {
+	ft_putendl_fd("pa", STDOUT_FILENO);
 	if (!state.b)
 		return state;
 	t_stack *top_a = state.b;
@@ -53,6 +59,7 @@ t_state push_a(t_state state) {
 }
 
 t_state push_b(t_state state) {
+	ft_putendl_fd("pb", STDOUT_FILENO);
 	if (!state.a)
 		return state;
 	t_stack *top_b = state.a;
@@ -76,13 +83,17 @@ t_stack *rot_stack(t_stack *stack) {
 	return stack;
 }
 
-
 t_state rotate(t_state state, char s) {
-	if (s == 'a')
+	if (s == 'a') {
+		ft_putendl_fd("ra", STDOUT_FILENO);
 		state.a = rot_stack(state.a);
-	if (s == 'b')
+	}
+	if (s == 'b') {
+		ft_putendl_fd("rb", STDOUT_FILENO);
 		state.b = rot_stack(state.b);
+	}
 	if (s == 'r') {
+		ft_putendl_fd("rr", STDOUT_FILENO);
 		state.a = rot_stack(state.a);
 		state.b = rot_stack(state.b);
 	}
@@ -105,11 +116,16 @@ t_stack *rev_rot_stack(t_stack *stack) {
 }
 
 t_state reverse_rotate(t_state state, char s) {
-	if (s == 'a')
+	if (s == 'a') {
+		ft_putendl_fd("rra", STDOUT_FILENO);
 		state.a = rev_rot_stack(state.a);
-	if (s == 'b')
+	}
+	if (s == 'b') {
+		ft_putendl_fd("rrb", STDOUT_FILENO);
 		state.b = rev_rot_stack(state.b);
-	if (s == 'r') {
+	}
+		if (s == 'r') {
+		ft_putendl_fd("rrr", STDOUT_FILENO);
 		state.a = rev_rot_stack(state.a);
 		state.b = rev_rot_stack(state.b);
 	}

@@ -13,6 +13,7 @@ class SiftDownTest : public testing::TestWithParam<SiftDownTestParams> {};
 TEST_P(SiftDownTest, SiftDownTest) {
     SiftDownTestParams param = GetParam();
 
+    testing::internal::CaptureStdout();
     t_stack *want_stack = create_stack(param.want_stack);
     t_state state = {NULL, create_stack(param.stack_b), param.size, 0, 0, 0};
 
