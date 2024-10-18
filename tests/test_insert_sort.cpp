@@ -26,13 +26,6 @@ TEST_P(LeastAmountTest, LeastAmountTest) {
 
     t_state state = {create_stack(param.stack_a), create_stack(param.stack_b), param.size_a, param.size_b, param.max_b, param.min_b};
 
-	// int want_max_b = param.max_b;
-	// int want_min_b = param.min_b;
-	// if (param.max_b < param.stack_a[param.idx])
-	// 	want_max_b = param.stack_a[param.idx];
-	// if (param.min_b > param.stack_a[param.idx])
-	// 	want_min_b = param.stack_a[param.idx];
-
     int got = get_amount_ops(state, param.idx);
 
 	EXPECT_EQ(got, param.want);
@@ -63,7 +56,8 @@ INSTANTIATE_TEST_SUITE_P(
         LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 9}, 4, 3, 4, 5, 9, -2},
         LeastAmountOfOperationTestParam{{4,7,-1, 10, 2}, {6, 3, 1, -2, 12, 9}, 2, 6, 5, 6, 12, -2},
         LeastAmountOfOperationTestParam{{1}, {2, 3}, 0, 2, 1, 2, 3, 2},
-        LeastAmountOfOperationTestParam{{1}, {4, 3, 2, 7, 6, 5}, 0, 3, 1, 2, 3, 2}
+        LeastAmountOfOperationTestParam{{1}, {4, 3, 2, 7, 6, 5}, 0, 4, 1, 6, 7, 2},
+        LeastAmountOfOperationTestParam{{1}, {6, 5, 4, 3, 2, 7}, 0, 2, 1, 6, 7, 2}
 		)
 	);
 
@@ -101,8 +95,8 @@ INSTANTIATE_TEST_SUITE_P(
         InsertSortTestParam{{1}, {1}},
         InsertSortTestParam{{2, 1}, {1, 2}},
         InsertSortTestParam{{1, 2, 3}, {1, 2, 3}},
-        InsertSortTestParam{{2, 1, 3}, {1, 2, 3}}
-        // InsertSortTestParam{{3, 2, 1}, {1, 2, 3}}
+        InsertSortTestParam{{2, 1, 3}, {1, 2, 3}},
+        InsertSortTestParam{{3, 2, 1}, {1, 2, 3}}
         // InsertSortTestParam{1, {1}, {1,2,3,4,5,6,7,8,9}}
 		)
 	);
