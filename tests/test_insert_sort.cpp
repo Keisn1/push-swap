@@ -29,7 +29,8 @@ TEST_P(LeastAmountTest, LeastAmountTest) {
 
     testing::internal::CaptureStdout();
     int got = get_amount_ops(state, param.idx);
-	testing::internal::GetCapturedStdout();
+	std::string output = testing::internal::GetCapturedStdout();
+	// std::cout << output;
 
 	EXPECT_EQ(got, param.want);
 
