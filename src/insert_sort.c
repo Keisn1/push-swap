@@ -67,6 +67,11 @@ int get_val_at_idx(t_state state, int idx, char stack) {
 	return *(int*)(head->content);
 }
 
+/* typedef struct s_rotations { */
+/* 	int rots; */
+/* 	int rev_rots; */
+/* } t_rotations; */
+
 int get_nbr_of_rots(t_state state, int idx, char stack) {
 	int size = state.size_a;
 	if (stack == 'b')
@@ -114,20 +119,23 @@ t_state insert_new_val(t_state state) {
 
 
 	int pos_in_b = get_pos_in_b(state, min_amount_val);
-	int rotations = get_nbr_of_rots(state, pos_in_b, 'b');
+	int rotations_in_b = get_nbr_of_rots(state, pos_in_b, 'b');
 
-	if (rotations == pos_in_b)
-		state = rotate_b_n_times(state, rotations);
+	if (rotations_in_b == pos_in_b)
+		state = rotate_b_n_times(state, rotations_in_b);
 	else
-		state = reverse_rotate_b_n_times(state, rotations);
-	state = push_b(state);
-	return state;
+		state = reverse_rotate_b_n_times(state, rotations_in_b);
+
+	return push_b(state);
 }
 
-t_state rotate_to_max(t_state state) {
+t_state rotate_to_max_in_b(t_state state) {
 	int max_idx = find_idx_of_max(state);
 	int rotations = get_nbr_of_rots(state, max_idx, 'b');
-	return rotate_b_n_times(state, rotations);
+	if (rotations == max_idx)
+		return rotate_b_n_times(state, rotations);
+	else
+		return reverse_rotate_b_n_times(state, rotations);
 }
 
 t_state push_b_to_a(t_state state) {
@@ -145,8 +153,10 @@ t_state insert_sort(t_state state) {
 	state = push_b(state);
 	state = push_b(state);
 
-	state = insert_new_val(state);
-	state = rotate_to_max(state);
+	while (state.a)
+		state = insert_new_val(state);
+
+	state = rotate_to_max_in_b(state);
 
 	return push_b_to_a(state);
 
