@@ -10,7 +10,6 @@ void assert_equal_stack(t_stack *got, t_stack *want) {
 	EXPECT_EQ(got, want);
 }
 
-
 void assert_equal_state(t_state got, t_state want) {
 	assert_equal_stack(got.a, want.a);
 	assert_equal_stack(got.b, want.b);

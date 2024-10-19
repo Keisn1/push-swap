@@ -10,18 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "operations.h"
 #include "push_swap.h"
 
-void print_stack(t_stack *a) {
-	while (a) {
-		ft_putnbr_fd(*(int*)a->content, STDOUT_FILENO);
+void	print_stack(t_stack *a)
+{
+	while (a)
+	{
+		ft_putnbr_fd(*(int *)a->content, STDOUT_FILENO);
 		ft_putchar_fd('\n', STDOUT_FILENO);
 		a = a->next;
 	}
 }
 
-bool is_seq(void *a, void *b) {
-	if (*(int*)a <= *(int*)b)
-		return true;
-	return false;
+bool	is_seq(void *a, void *b)
+{
+	if (*(int *)a <= *(int *)b)
+		return (true);
+	return (false);
+}
+
+t_state	push_b_to_a(t_state state)
+{
+	while (state.b)
+		state = push_a(state);
+	return (state);
 }
