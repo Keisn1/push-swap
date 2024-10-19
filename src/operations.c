@@ -151,6 +151,28 @@ t_state sort_top_of_stack(t_state state, char stack) {
 	return sort_b_ascending(state);
 }
 
+t_state rotate_n_times(t_state state, int n, char stack) {
+	if (stack == 'a') {
+		int count = 0;
+		while (count++ < n)
+			state = rotate(state, 'a');
+		return state;
+	}
+	if (stack == 'b') {
+		int count = 0;
+		while (count++ < n)
+			state = rotate(state, 'b');
+		return state;
+	}
+	if (stack == 'r') {
+		int count = 0;
+		while (count++ < n)
+			state = rotate(state, 'r');
+		return state;
+	}
+	return state;
+}
+
 t_state rotate_a_n_times(t_state state, int n) {
 	/* rotate to the beginning */
 	int count = 0;
@@ -164,6 +186,29 @@ t_state rotate_b_n_times(t_state state, int n) {
 	int count = 0;
 	while (count++ < n)
 		state = rotate(state, 'b');
+	return state;
+}
+
+
+t_state reverse_rotate_n_times(t_state state, int n, char stack) {
+	if (stack == 'a') {
+		int count = 0;
+		while (count++ < n)
+			state = reverse_rotate(state, 'a');
+		return state;
+	}
+	if (stack == 'b') {
+		int count = 0;
+		while (count++ < n)
+			state = reverse_rotate(state, 'b');
+		return state;
+	}
+	if (stack == 'r') {
+		int count = 0;
+		while (count++ < n)
+			state = reverse_rotate(state, 'r');
+		return state;
+	}
 	return state;
 }
 
