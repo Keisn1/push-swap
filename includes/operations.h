@@ -1,7 +1,21 @@
 #ifndef OPERATIONS_H
 #define OPERATIONS_H
 
-#include "push_swap.h"
+# include "libft.h"
+
+typedef t_list t_stack;
+
+typedef struct s_state {
+	t_stack *a;
+	t_stack *b;
+	int size_a;
+	int size_b;
+} t_state;
+
+typedef struct s_rotations {
+	int rots;
+	int rev_rots;
+} t_rotations;
 
 # ifdef __cplusplus
 
@@ -29,6 +43,10 @@ extern "C"
 
 	/* sort top of stack */
 	t_state sort_top_of_stack_ascending(t_state state, char stack);
+
+	/* rotation helper */
+	int max_rots(t_rotations rots);
+	t_rotations get_nbr_of_rots(t_state state, int idx, char stack);
 
 # ifdef __cplusplus
 }

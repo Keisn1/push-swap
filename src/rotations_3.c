@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                          :+:      :+:    :+:   */
+/*   rotations_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfreyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 07:33/03 by kfreyer           #+#    #+#             */
-/*   Updated: 2024/10/15 07:33:03 by kfreyer          ###   ########.fr       */
+/*   Created: 2024/10/20 09:29/49 by kfreyer           #+#    #+#             */
+/*   Updated: 2024/10/20 09:29:49 by kfreyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 
-void	print_stack(t_stack *a)
+int	max_rots(t_rotations rots)
 {
-	while (a)
-	{
-		ft_putnbr_fd(*(int *)a->content, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		a = a->next;
-	}
+	if (rots.rots == -1)
+		return (rots.rev_rots);
+	return (rots.rots);
 }
 
-bool	is_seq(void *a, void *b)
+t_rotations	get_nbr_of_rots(t_state state, int idx, char stack)
 {
-	if (*(int *)a <= *(int *)b)
-		return (true);
-	return (false);
-}
+	int			size;
+	t_rotations	rots;
 
-t_state	push_b_to_a(t_state state)
-{
-	while (state.b)
-		state = push_a(state);
-	return (state);
+	size = state.size_a;
+	if (stack == 'b')
+		size = state.size_b;
+	rots = (t_rotations){-1, -1};
+	if ((size - idx) < idx)
+		rots.rev_rots = size - idx;
+	else
+		rots.rots = idx;
+	return (rots);
 }

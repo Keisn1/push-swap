@@ -75,23 +75,30 @@ int	find_idx_of_min(t_state state)
 	return (min_idx);
 }
 
-int get_idx_of_val_in_b(t_state state, int val) {
-	t_stack *head = state.b;
-	int count = 0;
-	int inf = val;
-	int inf_idx = -1;
-	while (head) {
-		int head_val = *(int*)(head->content);
-		if (head_val < val && (inf == val || head_val > inf)) {
+int	get_idx_of_val_in_b(t_state state, int val)
+{
+	t_stack	*head;
+	int		count;
+	int		inf;
+	int		inf_idx;
+	int		head_val;
+
+	head = state.b;
+	count = 0;
+	inf = val;
+	inf_idx = -1;
+	while (head)
+	{
+		head_val = *(int *)(head->content);
+		if (head_val < val && (inf == val || head_val > inf))
+		{
 			inf = head_val;
 			inf_idx = count;
 		}
 		head = head->next;
 		count++;
 	}
-
 	if (inf_idx == -1)
-		return 1 + find_idx_of_min(state);
-
-	return inf_idx;
+		return (1 + find_idx_of_min(state));
+	return (inf_idx);
 }

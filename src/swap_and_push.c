@@ -75,4 +75,3 @@ t_state	push_b(t_state state)
 	state.size_a--;
 	return (state);
 }
-
