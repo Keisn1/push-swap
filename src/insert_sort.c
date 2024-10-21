@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "operations.h"
 #include "push_swap.h"
+#include <unistd.h>
 
 int	get_amount_ops(t_state state, int idx)
 {
@@ -49,48 +51,6 @@ int	get_idx_with_least_amount_ops(t_state state)
 		idx++;
 	}
 	return (min_amount_pos);
-}
-
-t_state	rotate_to_correct_positions(t_state state, t_rotations rots_a,
-		t_rotations rots_b)
-{
-	int	min_rev_rots;
-	int	min_rots;
-
-	if (rots_a.rots == -1 && rots_b.rots == -1)
-	{
-		min_rev_rots = rots_a.rev_rots;
-		if (rots_a.rev_rots > rots_b.rev_rots)
-			min_rev_rots = rots_b.rev_rots;
-		state = reverse_rotate_n_times(state, min_rev_rots, 'r');
-		if (rots_a.rev_rots > min_rev_rots)
-			state = reverse_rotate_n_times(state, rots_a.rev_rots
-					- min_rev_rots, 'a');
-		if (rots_b.rev_rots > min_rev_rots)
-			state = reverse_rotate_n_times(state, rots_b.rev_rots
-					- min_rev_rots, 'b');
-	}
-	else if (rots_a.rev_rots == -1 && rots_b.rev_rots == -1)
-	{
-		min_rots = rots_a.rots;
-		if (rots_a.rots > rots_b.rots)
-			min_rots = rots_b.rots;
-		state = rotate_n_times(state, min_rots, 'r');
-		if (rots_a.rots > min_rots)
-			state = rotate_n_times(state, rots_a.rots - min_rots, 'a');
-		if (rots_b.rots > min_rots)
-			state = rotate_n_times(state, rots_b.rots - min_rots, 'b');
-	}
-	else
-	{
-		if (rots_a.rots == -1)
-			state = reverse_rotate_n_times(state, rots_a.rev_rots, 'a');
-		state = rotate_n_times(state, rots_a.rots, 'a');
-		if (rots_b.rots == -1)
-			state = reverse_rotate_n_times(state, rots_b.rev_rots, 'b');
-		state = rotate_n_times(state, rots_b.rots, 'b');
-	}
-	return (state);
 }
 
 t_state	insert_new_val(t_state state)

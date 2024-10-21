@@ -16,7 +16,7 @@ TEST_P(StackOperationTest, first_test) {
     StackOperationInput param = GetParam();
 
     testing::internal::CaptureStdout();
-	t_state state = {create_stack(param.a), create_stack(param.b), (int)param.a.size(), (int)param.b.size(), 0, 0};
+	t_state state = {create_stack_cpp(param.a), create_stack_cpp(param.b), (int)param.a.size(), (int)param.b.size()};
 	int want_size_a = param.a.size();
 	int want_size_b = param.b.size();
 	if (param.op == "pa" && param.b.size()) {
@@ -28,7 +28,7 @@ TEST_P(StackOperationTest, first_test) {
 		want_size_a--;
 	}
 
-	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b), want_size_a, want_size_b, 0, 0};
+	t_state want_state = {create_stack_cpp(param.want_a),create_stack_cpp( param.want_b), want_size_a, want_size_b};
 
     if (param.op == "sa")
 		state = swap(state, 'a');

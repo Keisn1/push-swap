@@ -23,7 +23,7 @@ class LeastAmountTest : public testing::TestWithParam<LeastAmountOfOperationTest
 TEST_P(LeastAmountTest, LeastAmountTest) {
     LeastAmountOfOperationTestParam param = GetParam();
 
-    t_state state = {create_stack(param.stack_a), create_stack(param.stack_b), param.size_a, param.size_b};
+    t_state state = {create_stack_cpp(param.stack_a), create_stack_cpp(param.stack_b), param.size_a, param.size_b};
 
     testing::internal::CaptureStdout();
     int got = get_amount_ops(state, param.idx);
@@ -80,8 +80,8 @@ class InsertNewValTest : public testing::TestWithParam<InsertNewValTestParams> {
 TEST_P(InsertNewValTest, InsertNewValTest) {
     InsertNewValTestParams param = GetParam();
 
-    t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), create_stack(param.stack_b),  (int)param.stack_a.size(), (int)param.stack_b.size()};
+    t_stack *want_stack = create_stack_cpp(param.want_stack);
+    t_state state = {create_stack_cpp(param.stack_a), create_stack_cpp(param.stack_b),  (int)param.stack_a.size(), (int)param.stack_b.size()};
 
     testing::internal::CaptureStdout();
     state = insert_new_val(state);
@@ -123,8 +123,8 @@ class InsertSortTest : public testing::TestWithParam<InsertSortTestParam> {};
 TEST_P(InsertSortTest, InsertSortTest) {
     InsertSortTestParam param = GetParam();
 
-    t_stack *want_stack = create_stack(param.want_stack);
-    t_state state = {create_stack(param.stack_a), NULL,  (int)param.stack_a.size(), 0};
+    t_stack *want_stack = create_stack_cpp(param.want_stack);
+    t_state state = {create_stack_cpp(param.stack_a), NULL,  (int)param.stack_a.size(), 0};
 
     testing::internal::CaptureStdout();
     state = insert_sort(state);

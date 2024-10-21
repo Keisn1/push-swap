@@ -9,9 +9,10 @@
 
 void print_stack(t_stack *a);
 void assert_equal_stack(t_stack *got, t_stack *want);
+void assert_correct_stack(t_stack *got, std::vector<int> want);
 void assert_equal_state(t_state got, t_state want);
 void clear_stacks(t_state got, t_state want);
-t_stack *create_stack(std::vector<int> nbrs);
+t_stack *create_stack_cpp(std::vector<int> nbrs);
 int countNewlines(const std::string& text);
 
 #endif // TEST_PUSH_SWAP_H

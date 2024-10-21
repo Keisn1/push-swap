@@ -54,6 +54,7 @@ char				*ft_strnstr(const char *big, const char *little,
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 int					ft_atoi(const char *nptr);
+long				ft_atoi_long(const char *nptr);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *s, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);

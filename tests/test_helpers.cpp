@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <vector>
 #include "test_push_swap.hpp"
 
 void assert_equal_stack(t_stack *got, t_stack *want) {
@@ -8,6 +9,22 @@ void assert_equal_stack(t_stack *got, t_stack *want) {
 		want = want->next;
 	}
 	EXPECT_EQ(got, want);
+}
+
+void assert_correct_stack(t_stack *got, std::vector<int> want) {
+	size_t size_want = want.size();
+	if (size_want == 0) {
+		ASSERT_EQ(got, nullptr);
+		return;
+	}
+
+	int count = 0;
+    while (got != NULL ) {
+		EXPECT_EQ(*(int*)(got->content), want[count]);
+		got = got->next;
+		count++;
+	}
+	EXPECT_EQ(count, size_want);
 }
 
 void assert_equal_state(t_state got, t_state want) {
@@ -24,7 +41,7 @@ void clear_stacks(t_state got, t_state want) {
 	ft_lstclear(&(want).b, free);
 }
 
-t_stack *create_stack(std::vector<int> nbrs) {
+t_stack *create_stack_cpp(std::vector<int> nbrs) {
 	if (nbrs.size() == 0)
 		return NULL;
 
