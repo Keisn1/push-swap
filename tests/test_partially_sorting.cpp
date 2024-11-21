@@ -1,3 +1,4 @@
+#include "gtest/gtest.h"
 #include <gtest/gtest.h>
 #include "test_push_swap.hpp"
 
@@ -22,6 +23,7 @@ TEST_P(SortThreeElementsTest, ThreeElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_three_elements(state);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
     ft_lstclear(&(state.a),free);
@@ -51,6 +53,7 @@ TEST_P(SortThreeElementsWithTailTest, MoreThanThreeElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
     state = sort_three_elements_with_tail(state);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
     ft_lstclear(&state.a,free);
@@ -85,6 +88,7 @@ TEST_P(SortFourElementsTest, FourElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0,0, 0};
 
     state = sort_four_elements(state);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
     ft_lstclear(&state.a,free);
@@ -115,6 +119,7 @@ TEST_P(SortFourElementsWithTailTest, FourElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_four_elements_with_tail(state);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
     ft_lstclear(&state.a,free);
@@ -148,6 +153,7 @@ TEST_P(SortFiveElementsTest, FiveElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_five_elements(state);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
 
@@ -183,6 +189,7 @@ TEST_P(SortFiveElementsWithTailTest, FiveElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = sort_five_elements_with_tail(state, param.with_backing_up);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
 
@@ -223,6 +230,7 @@ TEST_P(PartiallySortWithFive, FiveElementStack) {
     t_state state = {create_stack(param.stack_a), NULL, 0, 0, 0, 0};
 
     state = partially_sort_with_five(state, param.size);
+    testing::internal::GetCapturedStdout();
 
     assert_equal_stack(state.a, want_stack);
 

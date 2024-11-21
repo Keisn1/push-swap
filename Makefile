@@ -16,6 +16,7 @@ SRC_DIR := src
 RUN_DIR := run
 BIN_DIR := bin
 OBJ_DIR := obj
+BUILD_DIR := build
 TEST_DIR := tests
 INCLUDES := -Iincludes -Ilibft
 LIBFT := -Llibft -lft
@@ -23,29 +24,24 @@ LIBFT := -Llibft -lft
 SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES := $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-TEST_SRC_FILES := $(wildcard $(TEST_DIR)/*.cpp )
-TEST_OBJ_FILES := $(TEST_SRC_FILES:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+# TEST_SRC_FILES := $(wildcard $(TEST_DIR)/*.cpp )
+# TEST_OBJ_FILES := $(TEST_SRC_FILES:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-TEST_TARGET := bin/run_tests
+# TEST_TARGET := bin/run_tests
 
 NAME := push_swap
 
 ############ Rules ##################
-all: $(NAME)
+all: libft $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/main.c -o $(NAME) $(LIBFT)
 
-$(TEST_TARGET): $(TEST_OBJ_FILES) $(OBJ_FILES) | $(BIN_DIR)
-	$(CXX) $(CFLAGS) $(FSANITIZE) $(TEST_OBJ_FILES) $(OBJ_FILES) -o $@ $(GTEST_LIBS) $(LIBFT)
 
 # Object file compilation for C
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Object file compilation for C++
-$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | $(OBJ_DIR)
-	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -55,24 +51,30 @@ $(BIN_DIR):
 
 ############ PHONY ##################
 clean:
+	$(MAKE)	-C libft $@
 	rm -f $(OBJ_FILES) $(BONUS_OBJ_FILES)
 
 fclean: clean
-	rm -f $(BIN_DIR)/*
+	$(MAKE)	-C libft $@
+	rm -rf $(BIN_DIR)
+	rm -rf $(OBJ_DIR)
+	rm -rf $(BUILD_DIR)
 
 re: fclean all
 
-test: $(TEST_TARGET)
-	- $(TEST_TARGET)
+test:
+	cmake -S . -B build -DBUILD_TEST=ON && \
+	cmake --build build && \
+	./build/run_tests
+
+compile_commands:
+	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 libft:
 	$(MAKE) -C libft
 
 libft-re:
 	$(MAKE) -C libft re
-
-libft-clean:
-	$(MAKE) -C libft clean
 
 bear: $(NAME) $(TEST_TARGET)
 

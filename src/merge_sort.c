@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "operations.h"
 #include "push_swap.h"
-#include <stdio.h>
 #include <unistd.h>
 
 

@@ -117,11 +117,6 @@ int get_min_amount_pos(t_state state) {
 	return min_amount_pos;
 }
 
-void print_rots(t_rotations rots, char stack) {
-	printf("rots %c: %d \n", stack, rots.rots);
-	printf("rev rots %c: %d \n", stack, rots.rev_rots);
-}
-
 t_state insert_new_val(t_state state) {
 	int min_amount_pos = get_min_amount_pos(state);
 	int min_amount_val = get_val_at_idx(state, min_amount_pos, 'a');

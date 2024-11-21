@@ -12,9 +12,10 @@ int main(int argc, char **argv) {
     // ::testing::GTEST_FLAG(filter) = "AlgorithmTests/SortThreeElementsWithTailTest*";
     // ::testing::GTEST_FLAG(filter) = "AlgorithmTests/MergeRestTest*";
     // ::testing::GTEST_FLAG(filter) = "LeastAmountTests*";
-    ::testing::GTEST_FLAG(filter) = "InsertSortTests*";
+    // ::testing::GTEST_FLAG(filter) = "InsertSortTests*";
     // ::testing::GTEST_FLAG(filter) = "InsertNewValTest*";
-    // ::testing::GTEST_FLAG(filter) = "Insert*";
+    ::testing::GTEST_FLAG(filter) = "Insert*:StackOperation*:AlgorithmTests/Sort*";
+
     return RUN_ALL_TESTS();
 }
 
