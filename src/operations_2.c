@@ -40,28 +40,6 @@ t_state	reverse_rotate_n_times(t_state state, int n, char stack)
 	return (state);
 }
 
-t_state	reverse_rotate_a_n_times(t_state state, int n)
-{
-	int	count;
-
-	/* rotate to the beginning */
-	count = 0;
-	while (count++ < n)
-		state = reverse_rotate(state, 'a');
-	return (state);
-}
-
-t_state	reverse_rotate_b_n_times(t_state state, int n)
-{
-	int	count;
-
-	/* rotate to the beginning */
-	count = 0;
-	while (count++ < n)
-		state = reverse_rotate(state, 'b');
-	return (state);
-}
-
 t_state	rotate_n_times(t_state state, int n, char stack)
 {
 	int	count;

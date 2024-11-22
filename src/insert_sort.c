@@ -207,10 +207,10 @@ t_state	insert_new_val(t_state state)
 	else
 	{
 		if (rots_a.rots == -1)
-			state = reverse_rotate_a_n_times(state, rots_a.rev_rots);
+			state = reverse_rotate_n_times(state, rots_a.rev_rots, 'a');
 		state = rotate_a_n_times(state, rots_a.rots);
 		if (rots_b.rots == -1)
-			state = reverse_rotate_b_n_times(state, rots_b.rev_rots);
+			state = reverse_rotate_n_times(state, rots_b.rev_rots, 'b');
 		state = rotate_b_n_times(state, rots_b.rots);
 	}
 	return (push_b(state));
@@ -224,7 +224,7 @@ t_state	rotate_to_max_in_b(t_state state)
 	max_idx = find_idx_of_max(state);
 	rots = get_nbr_of_rots(state, max_idx, 'b');
 	if (rots.rots == -1)
-		return (reverse_rotate_b_n_times(state, rots.rev_rots));
+		return (reverse_rotate_n_times(state, rots.rev_rots, 'b'));
 	return (rotate_b_n_times(state, rots.rots));
 }
 
