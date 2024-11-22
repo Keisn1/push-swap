@@ -11,26 +11,34 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
-#include <unistd.h>
 
-t_stack *create_stack(int argc, char* argv[]) {
-	int *x = (int*)malloc(sizeof(int));
+t_stack	*create_stack(int argc, char *argv[])
+{
+	int		*x;
+	t_stack	*stack;
+	int		i;
+
+	x = (int *)malloc(sizeof(int));
 	*x = ft_atoi(argv[1]);
-	t_stack *stack = ft_lstnew(x);
-	for (int i = 2; i <= argc; i++) {
-		x = (int*)malloc(sizeof(int));
+	stack = ft_lstnew(x);
+	i = 2;
+	while (i <= argc)
+	{
+		x = (int *)malloc(sizeof(int));
 		*x = ft_atoi(argv[i]);
 		ft_lstadd_back(&stack, ft_lstnew(x));
+		i++;
 	}
-	return stack;
+	return (stack);
 }
 
-void	push_swap(int argc , char* argv[])
+void	push_swap(int argc, char *argv[])
 {
+	t_stack	*a;
+	t_state	state;
 
-	t_stack *a = create_stack(argc, argv);
-	t_state state = {a, NULL, 0, 0, 0, 0};
+	a = create_stack(argc, argv);
+	state = (t_state){a, NULL, 0, 0, 0, 0};
 	state = merge_sort(state, argc);
 	ft_lstclear(&state.a, free);
 }

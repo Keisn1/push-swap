@@ -14,21 +14,17 @@
 #include "push_swap.h"
 
 /* maximum of 15 operations */
-t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
-	/* 2 operations */
-	state = push_b(state);
-	state = push_b(state);
+t_state	sort_five_elements_with_tail(t_state state, bool with_backing_up)
+{
+	int	count_rots;
 
-	/* plus maximum of 5 operations */
+	state = push_b(state);
+	state = push_b(state);
 	state = sort_three_elements_with_tail(state);
-
-	/* plus maximum of 1 operation */
 	state = sort_top_of_stack(state, 'b');
-
-	/* plus 5 rotations */
-	/* plus 2 pushes */
-	int count_rots = 0;
-	while (count_rots < 5) {
+	count_rots = 0;
+	while (count_rots < 5)
+	{
 		if (state.b && leq(state.b->content, state.a->content))
 			state = push_a(state);
 		if (state.b && state.b->next && count_rots == 3)
@@ -38,33 +34,24 @@ t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
 		state = rotate(state, 'a');
 		count_rots++;
 	}
-
-	/* when backing up +5 */
-	if (with_backing_up) {
+	if (with_backing_up)
 		state = reverse_rotate_a_n_times(state, count_rots);
-	}
-
-	return state;
-
+	return (state);
 }
 
 /* total of 12 ops maximum */
 /* would be less than 5 * log_2_5 = 5 * 2.3 = 11.5  */
-t_state sort_five_elements(t_state state) {
-	/* 2 operations */
-	state = push_b(state);
-	state = push_b(state);
+t_state	sort_five_elements(t_state state)
+{
+	int	count_rots;
 
-	/* plus maximum of 2 operations */
+	state = push_b(state);
+	state = push_b(state);
 	state = sort_three_elements(state);
-
-	/* plus maximum of 1 operation */
 	state = sort_top_of_stack(state, 'b');
-
-	/* plus 5 rotations */
-	/* plus 2 pushes */
-	int count_rots = 0;
-	while (count_rots < 5) {
+	count_rots = 0;
+	while (count_rots < 5)
+	{
 		if (state.b && leq(state.b->content, state.a->content))
 			state = push_a(state);
 		if (state.b && state.b->next && count_rots == 3)
@@ -74,5 +61,5 @@ t_state sort_five_elements(t_state state) {
 		state = rotate(state, 'a');
 		count_rots++;
 	}
-	return state;
+	return (state);
 }

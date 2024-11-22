@@ -12,7 +12,6 @@
 
 #include "operations.h"
 #include "push_swap.h"
-#include <unistd.h>
 
 t_state	merge_chunk_into_it_with_tail(t_state state, int length_sorted_in_a,
 		int size_of_chunk, int rest)
