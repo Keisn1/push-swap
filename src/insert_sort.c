@@ -13,24 +13,24 @@
 #include "operations.h"
 #include "push_swap.h"
 
-int	get_min_amount_pos(t_state state)
+int	get_pos_of_entry_with_min_amount_of_ops(t_state state)
 {
 	int		pos;
-	int		min_amount;
+	int		min_amount_of_ops;
 	int		min_amount_pos;
 	t_stack	*head;
 	int		amount;
 
 	pos = 0;
-	min_amount = get_amount_ops(state, pos);
+	min_amount_of_ops = get_amount_ops(state, pos);
 	min_amount_pos = 0;
 	head = state.a;
 	while (head)
 	{
 		amount = get_amount_ops(state, pos);
-		if (amount < min_amount)
+		if (amount < min_amount_of_ops)
 		{
-			min_amount = amount;
+			min_amount_of_ops = amount;
 			min_amount_pos = pos;
 		}
 		head = head->next;
@@ -41,18 +41,18 @@ int	get_min_amount_pos(t_state state)
 
 t_state	insert_new_val(t_state state)
 {
-	int			min_amount_pos;
-	int			min_amount_val;
+	int			pos_of_entry_with_min_amount_of_ops;
+	int			val_of_entry_with_min_amount_of_ops;
 	int			pos_in_b;
 	t_rotations	rots_a;
 	t_rotations	rots_b;
 	int			min_rev_rots;
 	int			min_rots;
 
-	min_amount_pos = get_min_amount_pos(state);
-	min_amount_val = get_val_at_idx(state, min_amount_pos, 'a');
-	pos_in_b = get_pos_in_b(state, min_amount_val);
-	rots_a = get_nbr_of_rots(state, min_amount_pos, 'a');
+	pos_of_entry_with_min_amount_of_ops = get_pos_of_entry_with_min_amount_of_ops(state);
+	val_of_entry_with_min_amount_of_ops = get_val_at_pos(state, pos_of_entry_with_min_amount_of_ops, 'a');
+	pos_in_b = get_pos_in_b(state, val_of_entry_with_min_amount_of_ops);
+	rots_a = get_nbr_of_rots(state, pos_of_entry_with_min_amount_of_ops, 'a');
 	rots_b = get_nbr_of_rots(state, pos_in_b, 'b');
 	if (rots_a.rots == -1 && rots_b.rots == -1)
 	{
