@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+#include "test_push_swap.hpp"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

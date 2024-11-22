@@ -20,7 +20,7 @@ t_state sort_four_elements_with_tail(t_state state) {
 	state = sort_three_elements_with_tail(state);
 
 	int count = 0;
-	while (is_seq(state.a->content, state.b->content) && count < 3) {
+	while (leq(state.a->content, state.b->content) && count < 3) {
 		state = rotate(state, 'a');
 		count++;
 	}
@@ -40,14 +40,14 @@ t_state sort_four_elements(t_state state) {
 	state = push_b(state);
 	state = sort_three_elements(state);
 
-	if (is_seq(state.a->next->next->content, state.b->content)) {
+	if (leq(state.a->next->next->content, state.b->content)) {
 		state = push_a(state);
 		state = rotate(state, 'a');
 		return state;
 	}
 
 	int count = 0;
-	while (is_seq(state.a->content, state.b->content)) {
+	while (leq(state.a->content, state.b->content)) {
 		state = rotate(state, 'a');
 		count++;
 	}

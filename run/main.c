@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
-int main(int argc, char** argv) {
-	push_swap(argc-1, argv);
-    return 0;
+int	main(int argc, char **argv)
+{
+	push_swap(argc - 1, argv);
+	return (0);
 }

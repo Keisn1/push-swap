@@ -1,4 +1,3 @@
-#include <gtest/gtest.h>
 #include "test_push_swap.hpp"
 
 void assert_equal_stack(t_stack *got, t_stack *want) {

@@ -133,13 +133,13 @@ t_state reverse_rotate(t_state state, char s) {
 }
 
 t_state sort_a_ascending(t_state state) {
-	if (!is_seq(state.a->content, state.a->next->content))
+	if (!leq(state.a->content, state.a->next->content))
 		state = swap(state, 'a');
 	return state;
 }
 
 t_state sort_b_ascending(t_state state) {
-	if (!is_seq(state.b->content, state.b->next->content))
+	if (!leq(state.b->content, state.b->next->content))
 		state = swap(state, 'b');
 	return state;
 }

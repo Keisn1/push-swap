@@ -29,7 +29,7 @@ t_state sort_five_elements_with_tail(t_state state, bool with_backing_up) {
 	/* plus 2 pushes */
 	int count_rots = 0;
 	while (count_rots < 5) {
-		if (state.b && is_seq(state.b->content, state.a->content))
+		if (state.b && leq(state.b->content, state.a->content))
 			state = push_a(state);
 		if (state.b && state.b->next && count_rots == 3)
 			state = push_a(state);
@@ -65,7 +65,7 @@ t_state sort_five_elements(t_state state) {
 	/* plus 2 pushes */
 	int count_rots = 0;
 	while (count_rots < 5) {
-		if (state.b && is_seq(state.b->content, state.a->content))
+		if (state.b && leq(state.b->content, state.a->content))
 			state = push_a(state);
 		if (state.b && state.b->next && count_rots == 3)
 			state = push_a(state);

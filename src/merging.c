@@ -37,7 +37,7 @@ t_state	merge_ascending_b_into_ascending_a(t_state state,
 	count = 0;
 	while (state.b)
 	{
-		if (is_seq(state.b->content, state.a->content)
+		if (leq(state.b->content, state.a->content)
 			|| count >= length_sorted_in_a)
 		{
 			state = push_a(state);

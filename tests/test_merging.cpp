@@ -1,5 +1,3 @@
-#include <gtest/gtest.h>
-#include "push_swap.h"
 #include "test_push_swap.hpp"
 
 struct MergeRestTestInput {

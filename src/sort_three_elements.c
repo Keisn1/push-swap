@@ -22,18 +22,18 @@ t_state sort_three_elements_with_tail(t_state state) {
 	void* third = state.a->next->next->content;;
 
 	/* x_2 < x_1 < x_3 */
-	if (is_seq(second, first) && is_seq(first, third))
+	if (leq(second, first) && leq(first, third))
 		return swap(state, 'a');
 
 	/* x_1 < x_3 < x_2 */
-	if (is_seq(first, third) && is_seq(third, second)) {
+	if (leq(first, third) && leq(third, second)) {
 		state = rotate(state, 'a');
 		state = swap(state, 'a');
 		return reverse_rotate(state, 'a');
 	}
 
 	/* x_3 < x_1 < x_2 */
-	if (is_seq(third, second) && is_seq(first, second)) {
+	if (leq(third, second) && leq(first, second)) {
 		state = rotate(state, 'a');
 		state = swap(state, 'a');
 		state = reverse_rotate(state, 'a');
@@ -41,7 +41,7 @@ t_state sort_three_elements_with_tail(t_state state) {
 	}
 
 	/* x_2 < x_3 < x_1 */
-	if (is_seq(second, third) && is_seq(third, first)) {
+	if (leq(second, third) && leq(third, first)) {
 		state = swap(state, 'a');
 		state = rotate(state, 'a');
 		state = swap(state, 'a');
@@ -49,7 +49,7 @@ t_state sort_three_elements_with_tail(t_state state) {
 	}
 
 	/* x_3 < x_2 < x_1 */
-	if (is_seq(third, second) && is_seq(second, first)) {
+	if (leq(third, second) && leq(second, first)) {
 		state = swap(state, 'a');
 		state = rotate(state, 'a');
 		state = swap(state, 'a');
@@ -69,25 +69,25 @@ t_state sort_three_elements(t_state state) {
 	void* third = state.a->next->next->content;;
 
 	/* x_2 < x_1 < x_3 */
-	if (is_seq(second, first) && is_seq(first, third))
+	if (leq(second, first) && leq(first, third))
 		return swap(state, 'a');
 
 	/* x_1 < x_3 < x_2 */
-	if (is_seq(first, third) && is_seq(third, second)) {
+	if (leq(first, third) && leq(third, second)) {
 		state = swap(state, 'a');
 		return rotate(state, 'a');
 	}
 
 	/* x_3 < x_1 < x_2 */
-	if (is_seq(third, second) && is_seq(first, second))
+	if (leq(third, second) && leq(first, second))
 		return reverse_rotate(state, 'a');
 
 	/* x_2 < x_3 < x_1 */
-	if (is_seq(second, third) && is_seq(third, first))
+	if (leq(second, third) && leq(third, first))
 		return rotate(state, 'a');
 
 	/* x_3 < x_2 < x_1 */
-	if (is_seq(third, second) && is_seq(second, first)) {
+	if (leq(third, second) && leq(second, first)) {
 		state = rotate(state, 'a');
 		return swap(state, 'a');
 	}
