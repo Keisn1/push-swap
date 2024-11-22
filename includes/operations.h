@@ -22,6 +22,7 @@ t_state	swap(t_state state, char s);
 /* pushing */
 t_state	push_a(t_state state);
 t_state	push_b(t_state state);
+t_state	push_b_to_a(t_state state);
 
 /* rotating */
 t_stack	*rot_stack(t_stack *stack);

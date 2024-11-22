@@ -29,7 +29,6 @@ t_stack	*rot_stack(t_stack *stack)
 	return (stack);
 }
 
-
 t_stack	*rev_rot_stack(t_stack *stack)
 {
 	t_stack	*second_last;
@@ -60,13 +59,12 @@ t_stack	*swap_stack(t_stack *head)
 	return (second);
 }
 
-
 t_state	sort_top_of_stack(t_state state, char stack)
 {
 	if (stack == 'a')
 		if (!leq(state.a->content, state.a->next->content))
-			return swap(state, 'a');
+			return (swap(state, 'a'));
 	if (!leq(state.b->content, state.b->next->content))
-		return swap(state, 'b');
-	return state;
+		return (swap(state, 'b'));
+	return (state);
 }

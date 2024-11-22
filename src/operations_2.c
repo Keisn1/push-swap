@@ -68,24 +68,9 @@ t_state	rotate_n_times(t_state state, int n, char stack)
 	return (state);
 }
 
-t_state	rotate_a_n_times(t_state state, int n)
+t_state	push_b_to_a(t_state state)
 {
-	int	count;
-
-	/* rotate to the beginning */
-	count = 0;
-	while (count++ < n)
-		state = rotate(state, 'a');
-	return (state);
-}
-
-t_state	rotate_b_n_times(t_state state, int n)
-{
-	int	count;
-
-	/* rotate to the beginning */
-	count = 0;
-	while (count++ < n)
-		state = rotate(state, 'b');
+	while (state.b)
+		state = push_a(state);
 	return (state);
 }
