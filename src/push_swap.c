@@ -39,6 +39,6 @@ void	push_swap(int argc, char *argv[])
 
 	a = create_stack(argc, argv);
 	state = (t_state){a, NULL, 0, 0, 0, 0};
-	state = merge_sort(state, argc);
+	state = insert_sort(state);
 	ft_lstclear(&state.a, free);
 }

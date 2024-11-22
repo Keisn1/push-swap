@@ -1,57 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three_elements.c                              :+:      :+:    :+:   */
+/*   sort_five_elements.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfreyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 15:47/40 by kfreyer           #+#    #+#             */
-/*   Updated: 2024/10/15 15:47:40 by kfreyer          ###   ########.fr       */
+/*   Created: 2024/10/15 08:15/53 by kfreyer           #+#    #+#             */
+/*   Updated: 2024/10/15 08:15:53 by kfreyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 #include "push_swap.h"
 
-/* maximum of 5 operations */
-t_state	sort_three_elements_with_tail(t_state state)
+/* total of 12 ops maximum */
+/* would be less than 5 * log_2_5 = 5 * 2.3 = 11.5  */
+t_state	sort_five_elements(t_state state)
 {
-	void	*first;
-	void	*second;
-	void	*third;
+	int	count_rots;
 
-	first = state.a->content;
-	second = state.a->next->content;
-	third = state.a->next->next->content;
-	if (leq(second, first) && leq(first, third))
-		return (swap(state, 'a'));
-	if (leq(first, third) && leq(third, second))
+	state = push_b(state);
+	state = push_b(state);
+	state = sort_three_elements(state);
+	state = sort_top_of_stack(state, 'b');
+	count_rots = 0;
+	while (count_rots < 5)
 	{
+		if (state.b && leq(state.b->content, state.a->content))
+			state = push_a(state);
+		if (state.b && state.b->next && count_rots == 3)
+			state = push_a(state);
+		if (state.b && count_rots == 4)
+			state = push_a(state);
 		state = rotate(state, 'a');
-		state = swap(state, 'a');
-		return (reverse_rotate(state, 'a'));
+		count_rots++;
 	}
-	if (leq(third, second) && leq(first, second))
+	return (state);
+}
+
+/* sorts the elements in a */
+/* supposes that a has 4 elements */
+/* maximum of 6 operations*/
+t_state	sort_four_elements(t_state state)
+{
+	int	count;
+
+	state = push_b(state);
+	state = sort_three_elements(state);
+	if (leq(state.a->next->next->content, state.b->content))
+	{
+		state = push_a(state);
+		state = rotate(state, 'a');
+		return (state);
+	}
+	count = 0;
+	while (leq(state.a->content, state.b->content))
 	{
 		state = rotate(state, 'a');
-		state = swap(state, 'a');
+		count++;
+	}
+	state = push_a(state);
+	while (count > 0)
+	{
 		state = reverse_rotate(state, 'a');
-		return (swap(state, 'a'));
-	}
-	if (leq(second, third) && leq(third, first))
-	{
-		state = swap(state, 'a');
-		state = rotate(state, 'a');
-		state = swap(state, 'a');
-		return (reverse_rotate(state, 'a'));
-	}
-	if (leq(third, second) && leq(second, first))
-	{
-		state = swap(state, 'a');
-		state = rotate(state, 'a');
-		state = swap(state, 'a');
-		state = reverse_rotate(state, 'a');
-		return (swap(state, 'a'));
+		count--;
 	}
 	return (state);
 }
