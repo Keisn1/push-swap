@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "operations.h"
+
 t_state	swap(t_state state, char s)
 {
 	if (s == 'a')
@@ -63,7 +64,6 @@ t_state	push_b(t_state state)
 	state.size_a--;
 	return (state);
 }
-
 
 t_state	rotate(t_state state, char s)
 {

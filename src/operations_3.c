@@ -46,9 +46,6 @@ t_stack	*rev_rot_stack(t_stack *stack)
 	return (last);
 }
 
-
-
-
 t_stack	*swap_stack(t_stack *head)
 {
 	t_stack	*second;
