@@ -13,7 +13,7 @@
 #include "operations.h"
 #include "push_swap.h"
 
-int	get_idx_of_entry_with_min_amount_of_ops(t_state state)
+int	get_idx_min_amount_ops(t_state state)
 {
 	int		pos;
 	int		min_amount_of_ops;
@@ -39,57 +39,64 @@ int	get_idx_of_entry_with_min_amount_of_ops(t_state state)
 	return (min_amount_pos);
 }
 
+t_state	reverse_rotate_both(t_state state, int rev_rots_a, int rev_rots_b)
+{
+	int	min_rev_rots;
+
+	min_rev_rots = rev_rots_a;
+	if (rev_rots_a > rev_rots_b)
+		min_rev_rots = rev_rots_b;
+	state = reverse_rotate_n_times(state, min_rev_rots, 'r');
+	if (rev_rots_a > min_rev_rots)
+		state = reverse_rotate_n_times(state, rev_rots_a - min_rev_rots, 'a');
+	if (rev_rots_b > min_rev_rots)
+		state = reverse_rotate_n_times(state, rev_rots_b - min_rev_rots, 'b');
+	return (state);
+}
+
+t_state	rotate_both(t_state state, int rots_a, int rots_b)
+{
+	int	min_rots;
+
+	min_rots = rots_a;
+	if (rots_a > rots_b)
+		min_rots = rots_b;
+	state = rotate_n_times(state, min_rots, 'r');
+	if (rots_a > min_rots)
+		state = rotate_n_times(state, rots_a - min_rots, 'a');
+	if (rots_b > min_rots)
+		state = rotate_n_times(state, rots_b - min_rots, 'b');
+	return (state);
+}
+
 t_state	insert_new_val(t_state state)
 {
-	int			idx_of_entry_with_min_amount_of_ops;
-	int			val_of_entry_with_min_amount_of_ops;
-	int			idx_in_b;
+	int			idx_min_amount_ops;
+	int			val_min_amount_ops;
 	t_rotations	rots_a;
 	t_rotations	rots_b;
-	int			min_rev_rots;
-	int			min_rots;
 
-	idx_of_entry_with_min_amount_of_ops = get_idx_of_entry_with_min_amount_of_ops(state);
-	val_of_entry_with_min_amount_of_ops = get_val_at_idx(state, idx_of_entry_with_min_amount_of_ops, 'a');
-	idx_in_b = get_idx_in_b(state, val_of_entry_with_min_amount_of_ops);
-	rots_a = get_nbr_of_rots(state, idx_of_entry_with_min_amount_of_ops, 'a');
-	rots_b = get_nbr_of_rots(state, idx_in_b, 'b');
+	idx_min_amount_ops = get_idx_min_amount_ops(state);
+	val_min_amount_ops = get_val_at_idx(state, idx_min_amount_ops, 'a');
+	rots_a = get_rotations(state, idx_min_amount_ops, 'a');
+	rots_b = get_rotations(state, get_idx_in_b(state, val_min_amount_ops), 'b');
 	if (rots_a.rots == -1 && rots_b.rots == -1)
-	{
-		min_rev_rots = rots_a.rev_rots;
-		if (rots_a.rev_rots > rots_b.rev_rots)
-			min_rev_rots = rots_b.rev_rots;
-		state = reverse_rotate_n_times(state, min_rev_rots, 'r');
-		if (rots_a.rev_rots > min_rev_rots)
-			state = reverse_rotate_n_times(state, rots_a.rev_rots
-					- min_rev_rots, 'a');
-		if (rots_b.rev_rots > min_rev_rots)
-			state = reverse_rotate_n_times(state, rots_b.rev_rots
-					- min_rev_rots, 'b');
-	}
+		state = reverse_rotate_both(state, rots_a.rev_rots, rots_b.rev_rots);
 	else if (rots_a.rev_rots == -1 && rots_b.rev_rots == -1)
-	{
-		min_rots = rots_a.rots;
-		if (rots_a.rots > rots_b.rots)
-			min_rots = rots_b.rots;
-		state = rotate_n_times(state, min_rots, 'r');
-		if (rots_a.rots > min_rots)
-			state = rotate_n_times(state, rots_a.rots - min_rots, 'a');
-		if (rots_b.rots > min_rots)
-			state = rotate_n_times(state, rots_b.rots - min_rots, 'b');
-	}
+		state = rotate_both(state, rots_a.rots, rots_b.rots);
 	else
 	{
 		if (rots_a.rots == -1)
 			state = reverse_rotate_n_times(state, rots_a.rev_rots, 'a');
-		state = rotate_n_times(state, rots_a.rots, 'a');
+		else
+			state = rotate_n_times(state, rots_a.rots, 'a');
 		if (rots_b.rots == -1)
 			state = reverse_rotate_n_times(state, rots_b.rev_rots, 'b');
-		state = rotate_n_times(state, rots_b.rots, 'b');
+		else
+			state = rotate_n_times(state, rots_b.rots, 'b');
 	}
 	return (push_b(state));
 }
-
 
 t_state	insert_sort(t_state state)
 {

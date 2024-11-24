@@ -49,7 +49,7 @@ t_state			partially_sort_with_five(t_state state, int size);
 t_state			insert_sort(t_state state);
 t_state			insert_new_val(t_state state);
 int				get_amount_ops(t_state state, int idx);
-t_rotations		get_nbr_of_rots(t_state state, int idx, char stack);
+t_rotations		get_rotations(t_state state, int idx, char stack);
 int				get_idx_in_b(t_state state, int val);
 t_state			rotate_to_max_in_b(t_state state);
 int				get_val_at_idx(t_state state, int idx, char stack);

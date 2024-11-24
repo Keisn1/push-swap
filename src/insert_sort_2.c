@@ -13,7 +13,7 @@
 #include "operations.h"
 #include "push_swap.h"
 
-t_rotations	get_nbr_of_rots(t_state state, int idx, char stack)
+t_rotations	get_rotations(t_state state, int idx, char stack)
 {
 	int			size;
 	t_rotations	rots;
@@ -83,7 +83,7 @@ t_state	rotate_to_max_in_b(t_state state)
 	t_rotations	rots;
 
 	max_idx = find_idx_of_max(state);
-	rots = get_nbr_of_rots(state, max_idx, 'b');
+	rots = get_rotations(state, max_idx, 'b');
 	if (rots.rots == -1)
 		return (reverse_rotate_n_times(state, rots.rev_rots, 'b'));
 	return (rotate_n_times(state, rots.rots, 'b'));

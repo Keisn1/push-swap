@@ -24,11 +24,6 @@ LIBFT := -Llibft -lft
 SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES := $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# TEST_SRC_FILES := $(wildcard $(TEST_DIR)/*.cpp )
-# TEST_OBJ_FILES := $(TEST_SRC_FILES:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
-
-# TEST_TARGET := bin/run_tests
-
 NAME := push_swap
 
 ############ Rules ##################
@@ -59,6 +54,7 @@ fclean: clean
 	rm -rf $(BIN_DIR)
 	rm -rf $(OBJ_DIR)
 	rm -rf $(BUILD_DIR)
+	rm -rf $(NAME)
 
 re: fclean all
 
@@ -78,7 +74,7 @@ libft:
 libft-re:
 	$(MAKE) -C libft re
 
-bear: $(NAME) $(TEST_TARGET)
+bear: $(NAME)
 
 norminette:
 	- norminette -R CheckForbiddenSourceHeader -R CheckDefine $(SRC_DIR)/
@@ -90,9 +86,6 @@ src-files:
 
 obj-files:
 	@echo $(OBJ_FILES)
-
-test-obj-files:
-	@echo $(TEST_OBJ_FILES)
 
 .PHONY: all clean fclean test libft bonus test-bonus subproject obj-files
 # end
