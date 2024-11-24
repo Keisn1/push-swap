@@ -25,7 +25,7 @@ int	get_amount_ops(t_state state, int pos)
 	t_rotations	rots_in_a;
 	t_rotations	rots_in_b;
 
-	pos_in_b = get_pos_in_b(state, get_val_at_pos(state, pos, 'a'));
+	pos_in_b = get_idx_in_b(state, get_val_at_idx(state, pos, 'a'));
 	rots_in_a = get_nbr_of_rots(state, pos, 'a');
 	rots_in_b = get_nbr_of_rots(state, pos_in_b, 'b');
 	return (max_rots(rots_in_a) + max_rots(rots_in_b) + 1);

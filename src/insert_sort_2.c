@@ -89,7 +89,7 @@ t_state	rotate_to_max_in_b(t_state state)
 	return (rotate_n_times(state, rots.rots, 'b'));
 }
 
-int	get_pos_in_b(t_state state, int val)
+int	get_idx_in_b(t_state state, int val)
 {
 	t_stack	*head;
 	int		count;

@@ -13,7 +13,7 @@
 #include "operations.h"
 #include "push_swap.h"
 
-int	get_pos_of_entry_with_min_amount_of_ops(t_state state)
+int	get_idx_of_entry_with_min_amount_of_ops(t_state state)
 {
 	int		pos;
 	int		min_amount_of_ops;
@@ -41,19 +41,19 @@ int	get_pos_of_entry_with_min_amount_of_ops(t_state state)
 
 t_state	insert_new_val(t_state state)
 {
-	int			pos_of_entry_with_min_amount_of_ops;
+	int			idx_of_entry_with_min_amount_of_ops;
 	int			val_of_entry_with_min_amount_of_ops;
-	int			pos_in_b;
+	int			idx_in_b;
 	t_rotations	rots_a;
 	t_rotations	rots_b;
 	int			min_rev_rots;
 	int			min_rots;
 
-	pos_of_entry_with_min_amount_of_ops = get_pos_of_entry_with_min_amount_of_ops(state);
-	val_of_entry_with_min_amount_of_ops = get_val_at_pos(state, pos_of_entry_with_min_amount_of_ops, 'a');
-	pos_in_b = get_pos_in_b(state, val_of_entry_with_min_amount_of_ops);
-	rots_a = get_nbr_of_rots(state, pos_of_entry_with_min_amount_of_ops, 'a');
-	rots_b = get_nbr_of_rots(state, pos_in_b, 'b');
+	idx_of_entry_with_min_amount_of_ops = get_idx_of_entry_with_min_amount_of_ops(state);
+	val_of_entry_with_min_amount_of_ops = get_val_at_idx(state, idx_of_entry_with_min_amount_of_ops, 'a');
+	idx_in_b = get_idx_in_b(state, val_of_entry_with_min_amount_of_ops);
+	rots_a = get_nbr_of_rots(state, idx_of_entry_with_min_amount_of_ops, 'a');
+	rots_b = get_nbr_of_rots(state, idx_in_b, 'b');
 	if (rots_a.rots == -1 && rots_b.rots == -1)
 	{
 		min_rev_rots = rots_a.rev_rots;

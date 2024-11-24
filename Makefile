@@ -68,7 +68,9 @@ test:
 	./build/run_tests
 
 compile_commands:
-	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+	rm -f compile_commands.json
+	mv build/compile_commands.json ./compile_commands.json
 
 libft:
 	$(MAKE) -C libft
