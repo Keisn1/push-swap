@@ -5,7 +5,7 @@
 struct PushSwapInput {
 	int argc;
 	std::vector<std::string> argv;
-	std::string want_return;
+	std::string want;
 };
 
 class PushSwapTest : public testing::TestWithParam<PushSwapInput> {};
@@ -24,9 +24,9 @@ TEST_P(PushSwapTest, first_test) {
 	testing::internal::CaptureStdout();
 	push_swap(param.argc, argv);
 
-	std::string push_swap_return = testing::internal::GetCapturedStdout();
+	std::string got = testing::internal::GetCapturedStdout();
 
-	EXPECT_STREQ(param.want_return.c_str(), push_swap_return.c_str());
+	EXPECT_STREQ(param.want.c_str(), got.c_str());
 
 	int count = 0;
 	while (count < param.argc) {
@@ -39,7 +39,10 @@ INSTANTIATE_TEST_SUITE_P(
 	PushSwapTests,
 	PushSwapTest,
 	::testing::Values(
-		PushSwapInput{4, {"push_swap", "1", "2", "3"}, ""},
-		PushSwapInput{4, {"push_swap", "2", "1", "3"}, "sa\n"}
+		PushSwapInput{2, {"1", "2" }, ""},
+		PushSwapInput{3, {"1", "2", "3"}, ""},
+		PushSwapInput{4, {"1", "2", "3", "4"}, ""},
+		PushSwapInput{5, {"1", "2", "3", "4", "5"}, ""},
+		PushSwapInput{6, {"1", "2", "3", "4", "5", "6" }, ""}
 		)
 	);

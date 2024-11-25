@@ -31,5 +31,5 @@ def test_correct_input(input, want):
     )
     process.wait()
 
-    got = process.stdout.readlines()
+    got = process.stdout.readline()
     assert got == want
