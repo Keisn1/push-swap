@@ -10,10 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
+#include <unistd.h>
 
 int	main(int argc, char **argv)
 {
-	push_swap(argc - 1, argv);
+	if (argc < 2) {
+		ft_putendl_fd("Error", STDERR_FILENO);
+		return (0);
+	}
+	push_swap(argc - 1, argv+1);
 	return (0);
 }

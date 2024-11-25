@@ -29,7 +29,7 @@ NAME := push_swap
 ############ Rules ##################
 all: libft $(NAME)
 
-$(NAME): $(OBJ_FILES)
+$(NAME): $(OBJ_FILES) $(RUN_DIR)/main.c
 	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/main.c -o $(NAME) $(LIBFT)
 
 
@@ -62,6 +62,10 @@ test:
 	cmake -S . -B build -DBUILD_TEST=ON && \
 	cmake --build build && \
 	./build/run_tests
+
+pytest:
+	make all && \
+	pytest
 
 compile_commands:
 	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \

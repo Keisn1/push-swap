@@ -4,3 +4,5 @@
 /push_swap
 /libft/*.o
 /build/
+/libft/libft.a
+/tests/__pycache__/*.pyc

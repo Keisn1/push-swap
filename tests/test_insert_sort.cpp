@@ -131,8 +131,6 @@ TEST_P(InsertSortTest, InsertSortTest) {
 
     std::string output = testing::internal::GetCapturedStdout();
 	int got_nbr_ops = countNewlines(output);
-	// std::cout << output;
-	// std::cout << got_nbr_ops;
 
     assert_equal_stack(state.a, want_stack);
 
