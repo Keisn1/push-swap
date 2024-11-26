@@ -20,6 +20,19 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (0);
 	}
+
+	if (argc == 2) {
+		if (ft_strlen(argv[1]) > 3) {
+			int nbrs[3] = {ft_atoi(argv[1]),  ft_atoi(argv[1]+1), ft_atoi(argv[1] + 3)};
+			push_swap(3, nbrs);
+			return (0);
+		}
+		int nbrs[2] = {2, 1};
+		push_swap(2, nbrs);
+		return (0);
+	}
+
+	int *nbrs = malloc
 	push_swap(argc - 1, argv+1);
 	return (0);
 }

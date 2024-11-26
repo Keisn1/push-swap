@@ -2,22 +2,14 @@ import pytest
 import subprocess
 
 
-def test_error_input():
-    process = subprocess.Popen(
-        ["./push_swap"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,  # Captures both stdout and stderr
-        text=True,  # Ensure output is in text mode (Python 3.7+)
-    )
-    process.wait()
-
-    output = process.stdout.readline()
-    assert output == "Error\n"
-
-
 testdata = [
     (["./push_swap", "1", "2"], ""),
     (["./push_swap", "2", "1"], "sa\n"),
+    (["./push_swap", "2 1"], "sa\n"),
+    (["./push_swap", "2", "3", "1"], "rra\n"),
+    (["./push_swap", "2 3 1"], "rra\n"),
+    (["./push_swap", "3 1 2"], "ra\n"),
+    (["./push_swap"], "Error\n"),
 ]
 
 
