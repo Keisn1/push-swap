@@ -64,7 +64,7 @@ test:
 	./build/run_tests
 
 pytest:
-	make all && \
+	make && \
 	pytest
 
 compile_commands:

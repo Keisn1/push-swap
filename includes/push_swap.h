@@ -35,7 +35,7 @@ typedef struct s_rotations
 }				t_rotations;
 
 bool			leq(void *a, void *b);
-void			push_swap(int argc, char *argv[]);
+void			push_swap(int len, int *nbrs);
 t_state			sort_three_elements(t_state state);
 t_state			sort_three_elements_with_tail(t_state state);
 t_state			sort_four_elements(t_state state);

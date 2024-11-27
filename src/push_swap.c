@@ -14,33 +14,33 @@
 #include "libft.h"
 #include <unistd.h>
 
-t_stack	*create_stack(int argc, char *argv[])
+t_stack	*create_stack(int len, int *nbrs)
 {
 	int		*x;
 	t_stack	*stack;
 	int		i;
 
 	x = (int *)malloc(sizeof(int));
-	*x = ft_atoi(argv[0]);
+	*x = nbrs[0];
 	stack = ft_lstnew(x);
 	i = 1;
-	while (i < argc)
+	while (i < len)
 	{
 		x = (int *)malloc(sizeof(int));
-		*x = ft_atoi(argv[i]);
+		*x = nbrs[i];
 		ft_lstadd_back(&stack, ft_lstnew(x));
 		i++;
 	}
 	return (stack);
 }
 
-void	push_swap(int nbr_of_args, char *argv[])
+void	push_swap(int len, int *nbrs)
 {
 	t_stack	*a;
 	t_state	state;
 
-	a = create_stack(nbr_of_args, argv);
-	state = (t_state){a, NULL, nbr_of_args, 0, 0, 0};
+	a = create_stack(len, nbrs);
+	state = (t_state){a, NULL, len, 0, 0, 0};
 	state = insert_sort(state);
 	ft_lstclear(&state.a, free);
 }

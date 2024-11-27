@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "push_swap.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -22,17 +23,35 @@ int	main(int argc, char **argv)
 	}
 
 	if (argc == 2) {
-		if (ft_strlen(argv[1]) > 3) {
-			int nbrs[3] = {ft_atoi(argv[1]),  ft_atoi(argv[1]+1), ft_atoi(argv[1] + 3)};
-			push_swap(3, nbrs);
-			return (0);
+		char** nbrs_str = ft_split(argv[1], ' ');
+		int len = 0;
+		char** head = nbrs_str;
+		while (*head) {
+			len++;
+			head++;
+        }
+		int* nbrs = malloc(len * sizeof(int));
+		int count = 0;
+		while (count < len) {
+			nbrs[count] = ft_atoi(nbrs_str[count]);
+			free(nbrs_str[count]);
+			count++;
 		}
-		int nbrs[2] = {2, 1};
-		push_swap(2, nbrs);
+		free(nbrs_str);
+
+		push_swap(len, nbrs);
+		free(nbrs);
 		return (0);
 	}
 
-	int *nbrs = malloc
-	push_swap(argc - 1, argv+1);
+	int *nbrs = malloc((argc-1) * sizeof(int));
+	int count = 0;
+	while (count < argc-1) {
+		nbrs[count] = ft_atoi(argv[count+1]);
+		count++;
+	}
+
+	push_swap(argc - 1, nbrs);
+	free(nbrs);
 	return (0);
 }
