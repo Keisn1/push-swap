@@ -3,3 +3,5 @@
 /obj/
 /push_swap
 /libft/*.o
+/build/
+/tests/__pycache__/
