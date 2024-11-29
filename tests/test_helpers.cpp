@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "test_push_swap.hpp"
 
 void assert_equal_stack(t_stack *got, t_stack *want) {
@@ -48,4 +49,13 @@ int countNewlines(const std::string& text) {
         }
     }
     return newlineCount;
+}
+
+char **create_str_arr(std::vector<std::string> strings) {
+	char** strs = (char**)malloc(sizeof(char*) * strings.size());
+
+	for (int i = 0; i < strings.size(); i++)
+		strs[i] = ft_strdup(strings[i].c_str());
+
+	return strs;
 }

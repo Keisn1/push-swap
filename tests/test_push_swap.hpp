@@ -5,6 +5,7 @@
 # include <iostream>
 # include <string>
 # include <vector>
+
 extern "C"
 {
 # include "libft.h"
@@ -18,5 +19,6 @@ void	assert_equal_state(t_state got, t_state want);
 void	clear_stacks(t_state got, t_state want);
 t_stack	*create_stack(std::vector<int> nbrs);
 int		countNewlines(const std::string &text);
+char **create_str_arr(std::vector<std::string> strings);
 
 #endif // TEST_PUSH_SWAP_H

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
+#include "push_swap.h"
 #include <unistd.h>
 
 t_stack	*create_stack(int len, int *nbrs)
@@ -43,4 +43,42 @@ void	push_swap(int len, int *nbrs)
 	state = (t_state){a, NULL, len, 0, 0, 0};
 	state = insert_sort(state);
 	ft_lstclear(&state.a, free);
+}
+
+void	free_char_arr(char **arr, int len)
+{
+	int	count;
+
+	count = 0;
+	while (count < len)
+		free(arr[count++]);
+	free(arr);
+}
+
+int	*extract_nbrs(int argc, char **argv, int *len)
+{
+	char	**nbrs_str;
+	char	**head;
+	int		*nbrs;
+	int		count;
+
+	count = 0;
+	if (argc == 2)
+	{
+		nbrs_str = ft_split(argv[1], ' ');
+		*len = 0;
+		head = nbrs_str;
+		while (*(head++))
+			(*len)++;
+		nbrs = malloc(*len * sizeof(int));
+		while (count++ < *len)
+			nbrs[count - 1] = ft_atoi(nbrs_str[count - 1]);
+		free_char_arr(nbrs_str, *len);
+		return (nbrs);
+	}
+	*len = argc - 1;
+	nbrs = malloc(*len * sizeof(int));
+	while (count++ < *len)
+		nbrs[count - 1] = ft_atoi(argv[count]);
+	return (nbrs);
 }

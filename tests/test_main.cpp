@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
     // ::testing::GTEST_FLAG(filter) = "Insert*:StackOperation*:AlgorithmTests/Sort*";
     // ::testing::GTEST_FLAG(filter) = "PushSwapTest*";
     // ::testing::GTEST_FLAG(filter) = "InsertSortTest*";
+    // ::testing::GTEST_FLAG(filter) = "ExtractNbrsTest*";
 
     return RUN_ALL_TESTS();
 }

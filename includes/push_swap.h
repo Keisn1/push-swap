@@ -56,5 +56,6 @@ int				get_val_at_idx(t_state state, int idx, char stack);
 
 /* helpers */
 void			print_stack(t_stack *a);
+int				*extract_nbrs(int argc, char **argv, int *len);
 
 #endif // PUSH_SWAP_H

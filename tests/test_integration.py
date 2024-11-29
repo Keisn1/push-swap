@@ -1,7 +1,6 @@
 import pytest
 import subprocess
 
-
 testdata = [
     (["./push_swap", "1", "2"], ""),
     (["./push_swap", "2", "1"], "sa\n"),
@@ -10,6 +9,9 @@ testdata = [
     (["./push_swap", "2 3 1"], "rra\n"),
     (["./push_swap", "3 1 2"], "ra\n"),
     (["./push_swap"], "Error\n"),
+    (["./push_swap", "1 2 asdf"], "Error\n"),
+    (["./push_swap", "-1 2"], ""),
+    (["./push_swap", "+1 2"], ""),
 ]
 
 
