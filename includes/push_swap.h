@@ -54,6 +54,10 @@ int				get_idx_in_b(t_state state, int val);
 t_state			rotate_to_max_in_b(t_state state);
 int				get_val_at_idx(t_state state, int idx, char stack);
 
+/* error checking */
+bool check_valid_strs(int argc, char **argv);
+int error();
+
 /* helpers */
 void			print_stack(t_stack *a);
 int				*extract_nbrs(int argc, char **argv, int *len);

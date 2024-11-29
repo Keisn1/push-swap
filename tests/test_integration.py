@@ -12,6 +12,7 @@ testdata = [
     (["./push_swap", "1 2 asdf"], "Error\n"),
     (["./push_swap", "-1 2"], ""),
     (["./push_swap", "+1 2"], ""),
+    (["./push_swap", "+1", "asdf2"], "Error\n"),
 ]
 
 

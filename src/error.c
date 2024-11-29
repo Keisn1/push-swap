@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfreyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 18:54/54 by kfreyer           #+#    #+#             */
-/*   Updated: 2024/10/11 18:54:54 by kfreyer          ###   ########.fr       */
+/*   Created: 2024/11/29 15:50/28 by kfreyer           #+#    #+#             */
+/*   Updated: 2024/11/29 15:50:28 by kfreyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
-#include <stdlib.h>
-#include <unistd.h>
 
-int	main(int argc, char **argv)
+bool	is_valid_char(char c)
 {
-	int		len;
-	int		*nbrs;
+	return (ft_isdigit(c) || c == ' ' || c == '-' || c == '+');
+}
 
-	if (argc < 2)
-		return error();
+bool	check_valid_strs(int argc, char **argv)
+{
+	char	*str;
+	int		count;
 
-	if (!check_valid_strs(argc, argv))
-		return error();
+	count = 1;
+	while (count < argc)
+	{
+		str = argv[count++];
+		while (*str)
+			if (!is_valid_char(*(str++)))
+				return (false);
+	}
+	return (true);
+}
 
-	nbrs = extract_nbrs(argc, argv, &len);
-
-
-	push_swap(len, nbrs);
-	free(nbrs);
-	return (0);
+int	error(void)
+{
+	ft_putendl_fd("Error", STDERR_FILENO);
+	return (EXIT_FAILURE);
 }
