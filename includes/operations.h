@@ -30,6 +30,8 @@ t_state	rotate(t_state state, char s);
 t_state	rotate_a_n_times(t_state state, int n);
 t_state	rotate_b_n_times(t_state state, int n);
 t_state	rotate_n_times(t_state state, int n, char stack);
+t_state	reverse_rotate_both(t_state state, int rev_rots_a, int rev_rots_b);
+t_state	rotate_both(t_state state, int rots_a, int rots_b);
 
 /* reverse rotating */
 t_stack	*rev_rot_stack(t_stack *stack);

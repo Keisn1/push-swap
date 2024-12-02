@@ -6,3 +6,4 @@
 /build/
 /libft/libft.a
 /tests/__pycache__/*.pyc
+/checker_linux

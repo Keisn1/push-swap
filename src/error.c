@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
+#include <unistd.h>
 
 bool	is_valid_char(char c)
 {
@@ -39,17 +41,24 @@ int	error(void)
 	return (EXIT_FAILURE);
 }
 
-bool check_no_duplicates(int *nbrs, int len) {
-	if (len > 1) {
-		int c1 = 0;
-		while (c1 < len - 1) {
-			int c2 = c1 + 1;
-			while (c2 < len) {
+bool	check_no_duplicates(int *nbrs, int len)
+{
+	int	c1;
+	int	c2;
+
+	if (len > 1)
+	{
+		c1 = 0;
+		while (c1 < len - 1)
+		{
+			c2 = c1 + 1;
+			while (c2 < len)
+			{
 				if (nbrs[c1] == nbrs[c2++])
-					return false;
+					return (false);
 			}
 			c1++;
 		}
 	}
-	return true;
+	return (true);
 }

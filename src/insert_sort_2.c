@@ -10,8 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
 #include "push_swap.h"
+
+bool	is_ordered(t_state state)
+{
+	int		count;
+	t_stack	*head;
+
+	count = 0;
+	head = state.a;
+	while (count < state.size_a - 1)
+	{
+		if (!leq(head->content, head->next->content))
+			return (false);
+		head = head->next;
+		count++;
+	}
+	return (true);
+}
 
 int	get_val_at_idx(t_state state, int idx, char stack)
 {
@@ -27,7 +43,6 @@ int	get_val_at_idx(t_state state, int idx, char stack)
 		head = head->next;
 	return (*(int *)(head->content));
 }
-
 
 int	find_idx_of_min(t_state state)
 {
@@ -51,42 +66,6 @@ int	find_idx_of_min(t_state state)
 		count++;
 	}
 	return (min_idx);
-}
-
-int	find_idx_of_max(t_state state)
-{
-	int		count;
-	t_stack	*head;
-	int		max_val;
-	int		max_idx;
-
-	count = 0;
-	head = state.b;
-	max_val = *(int *)(head->content);
-	max_idx = 0;
-	while (head)
-	{
-		if (*(int *)(head->content) > max_val)
-		{
-			max_val = *(int *)(head->content);
-			max_idx = count;
-		}
-		head = head->next;
-		count++;
-	}
-	return (max_idx);
-}
-
-t_state	rotate_to_max_in_b(t_state state)
-{
-	int			max_idx;
-	t_rotations	rots;
-
-	max_idx = find_idx_of_max(state);
-	rots = get_rotations(state, max_idx, 'b');
-	if (rots.rots == -1)
-		return (reverse_rotate_n_times(state, rots.rev_rots, 'b'));
-	return (rotate_n_times(state, rots.rots, 'b'));
 }
 
 int	get_idx_in_b(t_state state, int val)

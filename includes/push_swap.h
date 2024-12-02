@@ -34,7 +34,6 @@ typedef struct s_rotations
 	int			rev_rots;
 }				t_rotations;
 
-bool			leq(void *a, void *b);
 void			push_swap(int len, int *nbrs);
 t_state			sort_three_elements(t_state state);
 t_state			sort_three_elements_with_tail(t_state state);
@@ -50,8 +49,9 @@ t_state			insert_sort(t_state state);
 t_state			insert_new_val(t_state state);
 int				get_amount_ops(t_state state, int idx);
 t_rotations		get_rotations(t_state state, int idx, char stack);
-int				get_idx_in_b(t_state state, int val);
 t_state			rotate_to_max_in_b(t_state state);
+bool			is_ordered(t_state state);
+int				get_idx_in_b(t_state state, int val);
 int				get_val_at_idx(t_state state, int idx, char stack);
 
 /* error checking */
@@ -60,7 +60,8 @@ bool			check_no_duplicates(int *nbrs, int len);
 int				error(void);
 
 /* helpers */
-void			print_stack(t_stack *a);
 int				*extract_nbrs(int argc, char **argv, int *len);
+void			print_stack(t_stack *a);
+bool			leq(void *a, void *b);
 
 #endif // PUSH_SWAP_H

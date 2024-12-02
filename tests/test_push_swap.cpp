@@ -75,14 +75,13 @@ TEST_P(ExtractNbrsTest, first_test) {
 
 
 INSTANTIATE_TEST_SUITE_P(
-	ExtractNbrsTest,
-	ExtractNbrsTest,
-	::testing::Values(
-		ExtractNbrsParam{3, {"push_swap", "1", "2"}, 2, {1, 2}},
-		ExtractNbrsParam{4, {"push_swap", "1", "2", "3"}, 3, {1, 2, 3}},
-		ExtractNbrsParam{2, {"push_swap", "1 2"}, 2, {1, 2}},
-		ExtractNbrsParam{2, {"push_swap", "1"}, 1, {1}},
-		ExtractNbrsParam{2, {"push_swap", "-2 -3 -10 2123"}, 4, {-2, -3, -10, 2123}},
-		ExtractNbrsParam{4, {"push_swap", "-1", "-2", "-3"}, 3, {-1, -2, -3}}
-		)
-	);
+    ExtractNbrsTest, ExtractNbrsTest,
+    ::testing::Values(
+        ExtractNbrsParam{3, {"push_swap", "1", "2"}, 2, {1, 2}},
+        ExtractNbrsParam{4, {"push_swap", "1", "2", "3"}, 3, {1, 2, 3}},
+        ExtractNbrsParam{2, {"push_swap", "1 2"}, 2, {1, 2}},
+        ExtractNbrsParam{2, {"push_swap", "1"}, 1, {1}},
+        ExtractNbrsParam{
+            2, {"push_swap", "-2 -3 -10 2123"}, 4, {-2, -3, -10, 2123}},
+        ExtractNbrsParam{4, {"push_swap", "-1", "-2", "-3"}, 3, {-1, -2, -3}}
+));

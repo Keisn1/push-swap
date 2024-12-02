@@ -61,6 +61,7 @@ int	*extract_nbrs(int argc, char **argv, int *len)
 	char	**head;
 	int		*nbrs;
 	int		count;
+	char	*str;
 
 	count = 0;
 	if (argc == 2)
@@ -72,13 +73,32 @@ int	*extract_nbrs(int argc, char **argv, int *len)
 			(*len)++;
 		nbrs = malloc(*len * sizeof(int));
 		while (count++ < *len)
+		{
 			nbrs[count - 1] = ft_atoi(nbrs_str[count - 1]);
+			str = nbrs_str[count - 1];
+			if (*str == '+')
+				str++;
+			if (ft_strncmp(str, ft_itoa(nbrs[count - 1]), ft_strlen(str)))
+			{
+				free_char_arr(nbrs_str, *len);
+				return (NULL);
+			}
+		}
 		free_char_arr(nbrs_str, *len);
 		return (nbrs);
 	}
 	*len = argc - 1;
 	nbrs = malloc(*len * sizeof(int));
 	while (count++ < *len)
+	{
 		nbrs[count - 1] = ft_atoi(argv[count]);
+		str = argv[count];
+		if (*str == '+')
+			str++;
+		if (ft_strncmp(str, ft_itoa(nbrs[count - 1]), ft_strlen(str)))
+		{
+			return (NULL);
+		}
+	}
 	return (nbrs);
 }

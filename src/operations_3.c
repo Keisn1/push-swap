@@ -12,8 +12,8 @@
 
 #include "libft.h"
 #include "operations.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 t_stack	*rot_stack(t_stack *stack)
 {
@@ -64,12 +64,13 @@ t_stack	*swap_stack(t_stack *head)
 
 t_state	sort_top_of_stack(t_state state, char stack)
 {
-	if (stack == 'a') {
-		if ((*(int*)state.a->next->content) < (*(int*)state.a->content))
+	if (stack == 'a')
+	{
+		if ((*(int *)state.a->next->content) < (*(int *)state.a->content))
 			return (swap(state, 'a'));
-		return state;
+		return (state);
 	}
-	if ((*(int*)state.b->next->content) < (*(int*)state.b->content))
+	if ((*(int *)state.b->next->content) < (*(int *)state.b->content))
 		return (swap(state, 'b'));
 	return (state);
 }
