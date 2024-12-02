@@ -31,7 +31,7 @@ CHECKER := checker
 all: libft $(NAME)
 
 $(NAME): $(OBJ_FILES) $(RUN_DIR)/push_swap/main.c
-	$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ_FILES) $(RUN_DIR)/$(NAME)/main.c    -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ_FILES) $(RUN_DIR)/$(NAME)/main.c -o $(NAME) $(LIBFT)
 
 bonus: libft $(OBJ_FILES) $(RUN_DIR)/checker/main.c
 	$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ_FILES) $(RUN_DIR)/$(CHECKER)/main.c -o $(CHECKER) $(LIBFT)
@@ -66,7 +66,11 @@ test:
 	./build/run_tests
 
 test_push_swap:
-	make && \
+	make re && \
+	pytest tests/test_integration.py
+
+test_push_swap_with_mem:
+	make re FSANITIZE=-fsanitize=memory && \
 	pytest tests/test_integration.py
 
 test_checker:
