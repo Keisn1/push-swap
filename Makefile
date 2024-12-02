@@ -10,7 +10,7 @@ GTEST_LIBS := -lgtest -lgtest_main -pthread #for googletests
 
 CXX := g++
 CXX_FLAGS := -Wall -Werror -Wextra
-FSANITIZE = -fsanitize=address
+FSANITIZE =
 
 SRC_DIR := src
 RUN_DIR := run
