@@ -1,6 +1,16 @@
 [
 {
   "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft -I/home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest  -fsanitize=address -o CMakeFiles/run_tests.dir/src/error.c.o -c /home/kfreyer/workspace/push-swap/src/error.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/error.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft -I/home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest  -fsanitize=address -o CMakeFiles/run_tests.dir/src/extract_numbers.c.o -c /home/kfreyer/workspace/push-swap/src/extract_numbers.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/extract_numbers.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
   "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft -I/home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest  -fsanitize=address -o CMakeFiles/run_tests.dir/src/helpers.c.o -c /home/kfreyer/workspace/push-swap/src/helpers.c",
   "file": "/home/kfreyer/workspace/push-swap/src/helpers.c"
 },
@@ -33,6 +43,11 @@
   "directory": "/home/kfreyer/workspace/push-swap/build",
   "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft -I/home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest  -fsanitize=address -o CMakeFiles/run_tests.dir/src/operations_3.c.o -c /home/kfreyer/workspace/push-swap/src/operations_3.c",
   "file": "/home/kfreyer/workspace/push-swap/src/operations_3.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft -I/home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/push-swap/build/_deps/googletest-src/googletest  -fsanitize=address -o CMakeFiles/run_tests.dir/src/operations_4.c.o -c /home/kfreyer/workspace/push-swap/src/operations_4.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/operations_4.c"
 },
 {
   "directory": "/home/kfreyer/workspace/push-swap/build",
@@ -76,6 +91,16 @@
 },
 {
   "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/src/error.c.o -c /home/kfreyer/workspace/push-swap/src/error.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/error.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/src/extract_numbers.c.o -c /home/kfreyer/workspace/push-swap/src/extract_numbers.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/extract_numbers.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
   "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/src/helpers.c.o -c /home/kfreyer/workspace/push-swap/src/helpers.c",
   "file": "/home/kfreyer/workspace/push-swap/src/helpers.c"
 },
@@ -111,6 +136,11 @@
 },
 {
   "directory": "/home/kfreyer/workspace/push-swap/build",
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/src/operations_4.c.o -c /home/kfreyer/workspace/push-swap/src/operations_4.c",
+  "file": "/home/kfreyer/workspace/push-swap/src/operations_4.c"
+},
+{
+  "directory": "/home/kfreyer/workspace/push-swap/build",
   "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/src/push_swap.c.o -c /home/kfreyer/workspace/push-swap/src/push_swap.c",
   "file": "/home/kfreyer/workspace/push-swap/src/push_swap.c"
 },
@@ -121,8 +151,8 @@
 },
 {
   "directory": "/home/kfreyer/workspace/push-swap/build",
-  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/run/main.c.o -c /home/kfreyer/workspace/push-swap/run/main.c",
-  "file": "/home/kfreyer/workspace/push-swap/run/main.c"
+  "command": "/usr/bin/cc  -I/home/kfreyer/workspace/push-swap/includes -I/home/kfreyer/workspace/push-swap/libft  -fsanitize=address -o CMakeFiles/philo.dir/run/push_swap/main.c.o -c /home/kfreyer/workspace/push-swap/run/push_swap/main.c",
+  "file": "/home/kfreyer/workspace/push-swap/run/push_swap/main.c"
 },
 {
   "directory": "/home/kfreyer/workspace/push-swap/build/_deps/googletest-build/googlemock",

@@ -25,18 +25,20 @@ SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES := $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 NAME := push_swap
+CHECKER := checker
 
 ############ Rules ##################
 all: libft $(NAME)
 
 $(NAME): $(OBJ_FILES) $(RUN_DIR)/push_swap/main.c
-	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/push_swap/main.c -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ_FILES) $(RUN_DIR)/$(NAME)/main.c    -o $(NAME) $(LIBFT)
 
+bonus: libft $(OBJ_FILES) $(RUN_DIR)/checker/main.c
+	$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ_FILES) $(RUN_DIR)/$(CHECKER)/main.c -o $(CHECKER) $(LIBFT)
 
 # Object file compilation for C
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
+	$(CC) $(CFLAGS) $(FSANITIZE) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -63,9 +65,13 @@ test:
 	cmake --build build && \
 	./build/run_tests
 
-end-to-end-test:
+test_push_swap:
 	make && \
-	pytest
+	pytest tests/test_integration.py
+
+test_checker:
+	make bonus && \
+	pytest tests/test_checker_integration.py
 
 compile_commands:
 	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
