@@ -14,17 +14,16 @@
 
 bool	is_ordered(t_state state)
 {
-	int		count;
 	t_stack	*head;
 
-	count = 0;
 	head = state.a;
-	while (count < state.size_a - 1)
+	if (!head)
+		return true;
+	while (head->next)
 	{
 		if (!leq(head->content, head->next->content))
 			return (false);
 		head = head->next;
-		count++;
 	}
 	return (true);
 }

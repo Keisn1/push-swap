@@ -66,11 +66,11 @@ test:
 	./build/run_tests
 
 test_push_swap:
-	make re && \
+	make && \
 	pytest tests/test_integration.py
 
 test_push_swap_with_mem:
-	make re FSANITIZE=-fsanitize=memory && \
+	make FSANITIZE=-fsanitize=memory && \
 	pytest tests/test_integration.py
 
 test_checker:

@@ -21,6 +21,8 @@ t_stack	*create_stack(int len, int *nbrs)
 	int		i;
 
 	x = (int *)malloc(sizeof(int));
+	if (!x)
+		return NULL;
 	*x = nbrs[0];
 	stack = ft_lstnew(x);
 	i = 1;
@@ -28,7 +30,13 @@ t_stack	*create_stack(int len, int *nbrs)
 	{
 		x = (int *)malloc(sizeof(int));
 		*x = nbrs[i];
-		ft_lstadd_back(&stack, ft_lstnew(x));
+		t_stack* new = ft_lstnew(x);
+		if (!new) {
+			free(x);
+			ft_lstclear(&stack, free);
+			return NULL;
+		}
+		ft_lstadd_back(&stack, new);
 		i++;
 	}
 	return (stack);
