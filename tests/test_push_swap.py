@@ -46,3 +46,21 @@ def test_correct_input(input, want):
 
     got = process.stdout.readline()
     assert got == want
+
+
+@pytest.mark.parametrize("input,want", testdata)
+def test_push_swap_valgrind(input, want):
+    input = ["valgrind", "--leak-check=full"] + input
+
+    process = subprocess.Popen(
+        input,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,  # Captures both stdout and stderr
+        text=True,  # Ensure output is in text mode (Python 3.7+)
+    )
+    process.wait()
+
+    got = process.stdout.readlines()
+    print(got)
+    print(len(got))
+    assert False

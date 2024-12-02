@@ -66,12 +66,12 @@ test:
 	./build/run_tests
 
 test_push_swap:
-	make && \
-	pytest tests/test_integration.py
+	make FSANITIZE=-fsanitize=address && \
+	pytest tests/test_push_swap.py::test_push_swap
 
-test_push_swap_with_mem:
-	make FSANITIZE=-fsanitize=memory && \
-	pytest tests/test_integration.py
+test_push_swap_valgrind:
+	make re && \
+	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
 test_checker:
 	make bonus && \
