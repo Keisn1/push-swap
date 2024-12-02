@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 #include <unistd.h>
 
@@ -23,11 +22,9 @@ int	main(int argc, char **argv)
 		return (error());
 	if (!check_valid_strs(argc, argv))
 		return (error());
-
 	nbrs = extract_nbrs(argc, argv, &len);
 	if (!nbrs)
-		return error();
-
+		return (error());
 	if (!check_no_duplicates(nbrs, len))
 		return (error());
 	push_swap(len, nbrs);

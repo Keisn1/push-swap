@@ -63,9 +63,11 @@ TEST_P(ExtractNbrsTest, first_test) {
 	int* got = extract_nbrs(param.argc, argv, &got_len);
 
 	EXPECT_EQ(param.want_len, got_len);
-	for (int i = 0; i < param.want.size(); i++)
-		EXPECT_EQ(param.want[i], got[i]);
-
+	if (param.want_len == 0)
+		EXPECT_EQ(got, nullptr);
+	else
+		for (int i = 0; i < param.want.size(); i++)
+			EXPECT_EQ(param.want[i], got[i]);
 	free(got);
 
 	for (int i = 0; i < param.argv.size(); i++)
@@ -83,5 +85,7 @@ INSTANTIATE_TEST_SUITE_P(
         ExtractNbrsParam{2, {"push_swap", "1"}, 1, {1}},
         ExtractNbrsParam{
             2, {"push_swap", "-2 -3 -10 2123"}, 4, {-2, -3, -10, 2123}},
-        ExtractNbrsParam{4, {"push_swap", "-1", "-2", "-3"}, 3, {-1, -2, -3}}
+        ExtractNbrsParam{4, {"push_swap", "-1", "-2", "-3"}, 3, {-1, -2, -3}},
+        ExtractNbrsParam{3, {"push_swap", "1", "123981273192378"}, 0, {}},
+        ExtractNbrsParam{2, {"push_swap", "1 123981273192378"}, 0, {}}
 ));
