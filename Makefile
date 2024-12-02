@@ -29,8 +29,8 @@ NAME := push_swap
 ############ Rules ##################
 all: libft $(NAME)
 
-$(NAME): $(OBJ_FILES) $(RUN_DIR)/main.c
-	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/main.c -o $(NAME) $(LIBFT)
+$(NAME): $(OBJ_FILES) $(RUN_DIR)/push_swap/main.c
+	$(CC) $(CFLAGS) $(INCLUDES)  $(OBJ_FILES) $(RUN_DIR)/push_swap/main.c -o $(NAME) $(LIBFT)
 
 
 # Object file compilation for C

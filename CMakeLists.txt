@@ -42,7 +42,7 @@ endif()
 
 # Building philo ##################################################
 if(BUILD_PUSH_SWAP)
-  add_executable(philo ${PUSH_SWAP_SOURCES} run/main.c)
+  add_executable(philo ${PUSH_SWAP_SOURCES} run/push_swap/main.c)
   target_link_libraries(philo ft)
   target_include_directories(philo PRIVATE includes)
   target_include_directories(philo PRIVATE libft)
