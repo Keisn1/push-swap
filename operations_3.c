@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "operations.h"
-#include <stdio.h>
-#include <unistd.h>
 
 t_stack	*rot_stack(t_stack *stack)
 {

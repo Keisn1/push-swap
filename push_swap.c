@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
-#include <unistd.h>
 
 t_stack	*create_stack(int len, int *nbrs)
 {
