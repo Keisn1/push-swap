@@ -10,25 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 int	main(int argc, char **argv)
 {
-	int		len;
-	int		*nbrs;
+	int	len;
+	int	*nbrs;
 
 	if (argc < 2)
-		return error();
-
+		return (error());
 	if (!check_valid_strs(argc, argv))
-		return error();
-
+		return (error());
 	nbrs = extract_nbrs(argc, argv, &len);
-
-
+	if (!check_no_duplicates(nbrs, len))
+		return (error());
 	push_swap(len, nbrs);
 	free(nbrs);
 	return (0);

@@ -98,22 +98,27 @@ t_state	insert_new_val(t_state state)
 	return (push_b(state));
 }
 
-bool is_ordered(t_state state) {
-	int count = 0;
-	t_stack *head = state.a;
-	while (count < state.size_a-1) {
+bool	is_ordered(t_state state)
+{
+	int		count;
+	t_stack	*head;
+
+	count = 0;
+	head = state.a;
+	while (count < state.size_a - 1)
+	{
 		if (!leq(head->content, head->next->content))
-			return false;
+			return (false);
 		head = head->next;
 		count++;
 	}
-	return true;
+	return (true);
 }
 
 t_state	insert_sort(t_state state)
 {
 	if (is_ordered(state))
-		return state;
+		return (state);
 	if (state.size_a == 2)
 		return (sort_top_of_stack(state, 'a'));
 	if (state.size_a == 3)
@@ -122,7 +127,6 @@ t_state	insert_sort(t_state state)
 		return (sort_four_elements(state));
 	if (state.size_a == 5)
 		return (sort_five_elements(state));
-
 	state = push_b(state);
 	state = push_b(state);
 	while (state.a)

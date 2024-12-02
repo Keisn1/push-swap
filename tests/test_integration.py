@@ -13,6 +13,14 @@ testdata = [
     (["./push_swap", "-1 2"], ""),
     (["./push_swap", "+1 2"], ""),
     (["./push_swap", "+1", "asdf2"], "Error\n"),
+    (["./push_swap", "1", "1"], "Error\n"),
+    (["./push_swap", "2", "2"], "Error\n"),
+    (["./push_swap", "2", "2"], "Error\n"),
+    (["./push_swap", "2", "2", "2"], "Error\n"),
+    (["./push_swap", "1", "2", "2"], "Error\n"),
+    (["./push_swap", "2", "1", "2"], "Error\n"),
+    (["./push_swap", "2", "2", "1"], "Error\n"),
+    (["./push_swap", "1", "2", "3", "4", "1"], "Error\n"),
 ]
 
 

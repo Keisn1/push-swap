@@ -13,21 +13,21 @@
 #include "operations.h"
 #include "push_swap.h"
 
-t_rotations	get_rotations(t_state state, int idx, char stack)
+int	get_val_at_idx(t_state state, int idx, char stack)
 {
-	int			size;
-	t_rotations	rots;
+	int		count;
+	t_stack	*head;
 
-	size = state.size_a;
-	if (stack == 'b')
-		size = state.size_b;
-	rots = (t_rotations){-1, -1};
-	if ((size - idx) < idx)
-		rots.rev_rots = size - idx;
+	count = 0;
+	if (stack == 'a')
+		head = state.a;
 	else
-		rots.rots = idx;
-	return (rots);
+		head = state.b;
+	while (count++ < idx)
+		head = head->next;
+	return (*(int *)(head->content));
 }
+
 
 int	find_idx_of_min(t_state state)
 {

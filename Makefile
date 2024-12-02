@@ -63,7 +63,7 @@ test:
 	cmake --build build && \
 	./build/run_tests
 
-pytest:
+end-to-end-test:
 	make && \
 	pytest
 

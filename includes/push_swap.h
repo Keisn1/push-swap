@@ -55,8 +55,9 @@ t_state			rotate_to_max_in_b(t_state state);
 int				get_val_at_idx(t_state state, int idx, char stack);
 
 /* error checking */
-bool check_valid_strs(int argc, char **argv);
-int error();
+bool			check_valid_strs(int argc, char **argv);
+bool			check_no_duplicates(int *nbrs, int len);
+int				error(void);
 
 /* helpers */
 void			print_stack(t_stack *a);

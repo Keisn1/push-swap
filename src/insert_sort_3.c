@@ -31,17 +31,18 @@ int	get_amount_ops(t_state state, int pos)
 	return (max_rots(rots_in_a) + max_rots(rots_in_b) + 1);
 }
 
-int	get_val_at_idx(t_state state, int idx, char stack)
+t_rotations	get_rotations(t_state state, int idx, char stack)
 {
-	int		count;
-	t_stack	*head;
+	int			size;
+	t_rotations	rots;
 
-	count = 0;
-	if (stack == 'a')
-		head = state.a;
+	size = state.size_a;
+	if (stack == 'b')
+		size = state.size_b;
+	rots = (t_rotations){-1, -1};
+	if ((size - idx) < idx)
+		rots.rev_rots = size - idx;
 	else
-		head = state.b;
-	while (count++ < idx)
-		head = head->next;
-	return (*(int *)(head->content));
+		rots.rots = idx;
+	return (rots);
 }

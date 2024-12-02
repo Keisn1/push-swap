@@ -38,3 +38,18 @@ int	error(void)
 	ft_putendl_fd("Error", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
+
+bool check_no_duplicates(int *nbrs, int len) {
+	if (len > 1) {
+		int c1 = 0;
+		while (c1 < len - 1) {
+			int c2 = c1 + 1;
+			while (c2 < len) {
+				if (nbrs[c1] == nbrs[c2++])
+					return false;
+			}
+			c1++;
+		}
+	}
+	return true;
+}
