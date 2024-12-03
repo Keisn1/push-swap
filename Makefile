@@ -77,7 +77,7 @@ test_push_swap_valgrind:
 	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
 test_checker:
-	make bonus && \
+	make bonus FSANITIZE=-fsanitize=address && \
 	pytest tests/test_checker.py::test_checker
 
 test_checker_valgrind:
