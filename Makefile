@@ -11,6 +11,7 @@ GTEST_LIBS := -lgtest -lgtest_main -pthread #for googletests
 CXX := g++
 CXX_FLAGS := -Wall -Werror -Wextra
 FSANITIZE =
+VERBOSE =
 
 SRC_DIR := src
 RUN_DIR := run
@@ -78,6 +79,10 @@ test_push_swap_valgrind:
 test_checker:
 	make bonus && \
 	pytest tests/test_checker.py
+
+test_checker_valgrind:
+	make bonus && \
+	pytest $(VERBOSE) tests/test_checker.py::test_checker_valgrind
 
 compile_commands:
 	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \

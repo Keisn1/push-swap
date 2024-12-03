@@ -21,18 +21,30 @@ testdata = [
     (["./checker", "+2147483648 1"], "Error\n"),
     (["./checker", "2 +2147483648 1"], "Error\n"),
     (["./checker", "2", "+2147483648", "1"], "Error\n"),
+    (["./checker", "1 2"], ""),  # tests if everything is free on happy path
 ]
 
 
-@pytest.mark.parametrize("input_data,want", testdata)
-def test_correct_input(input_data, want):
+@pytest.mark.parametrize("input,want", testdata)
+def test_checker_valgrind(input, want):
+    input = ["valgrind", "--leak-check=full"] + input
+
     process = subprocess.Popen(
-        input_data,
+        input,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,  # Captures both stdout and stderr
         text=True,  # Ensure output is in text mode (Python 3.7+)
     )
     process.wait()
 
-    got = process.stdout.readline()
-    assert got == want
+    got = process.stdout.readlines()
+
+    assert any(
+        ["All heap blocks were freed -- no leaks are possible" in line for line in got]
+    )
+    assert any(
+        [
+            "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" in line
+            for line in got
+        ]
+    )
