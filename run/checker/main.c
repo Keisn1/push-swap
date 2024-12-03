@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
 
+	ft_lstclear(&a, free);
 	free(nbrs);
     return 0;
 }
