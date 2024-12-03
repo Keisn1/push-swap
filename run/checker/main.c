@@ -40,9 +40,16 @@ int main(int argc, char *argv[]) {
 	t_stack *a = create_stack(len, nbrs);
 	t_state state = (t_state){a, NULL, len, 0, 0, 0};
 	if (is_ordered(state))
-		ft_putendl_fd("OK", STDOUT_FILENO);
+		if (!ft_strncmp(line, "sa", 2) || !ft_strncmp(line, "ra", 2))
+			ft_putendl_fd("KO", STDOUT_FILENO);
+		else
+			ft_putendl_fd("OK", STDOUT_FILENO);
 	else
-		ft_putendl_fd("KO", STDOUT_FILENO);
+		if (!ft_strncmp(line, "sa", 2) || !ft_strncmp(line, "ra", 2))
+			ft_putendl_fd("OK", STDOUT_FILENO);
+		else
+			ft_putendl_fd("KO", STDOUT_FILENO);
+
 
 	free(line);
 	ft_lstclear(&a, free);

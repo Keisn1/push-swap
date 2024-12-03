@@ -27,6 +27,10 @@ testdata = [
     (["./checker", "2 1"], [""], "KO\n"),
     (["./checker", "1", "2"], [""], "OK\n"),
     (["./checker", "1", "2"], ["sa "], "Error\n"),
+    (["./checker", "1", "2"], ["sa"], "KO\n"),
+    (["./checker", "2", "1"], ["sa"], "OK\n"),
+    (["./checker", "2", "1"], ["ra"], "OK\n"),
+    (["./checker", "1", "2"], ["ra"], "KO\n"),
 ]
 
 
