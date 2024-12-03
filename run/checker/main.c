@@ -12,6 +12,7 @@
 
 #include "libft.h"
 #include "push_swap.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
 	int len;
@@ -29,6 +30,14 @@ int main(int argc, char *argv[]) {
 		return (error());
         }
 
+	char** lines = NULL;
+	char* line = get_next_line(STDIN_FILENO);
+	all = ft_strdup(line);
+	while (line) {
+		free(line);
+		line = get_next_line(STDIN_FILENO);
+		ft_strlcat(, const char *src, size_t size)
+	}
 	t_stack *a = create_stack(len, nbrs);
 	t_state state = (t_state){a, NULL, len, 0, 0, 0};
 
