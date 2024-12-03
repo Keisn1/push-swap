@@ -35,7 +35,7 @@ testdata = [
 
 
 @pytest.mark.parametrize("input,want", testdata)
-def test_correct_input(input, want):
+def test_push_swap(input, want):
     process = subprocess.Popen(
         input,
         stdout=subprocess.PIPE,
@@ -61,6 +61,13 @@ def test_push_swap_valgrind(input, want):
     process.wait()
 
     got = process.stdout.readlines()
-    print(got)
-    print(len(got))
-    assert False
+
+    assert any(
+        ["All heap blocks were freed -- no leaks are possible" in line for line in got]
+    )
+    assert any(
+        [
+            "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" in line
+            for line in got
+        ]
+    )

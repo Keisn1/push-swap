@@ -60,6 +60,8 @@ fclean: clean
 
 re: fclean all
 
+test_all: test test_push_swap test_push_swap_valgrind
+
 test:
 	cmake -S . -B build -DBUILD_TEST=ON && \
 	cmake --build build && \
@@ -70,12 +72,12 @@ test_push_swap:
 	pytest tests/test_push_swap.py::test_push_swap
 
 test_push_swap_valgrind:
-	make re && \
+	make && \
 	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
 test_checker:
 	make bonus && \
-	pytest tests/test_checker_integration.py
+	pytest tests/test_checker.py
 
 compile_commands:
 	cmake -S . -B build -DBUILD_TEST=ON -DBUILD_PUSH_SWAP=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
