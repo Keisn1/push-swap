@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "operations.h"
 #include "push_swap.h"
 
 int main(int argc, char *argv[]) {
@@ -29,6 +28,15 @@ int main(int argc, char *argv[]) {
 		free(nbrs);
 		return (error());
         }
+
+	t_stack *a = create_stack(len, nbrs);
+	t_state state = (t_state){a, NULL, len, 0, 0, 0};
+
+	if (is_ordered(state))
+		ft_putendl_fd("OK", STDOUT_FILENO);
+	else
+		ft_putendl_fd("KO", STDOUT_FILENO);
+
 	free(nbrs);
     return 0;
 }

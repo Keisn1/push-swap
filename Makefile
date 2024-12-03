@@ -78,7 +78,7 @@ test_push_swap_valgrind:
 
 test_checker:
 	make bonus && \
-	pytest tests/test_checker.py
+	pytest tests/test_checker.py::test_checker
 
 test_checker_valgrind:
 	make bonus && \
