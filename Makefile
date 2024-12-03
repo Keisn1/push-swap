@@ -76,11 +76,11 @@ test_push_swap_valgrind:
 	make && \
 	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
-test_checker:
+test_checker: fclean
 	make bonus FSANITIZE=-fsanitize=address && \
 	pytest tests/test_checker.py::test_checker
 
-test_checker_valgrind:
+test_checker_valgrind: fclean
 	make bonus && \
 	pytest $(VERBOSE) tests/test_checker.py::test_checker_valgrind
 

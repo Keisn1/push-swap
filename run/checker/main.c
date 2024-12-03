@@ -30,22 +30,21 @@ int main(int argc, char *argv[]) {
 		return (error());
         }
 
-	char** lines = NULL;
 	char* line = get_next_line(STDIN_FILENO);
-	all = ft_strdup(line);
-	while (line) {
+	if (!ft_strncmp (line, "sa ", 3)) {
 		free(line);
-		line = get_next_line(STDIN_FILENO);
-		ft_strlcat(, const char *src, size_t size)
+		free(nbrs);
+		return (error());
 	}
+
 	t_stack *a = create_stack(len, nbrs);
 	t_state state = (t_state){a, NULL, len, 0, 0, 0};
-
 	if (is_ordered(state))
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
 
+	free(line);
 	ft_lstclear(&a, free);
 	free(nbrs);
     return 0;
