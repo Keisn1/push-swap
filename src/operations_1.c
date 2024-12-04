@@ -69,11 +69,12 @@ t_state	swap(t_state state, char s, bool print)
 	return (state);
 }
 
-t_state	push_a(t_state state)
+t_state	push_a(t_state state, bool print)
 {
 	t_stack	*top_a;
 
-	ft_putendl_fd("pa", STDOUT_FILENO);
+	if (print)
+		ft_putendl_fd("pa", STDOUT_FILENO);
 	if (!state.b)
 		return (state);
 	top_a = state.b;
@@ -85,11 +86,12 @@ t_state	push_a(t_state state)
 	return (state);
 }
 
-t_state	push_b(t_state state)
+t_state	push_b(t_state state, bool print)
 {
 	t_stack	*top_b;
 
-	ft_putendl_fd("pb", STDOUT_FILENO);
+	if (print)
+		ft_putendl_fd("pb", STDOUT_FILENO);
 	if (!state.a)
 		return (state);
 	top_b = state.a;

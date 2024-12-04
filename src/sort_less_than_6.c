@@ -19,19 +19,19 @@ t_state	sort_five_elements(t_state state)
 {
 	int	count_rots;
 
-	state = push_b(state);
-	state = push_b(state);
+	state = push_b(state, true);
+	state = push_b(state, true);
 	state = sort_three_elements(state);
 	state = sort_top_of_stack(state, 'b');
 	count_rots = 0;
 	while (count_rots < 5)
 	{
 		if (state.b && leq(state.b->content, state.a->content))
-			state = push_a(state);
+			state = push_a(state, true);
 		if (state.b && state.b->next && count_rots == 3)
-			state = push_a(state);
+			state = push_a(state, true);
 		if (state.b && count_rots == 4)
-			state = push_a(state);
+			state = push_a(state, true);
 		state = rotate(state, 'a', true);
 		count_rots++;
 	}
@@ -45,11 +45,11 @@ t_state	sort_four_elements(t_state state)
 {
 	int	count;
 
-	state = push_b(state);
+	state = push_b(state, true);
 	state = sort_three_elements(state);
 	if (leq(state.a->next->next->content, state.b->content))
 	{
-		state = push_a(state);
+		state = push_a(state, true);
 		state = rotate(state, 'a', true);
 		return (state);
 	}
@@ -59,7 +59,7 @@ t_state	sort_four_elements(t_state state)
 		state = rotate(state, 'a', true);
 		count++;
 	}
-	state = push_a(state);
+	state = push_a(state, true);
 	while (count > 0)
 	{
 		state = reverse_rotate(state, 'a', true);

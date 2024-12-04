@@ -20,8 +20,8 @@ t_stack	*swap_stack(t_stack *head);
 t_state	swap(t_state state, char s, bool print);
 
 /* pushing */
-t_state	push_a(t_state state);
-t_state	push_b(t_state state);
+t_state	push_a(t_state state, bool print);
+t_state	push_b(t_state state, bool print);
 t_state	push_b_to_a(t_state state);
 
 /* rotating */

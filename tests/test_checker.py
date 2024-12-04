@@ -37,6 +37,32 @@ testdata = [
     (["./checker", "4", "3", "1", "2"], ["sa", "ra", "ra"], "OK\n"),
     (["./checker", "4", "3", "5", "1", "2"], ["sa", "ra", "ra", "ra"], "OK\n"),
     (["./checker", "4", "3", "5", "1", "2"], ["sa", "rra", "rra"], "OK\n"),
+    (["./checker", "1", "2"], ["pb", "pa"], "OK\n"),
+    (["./checker", "1", "2"], ["pbasdf", "pa"], "Error\n"),
+    (["./checker", "1", "2"], ["rrb"], "OK\n"),
+    (["./checker", "3", "1", "2"], ["rr"], "OK\n"),
+    (["./checker", "2", "3", "1"], ["rrr"], "OK\n"),
+    (["./checker", "2", "3", "1"], ["rrx"], "Error\n"),
+    (
+        ["./checker", "2 4 5 8 6 7"],
+        [
+            "pb",
+            "pb",
+            "pb",
+            "pb",
+            "rb",
+            "pb",
+            "pb",
+            "rrb",
+            "pa",
+            "pa",
+            "pa",
+            "pa",
+            "pa",
+            "pa",
+        ],
+        "OK\n",
+    ),
 ]
 
 

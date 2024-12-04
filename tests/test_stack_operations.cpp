@@ -36,9 +36,9 @@ TEST_P(StackOperationTest, first_test) {
     if (param.op == "ss")
 		state = swap(state, 's', true);
     if (param.op == "pa")
-		state = push_a(state);
+		state = push_a(state, true);
     if (param.op == "pb")
-		state = push_b(state);
+		state = push_b(state, true);
     if (param.op == "ra")
 		state = rotate(state, 'a', true);
     if (param.op == "rb")

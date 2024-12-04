@@ -71,6 +71,6 @@ t_state	rotate_n_times(t_state state, int n, char stack)
 t_state	push_b_to_a(t_state state)
 {
 	while (state.b)
-		state = push_a(state);
+		state = push_a(state, true);
 	return (state);
 }
