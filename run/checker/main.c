@@ -38,9 +38,9 @@ int	main(int argc, char *argv[])
 	a = create_stack(len, nbrs);
 	state = (t_state){a, NULL, len, 0, 0, 0};
 
-	char *old_line = get_next_line(STDIN_FILENO);
-	char* next_line = get_next_line(STDIN_FILENO);
-
+	char *old_line = get_next_line(STDIN_FILENO, false);
+	char* next_line = get_next_line(STDIN_FILENO, false);
+	get_next_line(STDIN_FILENO, true);
 	size_t full_size = ft_strlen(old_line) + ft_strlen(next_line) + 1;
 	char* line = malloc(sizeof(char) * full_size);
 	line[0] = '\0';
