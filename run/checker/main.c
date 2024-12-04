@@ -68,6 +68,7 @@ int	main(int argc, char *argv[])
 	a = create_stack(len, nbrs);
 	state = (t_state){a, NULL, len, 0, 0, 0};
 	input = get_input_stdin();
+
 	lines = ft_split(input, '\n');
 	head = lines;
 	while (*head)
@@ -79,6 +80,8 @@ int	main(int argc, char *argv[])
 			state = swap(state, 'a', false);
 		else if (!ft_strncmp(input, "ra", ft_strlen(input)))
 			state = rotate(state, 'a', false);
+		else if (!ft_strncmp(input, "rra", ft_strlen(input)))
+			state = reverse_rotate(state, 'a', false);
 		else
 		{
 			free(input);

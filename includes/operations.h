@@ -35,7 +35,7 @@ t_state	rotate_both(t_state state, int rots_a, int rots_b);
 
 /* reverse rotating */
 t_stack	*rev_rot_stack(t_stack *stack);
-t_state	reverse_rotate(t_state state, char s);
+t_state	reverse_rotate(t_state state, char s, bool print);
 t_state	reverse_rotate_a_n_times(t_state state, int n);
 t_state	reverse_rotate_b_n_times(t_state state, int n);
 t_state	reverse_rotate_n_times(t_state state, int n, char stack);

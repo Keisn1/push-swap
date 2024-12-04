@@ -121,23 +121,21 @@ t_state	rotate(t_state state, char s, bool print)
 	return (state);
 }
 
-t_state	reverse_rotate(t_state state, char s)
+t_state	reverse_rotate(t_state state, char s, bool print)
 {
 	if (s == 'a')
-	{
-		ft_putendl_fd("rra", STDOUT_FILENO);
 		state.a = rev_rot_stack(state.a);
-	}
 	if (s == 'b')
-	{
-		ft_putendl_fd("rrb", STDOUT_FILENO);
 		state.b = rev_rot_stack(state.b);
-	}
 	if (s == 'r')
 	{
-		ft_putendl_fd("rrr", STDOUT_FILENO);
 		state.a = rev_rot_stack(state.a);
 		state.b = rev_rot_stack(state.b);
 	}
+	if (!print)
+		return state;
+	ft_putstr_fd("rr", STDOUT_FILENO);
+	ft_putchar_fd(s, STDOUT_FILENO);
+	ft_putendl_fd("", STDOUT_FILENO);
 	return (state);
 }

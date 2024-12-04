@@ -62,7 +62,7 @@ t_state	sort_four_elements(t_state state)
 	state = push_a(state);
 	while (count > 0)
 	{
-		state = reverse_rotate(state, 'a');
+		state = reverse_rotate(state, 'a', true);
 		count--;
 	}
 	return (state);
@@ -88,7 +88,7 @@ t_state	sort_three_elements(t_state state)
 		return (rotate(state, 'a', true));
 	}
 	if (leq(third, second) && leq(first, second))
-		return (reverse_rotate(state, 'a'));
+		return (reverse_rotate(state, 'a', true));
 	if (leq(second, third) && leq(third, first))
 		return (rotate(state, 'a', true));
 	if (leq(third, second) && leq(second, first))
