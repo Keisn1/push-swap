@@ -15,6 +15,27 @@
 #include "push_swap.h"
 #include <unistd.h>
 
+bool validate_op(const char *op) {
+	if (!ft_strncmp(op, "sa", ft_strlen(op)))
+		return true;
+	else if (!ft_strncmp(op, "ra", ft_strlen(op)))
+		return true;
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+		return true;
+	return false;
+}
+
+bool validate_input(char **lines) {
+	char** head = lines;
+	while (*head)
+	{
+		if (!validate_op(*head))
+			return false;
+		head++;
+	}
+	return true;
+}
+
 char	*get_input_stdin(void)
 {
 	size_t	full_size;
@@ -41,6 +62,18 @@ char	*get_input_stdin(void)
 	}
 	get_next_line(STDIN_FILENO, true);
 	return (input);
+}
+
+void free_artifacts(char **lines, int *nbrs, t_state state) {
+	char** head;
+	head = lines;
+	while (*head) {
+		free(*head);
+		head++;
+	}
+	free(lines);
+	ft_lstclear(&state.a, free);
+	free(nbrs);
 }
 
 int	main(int argc, char *argv[])
@@ -70,34 +103,30 @@ int	main(int argc, char *argv[])
 	input = get_input_stdin();
 
 	lines = ft_split(input, '\n');
+	free(input);
+
+	if (!validate_input(lines)) {
+		free_artifacts(lines, nbrs, state);
+		return (error());
+	}
+
 	head = lines;
 	while (*head)
 	{
-		free(input);
-		input = *head;
+		char *op = *head;
 		head++;
-		if (!ft_strncmp(input, "sa", ft_strlen(input)))
+		if (!ft_strncmp(op, "sa", ft_strlen(op)))
 			state = swap(state, 'a', false);
-		else if (!ft_strncmp(input, "ra", ft_strlen(input)))
+		else if (!ft_strncmp(op, "ra", ft_strlen(op)))
 			state = rotate(state, 'a', false);
-		else if (!ft_strncmp(input, "rra", ft_strlen(input)))
+		else if (!ft_strncmp(op, "rra", ft_strlen(op)))
 			state = reverse_rotate(state, 'a', false);
-		else
-		{
-			free(input);
-			free(lines);
-			ft_lstclear(&state.a, free);
-			free(nbrs);
-			return (error());
-		}
 	}
-	free(input);
-	free(lines);
 	if (is_ordered(state))
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
-	ft_lstclear(&state.a, free);
-	free(nbrs);
+
+	free_artifacts(lines, nbrs, state);
 	return (0);
 }
