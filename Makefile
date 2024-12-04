@@ -49,11 +49,11 @@ $(BIN_DIR):
 
 ############ PHONY ##################
 clean:
-	$(MAKE)	-C libft $@
+	# $(MAKE)	-C libft $@
 	rm -f $(OBJ_FILES) $(BONUS_OBJ_FILES)
 
 fclean: clean
-	$(MAKE)	-C libft $@
+	# $(MAKE)	-C libft $@
 	rm -rf $(BIN_DIR)
 	rm -rf $(OBJ_DIR)
 	rm -rf $(BUILD_DIR)
@@ -76,11 +76,11 @@ test_push_swap_valgrind:
 	make && \
 	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
-test_checker: fclean
+test_checker: clean
 	make bonus FSANITIZE=-fsanitize=address && \
 	pytest tests/test_checker.py::test_checker
 
-test_checker_valgrind: fclean
+test_checker_valgrind: clean
 	make bonus && \
 	pytest $(VERBOSE) tests/test_checker.py::test_checker_valgrind
 

@@ -40,7 +40,6 @@ int	main(int argc, char *argv[])
 
 	char *old_line = get_next_line(STDIN_FILENO, false);
 	char* next_line = get_next_line(STDIN_FILENO, false);
-	get_next_line(STDIN_FILENO, true);
 	size_t full_size = ft_strlen(old_line) + ft_strlen(next_line) + 1;
 	char* line = malloc(sizeof(char) * full_size);
 	line[0] = '\0';
@@ -57,7 +56,32 @@ int	main(int argc, char *argv[])
 			/* truncation occured */
 			ft_putendl_fd("truncation occured", STDOUT_FILENO);
 	}
-		free(next_line);
+	free(next_line);
+
+
+	next_line = get_next_line(STDIN_FILENO, false);
+	full_size += ft_strlen(next_line);
+	char* line2 = malloc(sizeof(char) * full_size);
+	ft_strlcpy(line2, line, full_size);
+
+	free(line);
+
+	line = line2;
+
+
+	if (next_line) {
+		if (ft_strlcat(line, next_line, full_size) >= full_size)
+			/* truncation occured */
+			ft_putendl_fd("truncation occured", STDOUT_FILENO);
+	}
+	free(next_line);
+
+	get_next_line(STDIN_FILENO, true);
+
+
+
+
+
 
 	char** lines = ft_split(line, '\n');
 	char** head = lines;
