@@ -15,25 +15,29 @@
 #include "push_swap.h"
 #include <unistd.h>
 
-bool validate_op(const char *op) {
+bool	validate_op(const char *op)
+{
 	if (!ft_strncmp(op, "sa", ft_strlen(op)))
-		return true;
+		return (true);
 	else if (!ft_strncmp(op, "ra", ft_strlen(op)))
-		return true;
+		return (true);
 	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
-		return true;
-	return false;
+		return (true);
+	return (false);
 }
 
-bool validate_input(char **lines) {
-	char** head = lines;
+bool	validate_input(char **lines)
+{
+	char	**head;
+
+	head = lines;
 	while (*head)
 	{
 		if (!validate_op(*head))
-			return false;
+			return (false);
 		head++;
 	}
-	return true;
+	return (true);
 }
 
 char	*get_input_stdin(void)
@@ -64,10 +68,13 @@ char	*get_input_stdin(void)
 	return (input);
 }
 
-void free_artifacts(char **lines, int *nbrs, t_state state) {
-	char** head;
+void	free_artifacts(char **lines, int *nbrs, t_state state)
+{
+	char	**head;
+
 	head = lines;
-	while (*head) {
+	while (*head)
+	{
 		free(*head);
 		head++;
 	}
@@ -76,15 +83,61 @@ void free_artifacts(char **lines, int *nbrs, t_state state) {
 	free(nbrs);
 }
 
-int	main(int argc, char *argv[])
+void	check_ordered(t_state state)
 {
-	int		len;
-	int		*nbrs;
+	if (is_ordered(state))
+		ft_putendl_fd("OK", STDOUT_FILENO);
+	else
+		ft_putendl_fd("KO", STDOUT_FILENO);
+}
+
+t_state	do_ops(char **lines, t_state state)
+{
+	char	**head;
+	char	*op;
+
+	head = lines;
+	while (*head)
+	{
+		op = *head;
+		head++;
+		if (!ft_strncmp(op, "sa", ft_strlen(op)))
+			state = swap(state, 'a', false);
+		else if (!ft_strncmp(op, "ra", ft_strlen(op)))
+			state = rotate(state, 'a', false);
+		else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+			state = reverse_rotate(state, 'a', false);
+	}
+	return (state);
+}
+
+int	checker(int *nbrs, int len)
+{
 	t_stack	*a;
 	t_state	state;
 	char	*input;
 	char	**lines;
-	char	**head;
+
+	a = create_stack(len, nbrs);
+	state = (t_state){a, NULL, len, 0, 0, 0};
+	input = get_input_stdin();
+	lines = ft_split(input, '\n');
+	free(input);
+	if (!validate_input(lines))
+	{
+		free_artifacts(lines, nbrs, state);
+		return (error());
+	}
+	state = do_ops(lines, state);
+	check_ordered(state);
+	free_artifacts(lines, nbrs, state);
+	return (0);
+}
+
+int	main(int argc, char *argv[])
+{
+	int	len;
+	int	*nbrs;
 
 	if (argc < 2)
 		return (error());
@@ -98,35 +151,5 @@ int	main(int argc, char *argv[])
 		free(nbrs);
 		return (error());
 	}
-	a = create_stack(len, nbrs);
-	state = (t_state){a, NULL, len, 0, 0, 0};
-	input = get_input_stdin();
-
-	lines = ft_split(input, '\n');
-	free(input);
-
-	if (!validate_input(lines)) {
-		free_artifacts(lines, nbrs, state);
-		return (error());
-	}
-
-	head = lines;
-	while (*head)
-	{
-		char *op = *head;
-		head++;
-		if (!ft_strncmp(op, "sa", ft_strlen(op)))
-			state = swap(state, 'a', false);
-		else if (!ft_strncmp(op, "ra", ft_strlen(op)))
-			state = rotate(state, 'a', false);
-		else if (!ft_strncmp(op, "rra", ft_strlen(op)))
-			state = reverse_rotate(state, 'a', false);
-	}
-	if (is_ordered(state))
-		ft_putendl_fd("OK", STDOUT_FILENO);
-	else
-		ft_putendl_fd("KO", STDOUT_FILENO);
-
-	free_artifacts(lines, nbrs, state);
-	return (0);
+	return (checker(nbrs, len));
 }
