@@ -17,7 +17,7 @@
 
 /* swapping */
 t_stack	*swap_stack(t_stack *head);
-t_state	swap(t_state state, char s);
+t_state	swap(t_state state, char s, bool print);
 
 /* pushing */
 t_state	push_a(t_state state);
@@ -26,7 +26,7 @@ t_state	push_b_to_a(t_state state);
 
 /* rotating */
 t_stack	*rot_stack(t_stack *stack);
-t_state	rotate(t_state state, char s);
+t_state	rotate(t_state state, char s, bool print);
 t_state	rotate_a_n_times(t_state state, int n);
 t_state	rotate_b_n_times(t_state state, int n);
 t_state	rotate_n_times(t_state state, int n, char stack);

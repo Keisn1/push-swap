@@ -30,21 +30,21 @@ TEST_P(StackOperationTest, first_test) {
 	t_state want_state = {create_stack(param.want_a),create_stack( param.want_b), want_size_a, want_size_b, 0, 0};
 
     if (param.op == "sa")
-		state = swap(state, 'a');
+		state = swap(state, 'a', true);
     if (param.op == "sb")
-		state = swap(state, 'b');
+		state = swap(state, 'b', true);
     if (param.op == "ss")
-		state = swap(state, 's');
+		state = swap(state, 's', true);
     if (param.op == "pa")
 		state = push_a(state);
     if (param.op == "pb")
 		state = push_b(state);
     if (param.op == "ra")
-		state = rotate(state, 'a');
+		state = rotate(state, 'a', true);
     if (param.op == "rb")
-		state = rotate(state, 'b');
+		state = rotate(state, 'b', true);
     if (param.op == "rr")
-		state = rotate(state, 'r');
+		state = rotate(state, 'r', true);
     if (param.op == "rra")
 		state = reverse_rotate(state, 'a');
     if (param.op == "rrb")

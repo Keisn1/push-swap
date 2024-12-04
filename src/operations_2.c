@@ -48,21 +48,21 @@ t_state	rotate_n_times(t_state state, int n, char stack)
 	{
 		count = 0;
 		while (count++ < n)
-			state = rotate(state, 'a');
+			state = rotate(state, 'a', true);
 		return (state);
 	}
 	if (stack == 'b')
 	{
 		count = 0;
 		while (count++ < n)
-			state = rotate(state, 'b');
+			state = rotate(state, 'b', true);
 		return (state);
 	}
 	if (stack == 'r')
 	{
 		count = 0;
 		while (count++ < n)
-			state = rotate(state, 'r');
+			state = rotate(state, 'r', true);
 		return (state);
 	}
 	return (state);

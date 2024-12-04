@@ -67,10 +67,10 @@ t_state	sort_top_of_stack(t_state state, char stack)
 	if (stack == 'a')
 	{
 		if ((*(int *)state.a->next->content) < (*(int *)state.a->content))
-			return (swap(state, 'a'));
+			return (swap(state, 'a', true));
 		return (state);
 	}
 	if ((*(int *)state.b->next->content) < (*(int *)state.b->content))
-		return (swap(state, 'b'));
+		return (swap(state, 'b', true));
 	return (state);
 }

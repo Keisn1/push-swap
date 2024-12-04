@@ -32,7 +32,7 @@ t_state	sort_five_elements(t_state state)
 			state = push_a(state);
 		if (state.b && count_rots == 4)
 			state = push_a(state);
-		state = rotate(state, 'a');
+		state = rotate(state, 'a', true);
 		count_rots++;
 	}
 	return (state);
@@ -50,13 +50,13 @@ t_state	sort_four_elements(t_state state)
 	if (leq(state.a->next->next->content, state.b->content))
 	{
 		state = push_a(state);
-		state = rotate(state, 'a');
+		state = rotate(state, 'a', true);
 		return (state);
 	}
 	count = 0;
 	while (leq(state.a->content, state.b->content))
 	{
-		state = rotate(state, 'a');
+		state = rotate(state, 'a', true);
 		count++;
 	}
 	state = push_a(state);
@@ -81,20 +81,20 @@ t_state	sort_three_elements(t_state state)
 	second = state.a->next->content;
 	third = state.a->next->next->content;
 	if (leq(second, first) && leq(first, third))
-		return (swap(state, 'a'));
+		return (swap(state, 'a', true));
 	if (leq(first, third) && leq(third, second))
 	{
-		state = swap(state, 'a');
-		return (rotate(state, 'a'));
+		state = swap(state, 'a', true);
+		return (rotate(state, 'a', true));
 	}
 	if (leq(third, second) && leq(first, second))
 		return (reverse_rotate(state, 'a'));
 	if (leq(second, third) && leq(third, first))
-		return (rotate(state, 'a'));
+		return (rotate(state, 'a', true));
 	if (leq(third, second) && leq(second, first))
 	{
-		state = rotate(state, 'a');
-		return (swap(state, 'a'));
+		state = rotate(state, 'a', true);
+		return (swap(state, 'a', true));
 	}
 	return (state);
 }

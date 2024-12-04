@@ -10,26 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "operations.h"
+#include <unistd.h>
 
-t_state	swap(t_state state, char s)
+t_state	rotate_no_print(t_state state, char s)
 {
 	if (s == 'a')
 	{
-		ft_putendl_fd("sa", STDOUT_FILENO);
+		state.a = rot_stack(state.a);
+	}
+	if (s == 'b')
+	{
+		state.b = rot_stack(state.b);
+	}
+	if (s == 'r')
+	{
+		state.a = rot_stack(state.a);
+		state.b = rot_stack(state.b);
+	}
+	return (state);
+}
+
+t_state	swap_no_print(t_state state, char s)
+{
+	if (s == 'a')
+		state.a = swap_stack(state.a);
+	if (s == 'b')
+		state.b = swap_stack(state.b);
+	if (s == 's')
+	{
+		state.a = swap_stack(state.a);
+		state.b = swap_stack(state.b);
+	}
+	return (state);
+}
+
+t_state	swap(t_state state, char s, bool print)
+{
+	if (s == 'a')
+	{
 		state.a = swap_stack(state.a);
 	}
 	if (s == 'b')
 	{
-		ft_putendl_fd("sb", STDOUT_FILENO);
 		state.b = swap_stack(state.b);
 	}
 	if (s == 's')
 	{
-		ft_putendl_fd("ss", STDOUT_FILENO);
 		state.a = swap_stack(state.a);
 		state.b = swap_stack(state.b);
 	}
+	if (!print)
+		return (state);
+	ft_putchar_fd('s', STDOUT_FILENO);
+	ft_putchar_fd(s, STDOUT_FILENO);
+	ft_putendl_fd("", STDOUT_FILENO);
 	return (state);
 }
 
@@ -65,24 +101,23 @@ t_state	push_b(t_state state)
 	return (state);
 }
 
-t_state	rotate(t_state state, char s)
+t_state	rotate(t_state state, char s, bool print)
 {
 	if (s == 'a')
-	{
-		ft_putendl_fd("ra", STDOUT_FILENO);
 		state.a = rot_stack(state.a);
-	}
 	if (s == 'b')
-	{
-		ft_putendl_fd("rb", STDOUT_FILENO);
 		state.b = rot_stack(state.b);
-	}
 	if (s == 'r')
 	{
-		ft_putendl_fd("rr", STDOUT_FILENO);
 		state.a = rot_stack(state.a);
 		state.b = rot_stack(state.b);
 	}
+
+	if (!print)
+		return (state);
+	ft_putchar_fd('r', STDOUT_FILENO);
+	ft_putchar_fd(s, STDOUT_FILENO);
+	ft_putendl_fd("", STDOUT_FILENO);
 	return (state);
 }
 
