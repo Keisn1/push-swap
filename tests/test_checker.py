@@ -35,12 +35,15 @@ testdata = [
     (["./checker", "1", "2"], ["sa", "ra "], "Error\n"),
     (["./checker", "1", "2"], ["sa", "ra"], "OK\n"),
     (["./checker", "4", "3", "1", "2"], ["sa", "ra", "ra"], "OK\n"),
+    (["./checker", "4", "3", "5", "1", "2"], ["sa", "ra", "ra", "ra"], "OK\n"),
 ]
 
 
 @pytest.mark.parametrize("input_data,operations,want", testdata)
 def test_checker(input_data, operations, want):
-    ops_string = "\n".join(operations) + "\n"
+    ops_string = "\n".join(operations)
+    if len(ops_string):
+        ops_string += "\n"
 
     process = subprocess.Popen(
         input_data,
