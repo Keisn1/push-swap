@@ -19,7 +19,25 @@ bool	validate_op(const char *op)
 {
 	if (!ft_strncmp(op, "sa", ft_strlen(op)))
 		return (true);
+	else if (!ft_strncmp(op, "sb", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "ss", ft_strlen(op)))
+		return (true);
 	else if (!ft_strncmp(op, "ra", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rb", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rr", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
+		return (true);
+	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
 		return (true);
 	else if (!ft_strncmp(op, "rra", ft_strlen(op)))
 		return (true);

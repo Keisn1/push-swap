@@ -46,11 +46,11 @@ TEST_P(StackOperationTest, first_test) {
     if (param.op == "rr")
 		state = rotate(state, 'r', true);
     if (param.op == "rra")
-		state = reverse_rotate(state, 'a');
+		state = reverse_rotate(state, 'a', true);
     if (param.op == "rrb")
-		state = reverse_rotate(state, 'b');
+		state = reverse_rotate(state, 'b', true);
     if (param.op == "rrr")
-		state = reverse_rotate(state, 'r');
+		state = reverse_rotate(state, 'r', true);
 
 	testing::internal::GetCapturedStdout();
 	assert_equal_state(state, want_state);
