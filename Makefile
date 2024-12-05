@@ -10,16 +10,24 @@ CFLAGS := -Wall -Werror -Wextra
 INCLUDES := -I. -Ilibft
 LIBFT := -Llibft -lft
 
-SRC_FILES := $(wildcard *.c)
+ALL_C_FILES := $(wildcard *.c)
+SRC_FILES := $(filter-out %_bonus.c, $(ALL_C_FILES))
+BONUS_SRC_FILES := $(filter-out main.c, $(ALL_C_FILES))
+
 OBJ_FILES := $(SRC_FILES:%.c=%.o)
+BONUS_OBJ_FILES := $(BONUS_SRC_FILES:%.c=%.o)
 
 NAME := push_swap
+CHECKER := checker
 
 ############ Rules ##################
 all: libft $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) -o $(NAME) $(LIBFT)
+
+bonus: libft $(BONUS_OBJ_FILES)
+	$(CC) $(CFLAGS) $(INCLUDES) $(BONUS_OBJ_FILES) -o $(CHECKER) $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -28,10 +36,12 @@ $(NAME): $(OBJ_FILES)
 clean:
 	$(MAKE)	-C libft $@
 	rm -f $(OBJ_FILES)
+	rm -f $(BONUS_OBJ_FILES)
 
 fclean: clean
 	$(MAKE)	-C libft $@
 	rm -rf $(NAME)
+	rm -rf $(CHECKER)
 
 re: fclean all
 
