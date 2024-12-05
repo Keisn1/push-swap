@@ -65,11 +65,11 @@ TEST_P(ExtractNbrsTest, first_test) {
 	if (param.want_len == 0)
 		EXPECT_EQ(got, nullptr);
 	else
-		for (int i = 0; i < param.want.size(); i++)
+		for (unsigned long i = 0; i < param.want.size(); i++)
 			EXPECT_EQ(param.want[i], got[i]);
 	free(got);
 
-	for (int i = 0; i < param.argv.size(); i++)
+	for (unsigned long i = 0; i < param.argv.size(); i++)
 		free(argv[i]);
 	free(argv);
 }
