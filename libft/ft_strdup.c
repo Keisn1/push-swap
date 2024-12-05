@@ -20,10 +20,8 @@ char	*ft_strdup(const char *s)
 
 	len = ft_strlen(s);
 	res = malloc((len + 1) * sizeof(char));
-	if (res == (void *)0)
-	{
+	if (!res)
 		return (res);
-	}
 	res_o = res;
 	while (*s)
 		*res++ = *s++;

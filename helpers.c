@@ -24,6 +24,8 @@ void	print_stack(t_stack *a)
 
 bool	leq(void *a, void *b)
 {
+	if (!a || !b)
+		exit(1);
 	if (*(int *)a <= *(int *)b)
 		return (true);
 	return (false);

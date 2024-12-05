@@ -65,7 +65,7 @@ t_state	insert_new_val(t_state state)
 		else
 			state = rotate_n_times(state, rots_b.rots, 'b');
 	}
-	return (push_b(state));
+	return (push_b(state, true));
 }
 
 t_state	insert_sort(t_state state)
@@ -80,8 +80,8 @@ t_state	insert_sort(t_state state)
 		return (sort_four_elements(state));
 	if (state.size_a == 5)
 		return (sort_five_elements(state));
-	state = push_b(state);
-	state = push_b(state);
+	state = push_b(state, true);
+	state = push_b(state, true);
 	while (state.a)
 		state = insert_new_val(state);
 	state = rotate_to_max_in_b(state);

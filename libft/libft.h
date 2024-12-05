@@ -25,14 +25,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-# ifdef __cplusplus
-
-extern "C"
-{
-# endif
-
 /* helper */
-char *ft_get_empty_str(size_t n);
+char				*ft_get_empty_str(size_t n);
 int					ft_abs(int x);
 void				ft_rev_char_tab(char *tab, int size);
 
@@ -62,7 +56,7 @@ void				*ft_memmove(void *dest, const void *src, size_t n);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				**ft_split(char *str, char c);
 size_t				ft_putchar_fd(char c, int fd);
-size_t				ft_putstr_fd(const char *s, int fd);
+size_t				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 int					ft_ptr_to_hex(void *p, char *hex_str);
 int					ft_unsigned_to_hex(unsigned int d, char *hex_str,
@@ -76,10 +70,10 @@ void				ft_put_unsigned_int_fd(unsigned int nb, int fd);
 char				*ft_strdup(const char *s);
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_itoa(int n);
-char				*ft_strtrim(char const *s1, char const *set);
-char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char				*ft_strtrim(const char *s1, const char *set);
+char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(const char *s1, const char *s2);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /* bonus */
@@ -93,9 +87,23 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-#  ifdef __cplusplus
 
-}
-#  endif
-
+/* get_next_line */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
 # endif
+
+# define MAX_FD 1024
+
+/* type definitions */
+typedef enum _OP
+{
+	GET_STASH = 0,
+	SET_STASH,
+	UPDATE_STASH,
+	DELETE_STASH
+}					t_op;
+
+char				*get_next_line(int fd, bool unset);
+
+#endif

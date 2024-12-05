@@ -61,6 +61,7 @@ int				error(void);
 
 /* helpers */
 int				*extract_nbrs(int argc, char **argv, int *len);
+t_stack			*create_stack(int len, int *nbrs);
 void			print_stack(t_stack *a);
 bool			leq(void *a, void *b);
 

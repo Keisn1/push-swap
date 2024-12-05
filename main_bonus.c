@@ -5,15 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfreyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 18:54/54 by kfreyer           #+#    #+#             */
-/*   Updated: 2024/10/11 18:54:54 by kfreyer          ###   ########.fr       */
+/*   Created: 2024/12/02 15:08/56 by kfreyer           #+#    #+#             */
+/*   Updated: 2024/12/02 15:08:56 by kfreyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <unistd.h>
+#include "checker_bonus.h"
 
-int	main(int argc, char **argv)
+void	free_artifacts(char **lines, int *nbrs, t_state state)
+{
+	char	**head;
+
+	head = lines;
+	while (*head)
+	{
+		free(*head);
+		head++;
+	}
+	free(lines);
+	ft_lstclear(&state.a, free);
+	free(nbrs);
+}
+
+int	checker(int *nbrs, int len)
+{
+	t_stack	*a;
+	t_state	state;
+	char	*input;
+	char	**lines;
+
+	a = create_stack(len, nbrs);
+	state = (t_state){a, NULL, len, 0, 0, 0};
+	input = get_input_stdin();
+	lines = ft_split(input, '\n');
+	free(input);
+	if (!validate_input(lines))
+	{
+		free_artifacts(lines, nbrs, state);
+		return (error());
+	}
+	state = do_ops(lines, state);
+	check_ordered(state);
+	free_artifacts(lines, nbrs, state);
+	return (0);
+}
+
+int	main(int argc, char *argv[])
 {
 	int	len;
 	int	*nbrs;
@@ -30,7 +67,5 @@ int	main(int argc, char **argv)
 		free(nbrs);
 		return (error());
 	}
-	push_swap(len, nbrs);
-	free(nbrs);
-	return (0);
+	return (checker(nbrs, len));
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
 
 t_stack	*create_stack(int len, int *nbrs)
@@ -17,6 +18,7 @@ t_stack	*create_stack(int len, int *nbrs)
 	int		*x;
 	t_stack	*stack;
 	int		i;
+	t_stack	*new;
 
 	x = (int *)malloc(sizeof(int));
 	*x = nbrs[0];
@@ -25,9 +27,15 @@ t_stack	*create_stack(int len, int *nbrs)
 	while (i < len)
 	{
 		x = (int *)malloc(sizeof(int));
-		*x = nbrs[i];
-		ft_lstadd_back(&stack, ft_lstnew(x));
-		i++;
+		*x = nbrs[i++];
+		new = ft_lstnew(x);
+		if (!new)
+		{
+			free(x);
+			ft_lstclear(&stack, free);
+			return (NULL);
+		}
+		ft_lstadd_back(&stack, new);
 	}
 	return (stack);
 }
