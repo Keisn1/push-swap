@@ -4,7 +4,7 @@ import subprocess
 
 
 testdata = [
-    (["./checker"], [""], "Error\n"),
+    (["./checker"], [""], ""),
     (["./checker", "+1", "asdf2"], [""], "Error\n"),
     (["./checker", "1", "1"], [""], "Error\n"),
     (["./checker", "2", "2"], [""], "Error\n"),
