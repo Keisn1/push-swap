@@ -49,11 +49,11 @@ $(BIN_DIR):
 
 ############ PHONY ##################
 clean:
-	# $(MAKE)	-C libft $@
+	$(MAKE)	-C libft $@
 	rm -f $(OBJ_FILES) $(BONUS_OBJ_FILES)
 
 fclean: clean
-	# $(MAKE)	-C libft $@
+	$(MAKE)	-C libft $@
 	rm -rf $(BIN_DIR)
 	rm -rf $(OBJ_DIR)
 	rm -rf $(BUILD_DIR)
