@@ -25,10 +25,11 @@ int	main(int argc, char **argv)
 	nbrs = extract_nbrs(argc, argv, &len);
 	if (!nbrs)
 		return (error());
-	if (!check_no_duplicates(nbrs, len)) {
+	if (!check_no_duplicates(nbrs, len))
+	{
 		free(nbrs);
 		return (error());
-       }
+	}
 	push_swap(len, nbrs);
 	free(nbrs);
 	return (0);
