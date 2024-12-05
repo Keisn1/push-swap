@@ -72,7 +72,7 @@ test_push_swap:
 	make FSANITIZE=-fsanitize=address && \
 	pytest tests/test_push_swap.py::test_push_swap
 
-test_push_swap_valgrind:
+test_push_swap_valgrind: clean
 	make && \
 	pytest tests/test_push_swap.py::test_push_swap_valgrind
 
