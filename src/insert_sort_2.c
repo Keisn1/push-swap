@@ -18,7 +18,7 @@ bool	is_ordered(t_state state)
 
 	head = state.a;
 	if (!head)
-		return true;
+		return (true);
 	while (head->next)
 	{
 		if (!leq(head->content, head->next->content))

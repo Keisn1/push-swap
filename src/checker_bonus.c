@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-#include <unistd.h>
+#include "libft.h"
 
 void	check_ordered(t_state state)
 {
@@ -19,47 +19,6 @@ void	check_ordered(t_state state)
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
-}
-
-bool	validate_op(const char *op)
-{
-	if (!ft_strncmp(op, "sa", ft_strlen(op)))
-		return (true);
-	else if (!ft_strncmp(op, "sb", 3))
-		return (true);
-	else if (!ft_strncmp(op, "ss", 3))
-		return (true);
-	else if (!ft_strncmp(op, "pa", 3))
-		return (true);
-	else if (!ft_strncmp(op, "pb", 3))
-		return (true);
-	else if (!ft_strncmp(op, "ra", 3))
-		return (true);
-	else if (!ft_strncmp(op, "rb", 3))
-		return (true);
-	else if (!ft_strncmp(op, "rr", 3))
-		return (true);
-	else if (!ft_strncmp(op, "rra", 3))
-		return (true);
-	else if (!ft_strncmp(op, "rrb", 3))
-		return (true);
-	else if (!ft_strncmp(op, "rrr", 3))
-		return (true);
-	return (false);
-}
-
-bool	validate_input(char **lines)
-{
-	char	**head;
-
-	head = lines;
-	while (*head)
-	{
-		if (!validate_op(*head))
-			return (false);
-		head++;
-	}
-	return (true);
 }
 
 char	*get_input_stdin(void)
@@ -89,49 +48,16 @@ char	*get_input_stdin(void)
 	return (input);
 }
 
-t_state	do_ops(char **lines, t_state state)
+bool	validate_input(char **lines)
 {
 	char	**head;
-	char	*op;
-	bool	print;
 
 	head = lines;
 	while (*head)
 	{
-		op = *head;
+		if (!validate_op(*head))
+			return (false);
 		head++;
-		print = false;
-		if (!ft_strncmp(op, "sa", 3))
-			state = swap(state, 'a', print);
-		else if (!ft_strncmp(op, "sb", 3))
-			state = swap(state, 'b', print);
-		else if (!ft_strncmp(op, "ss", 3))
-		{
-			state = swap(state, 'a', print);
-			state = swap(state, 'b', print);
-		}
-		else if (!ft_strncmp(op, "pa", 3))
-			state = push_a(state, print);
-		else if (!ft_strncmp(op, "pb", 3))
-			state = push_b(state, print);
-		else if (!ft_strncmp(op, "ra", 3))
-			state = rotate(state, 'a', print);
-		else if (!ft_strncmp(op, "rb", 3))
-			state = rotate(state, 'b', print);
-		else if (!ft_strncmp(op, "rr", 3))
-		{
-			state = rotate(state, 'a', print);
-			state = rotate(state, 'b', print);
-		}
-		else if (!ft_strncmp(op, "rra", 3))
-			state = reverse_rotate(state, 'a', print);
-		else if (!ft_strncmp(op, "rrb", 3))
-			state = reverse_rotate(state, 'b', print);
-		else if (!ft_strncmp(op, "rrr", 3))
-		{
-			state = reverse_rotate(state, 'a', print);
-			state = reverse_rotate(state, 'b', print);
-		}
 	}
-	return (state);
+	return (true);
 }

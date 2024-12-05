@@ -54,10 +54,6 @@ bool			is_ordered(t_state state);
 int				get_idx_in_b(t_state state, int val);
 int				get_val_at_idx(t_state state, int idx, char stack);
 
-/* bonus */
-t_state			swap_no_print(t_state state, char s);
-t_state			rotate_no_print(t_state state, char s);
-
 /* error checking */
 bool			check_valid_strs(int argc, char **argv);
 bool			check_no_duplicates(int *nbrs, int len);
