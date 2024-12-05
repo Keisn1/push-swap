@@ -11,8 +11,8 @@ INCLUDES := -I. -Ilibft
 LIBFT := -Llibft -lft
 
 ALL_C_FILES := $(wildcard *.c)
-SRC_FILES := $(filter-out %_bonus.c, $(ALL_C_FILES))
-BONUS_SRC_FILES := $(filter-out main.c, $(ALL_C_FILES))
+SRC_FILES := $(filter-out %_bonus.c main.c, $(ALL_C_FILES))
+BONUS_SRC_FILES := $(filter-out main.c main_bonus.c, $(ALL_C_FILES))
 
 OBJ_FILES := $(SRC_FILES:%.c=%.o)
 BONUS_OBJ_FILES := $(BONUS_SRC_FILES:%.c=%.o)
@@ -24,10 +24,10 @@ CHECKER := checker
 all: libft $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) main.c -o $(NAME) $(LIBFT)
 
 bonus: libft $(BONUS_OBJ_FILES)
-	$(CC) $(CFLAGS) $(INCLUDES) $(BONUS_OBJ_FILES) -o $(CHECKER) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(BONUS_OBJ_FILES) main_bonus.c -o $(CHECKER) $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
