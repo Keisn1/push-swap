@@ -57,6 +57,5 @@ src-files:
 obj-files:
 	@echo $(OBJ_FILES)
 
-.PHONY: all clean fclean re libft obj-files
+.PHONY: all clean fclean re libft libft-re obj-files src-files bonus
 # end
-
