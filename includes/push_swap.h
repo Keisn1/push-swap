@@ -55,8 +55,8 @@ int				get_idx_in_b(t_state state, int val);
 int				get_val_at_idx(t_state state, int idx, char stack);
 
 /* bonus */
-t_state	swap_no_print(t_state state, char s);
-t_state	rotate_no_print(t_state state, char s);
+t_state			swap_no_print(t_state state, char s);
+t_state			rotate_no_print(t_state state, char s);
 
 /* error checking */
 bool			check_valid_strs(int argc, char **argv);
@@ -65,7 +65,7 @@ int				error(void);
 
 /* helpers */
 int				*extract_nbrs(int argc, char **argv, int *len);
-t_stack	*create_stack(int len, int *nbrs);
+t_stack			*create_stack(int len, int *nbrs);
 void			print_stack(t_stack *a);
 bool			leq(void *a, void *b);
 
