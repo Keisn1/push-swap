@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	int	*nbrs;
 
 	if (argc < 2)
-		return (error());
+		return (0);
 	if (!check_valid_strs(argc, argv))
 		return (error());
 	nbrs = extract_nbrs(argc, argv, &len);
