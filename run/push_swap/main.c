@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
 int	main(int argc, char **argv)
 {

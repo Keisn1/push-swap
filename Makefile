@@ -61,7 +61,7 @@ fclean: clean
 
 re: fclean all
 
-test_all: test test_push_swap test_push_swap_valgrind
+test_all: test test_push_swap test_push_swap_valgrind test_checker test_checker_valgrind
 
 test:
 	cmake -S . -B build -DBUILD_TEST=ON && \
