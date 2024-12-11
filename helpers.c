@@ -30,3 +30,16 @@ bool	leq(void *a, void *b)
 		return (true);
 	return (false);
 }
+
+void	free_strs(char **strs)
+{
+	char	**head;
+
+	head = strs;
+	while (*head)
+	{
+		free(*head);
+		head++;
+	}
+	free(strs);
+}
