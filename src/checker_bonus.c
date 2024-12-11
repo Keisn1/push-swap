@@ -15,7 +15,7 @@
 
 void	check_ordered(t_state state)
 {
-	if (is_ordered(state))
+	if (is_ordered(state) && state.size_b == 0)
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);

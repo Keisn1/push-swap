@@ -2,7 +2,6 @@
 import pytest
 import subprocess
 
-
 testdata = [
     (["./checker"], [""], ""),
     (["./checker", "+1", "asdf2"], [""], "Error\n"),
@@ -35,6 +34,7 @@ testdata = [
     (["./checker", "1", "2"], ["sa", "ra "], "Error\n"),
     (["./checker", "1", "2"], ["sa", "ra"], "OK\n"),
     (["./checker", "4", "3", "1", "2"], ["sa", "ra", "ra"], "OK\n"),
+    (["./checker", "4", "1", "2"], ["pb"], "KO\n"),
     (["./checker", "4", "3", "5", "1", "2"], ["sa", "ra", "ra", "ra"], "OK\n"),
     (["./checker", "4", "3", "5", "1", "2"], ["sa", "rra", "rra"], "OK\n"),
     (["./checker", "1", "2"], ["pb", "pa"], "OK\n"),
