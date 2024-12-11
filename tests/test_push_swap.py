@@ -31,6 +31,14 @@ testdata = [
     (["./push_swap", "2", "+2147483648", "1"], "Error\n"),
     (["./push_swap", "2", "+2147483647", "1"], "rra\n"),
     (["./push_swap", "1 2 3 4 5 6 7 8 9 10"], ""),
+    (["./push_swap", "2 +"], "Error\n"),
+    (["./push_swap", "2", "+"], "Error\n"),
+    (["./push_swap", "2", "+3"], ""),
+    (["./push_swap", "2", "+ 3"], "Error\n"),
+    (["./push_swap", "2 + 3"], "Error\n"),
+    (["./push_swap", "2 - 3"], "Error\n"),
+    (["./push_swap", "2  3"], ""),
+    (["./push_swap", " 2  -3"], "sa\n"),
 ]
 
 
