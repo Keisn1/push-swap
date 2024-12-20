@@ -49,4 +49,5 @@ void	push_swap(int len, int *nbrs)
 	state = (t_state){a, NULL, len, 0, 0, 0};
 	state = insert_sort(state);
 	ft_lstclear(&state.a, free);
+	ft_lstclear(&state.b, free);
 }
