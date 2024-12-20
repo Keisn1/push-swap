@@ -24,6 +24,7 @@ void	free_artifacts(char **lines, int *nbrs, t_state state)
 	}
 	free(lines);
 	ft_lstclear(&state.a, free);
+	ft_lstclear(&state.b, free);
 	free(nbrs);
 }
 
