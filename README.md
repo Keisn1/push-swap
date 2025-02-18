@@ -1,5 +1,3 @@
-title: Push Swap
-
 ![](cover-push_swap-bonus.png)
 
 <p align="center">
@@ -9,23 +7,23 @@ title: Push Swap
 <img alt="GitHub Lines of Code" src="https://tokei.rs/b1/github/Keisn1/push-swap?category=code" />
 </p>
 
-# Table of Contents <span class="tag" tag-name="TOC_2"><span class="smallcaps">TOC_2</span></span> [table-of-contents]
+# Table of Contents <span class="tag" tag-name="TOC_2"><span class="smallcaps">TOC_2</span></span>
 
--   [Objects](#objects)
-    -   [Set of IntValues](#set-of-intvalues)
-    -   [Stack 1](#stack-1)
-    -   [Stack 2](#stack-2)
-    -   [Set of instructions](#set-of-instructions)
--   [Goal](#goal)
-    -   [Input](#input)
-    -   [Output](#output)
--   [Evaluation](#evaluation)
--   [Game Rules](#game-rules)
-    -   [V1](#v1)
--   [The Program](#the-program)
-    -   [Execution](#execution)
-    -   [Display](#display)
-    -   [Error](#error)
+- [Objects](#objects)
+  - [Set of IntValues](#set-of-intvalues)
+  - [Stack 1](#stack-1)
+  - [Stack 2](#stack-2)
+  - [Set of instructions](#set-of-instructions)
+- [Goal](#goal)
+  - [Input](#input)
+  - [Output](#output)
+- [Evaluation](#evaluation)
+- [Game Rules](#game-rules)
+  - [V1](#v1)
+- [The Program](#the-program)
+  - [Execution](#execution)
+  - [Display](#display)
+  - [Error](#error)
 
 # Objects
 
@@ -39,58 +37,58 @@ title: Push Swap
 
 # Goal
 
--   program called `push_swap`
+- program called `push_swap`
 
 ## Input
 
--   [2.1](#*Set of IntValues)
+- [2.1](#*Set of IntValues)
 
 ## Output
 
--   print on standard output
--   smallest program using Push_swap instruction language, to sort the
-    integers
+- print on standard output
+- smallest program using Push_swap instruction language, to sort the
+  integers
 
 # Evaluation
 
--   only by human beings, therefore no restriction on orgranization
+- only by human beings, therefore no restriction on orgranization
 
--   executable: `push_swap`
+- executable: `push_swap`
 
--   submit a `Makefile`
+- submit a `Makefile`
 
-    -   must compile the project
-    -   must contain usual rules
+  - must compile the project
+  - must contain usual rules
 
--   `libft` allowed with own `Makefile`
+- `libft` allowed with own `Makefile`
 
--   `normed`
+- `normed`
 
--   no unexpected quit of program
+- no unexpected quit of program
 
--   no memory leaks
+- no memory leaks
 
--   allowed functions
+- allowed functions
 
-    -   write
-    -   read
-    -   malloc
-    -   free
-    -   exit
+  - write
+  - read
+  - malloc
+  - free
+  - exit
 
--   smallest list of instructions possible to sort the stack
+- smallest list of instructions possible to sort the stack
 
-    -   will be compared to a maximum number of operations tolerated
+  - will be compared to a maximum number of operations tolerated
 
--   will be checked with checker program
+- will be checked with checker program
 
-    ``` shell
-    $>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
-    OK
-    ```
+  ``` shell
+  $>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
+  OK
+  ```
 
-    -   displays KO
-    -   available in the resources of the project on the intranet
+  - displays KO
+  - available in the resources of the project on the intranet
 
 # Game Rules
 
@@ -100,17 +98,17 @@ title: Push Swap
 
 1.  a (stack)
 
-    -   contianes random number of either positive of negative numbers
-        without any `duplicates`
+    - contianes random number of either positive of negative numbers
+      without any `duplicates`
 
 2.  b (stack)
 
-    -   empty
+    - empty
 
 ### goal
 
--   sort numbers into stack a
--   ascending order
+- sort numbers into stack a
+- ascending order
 
 ### operations
 
@@ -145,7 +143,7 @@ title: Push Swap
 
 ## Execution
 
--   First argument at the top of the stack
+- First argument at the top of the stack
 
 ``` shell
 ./push_swap 2 1 3 6 5 8
@@ -153,14 +151,14 @@ title: Push Swap
 
 ## Display
 
--   smallest list of instructions possible to sort the stack
-    -   will be compared to a maimum number of operations tolerated
--   instructions must be seperated by '`\n`{=latex}'
+- smallest list of instructions possible to sort the stack
+  - will be compared to a maimum number of operations tolerated
+- instructions must be seperated by ''
 
 ## Error
 
--   display `Error` followed by a '`\n`{=latex}' on standard error
-    -   ☐ not integers
-        -   bigger than integer
-        -   duplicates
-        -   characters
+- display `Error` followed by a '' on standard error
+  - [ ] not integers
+    - bigger than integer
+    - duplicates
+    - characters
