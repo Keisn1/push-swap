@@ -1,7 +1,3 @@
----
-title: Push Swap
----
-
 ![](cover-push_swap-bonus.png)
 
 <p align="center">
