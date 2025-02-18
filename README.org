@@ -1,4 +1,8 @@
 #+title: Readme
+#+macro: push_swap-cover [[file:cover-push_swap-bonus.png]]
+#+options: ^:nil
+
+{{{push_swap-cover}}}
 
 * Objects
 ** Set of IntValues
